@@ -1,9 +1,7 @@
-{pkgs, ...}: {
+_: {
   imports = [
-    ./zathura.nix
-  ];
-
-  home.packages = with pkgs; [
-    obsidian
+    ./obsidian
+    ./rofi
+    ./zathura
   ];
 }

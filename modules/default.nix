@@ -1,5 +1,3 @@
-{
-  flake.nixosModules = {
-    theme = import ./theme;
-  };
+_: {
+  flake.nixosModules = {};
 }

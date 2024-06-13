@@ -1,11 +1,6 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     # import folders first
-    ./anyrun
     ./browsers
     ./media
     ./terminal
@@ -22,7 +17,6 @@
 
     # personalizations
     nixos-icons
-    inputs.matugen.packages.${pkgs.system}.default
 
     # misc
     catimg
@@ -32,11 +26,26 @@
     imagemagick
     jq
     pciutils
+    ueberzugpp
     xcolor
 
     # ags
     mission-center
     dart-sass
     overskride
+
+    # Languages
+    cmake
+    gcc
+    gnumake
+    gnupatch
+    clang-tools
+    elixir
+    go
+    nodejs
+    nodePackages.npm
+    nodePackages.yarn
+    php
+    typescript
   ];
 }

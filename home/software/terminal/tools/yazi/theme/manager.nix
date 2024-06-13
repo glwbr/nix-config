@@ -1,63 +1,45 @@
-{
-  programs.yazi.theme.manager = {
-    cwd = {fg = "cyan";};
+{config, ...}: {
+  programs.yazi = {
+    settings = {
+      manager = {
+        layout = [1 4 3];
+        sort_by = "alphabetical";
+        sort_sensitive = true;
+        sort_reverse = false;
+        sort_dir_first = true;
+        linemode = "none";
+        show_hidden = false;
+        show_symlink = true;
+      };
 
-    # Hovered
-    hovered = {
-      fg = "black";
-      bg = "lightblue";
-    };
+      preview = {
+        tab_size = 2;
+        max_width = 600;
+        max_height = 900;
+        cache_dir = "${config.xdg.cacheHome}";
+      };
 
-    preview_hovered = {
-      fg = "black";
-      bg = "lightblue";
-    };
+      theme.manager = {
+        # Find
+        find_keyword = {
+          italic = true;
+        };
 
-    # Find
-    find_keyword = {
-      fg = "yellow";
-      italic = true;
-    };
-    find_position = {
-      fg = "magenta";
-      bg = "reset";
-      italic = true;
-    };
+        find_position = {
+          bg = "reset";
+          italic = true;
+        };
 
-    # Marker
-    marker_selected = {
-      fg = "lightgreen";
-      # bg = "lightgreen";
-    };
-    marker_copied = {
-      fg = "lightyellow";
-      # bg = "lightyellow";
-    };
-    marker_cut = {
-      fg = "lightred";
-      # bg = "lightred";
-    };
+        # Tab
+        tab_width = 1;
 
-    # Tab
-    tab_active = {
-      fg = "black";
-      bg = "lightblue";
+        # Border;
+        border_symbol = "│";
+
+        # Offset;
+        folder_offset = [1 0 1 0];
+        preview_offset = [1 1 1 1];
+      };
     };
-    tab_inactive = {
-      fg = "white";
-      bg = "darkgray";
-    };
-    tab_width = 1;
-
-    # Border;
-    border_symbol = "│";
-    border_style = {fg = "gray";};
-
-    # Offset;
-    folder_offset = [1 0 1 0];
-    preview_offset = [1 1 1 1];
-
-    # Highlighting;
-    syntect_theme = "";
   };
 }

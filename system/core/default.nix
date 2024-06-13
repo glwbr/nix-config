@@ -1,6 +1,4 @@
-{lib, ...}:
-# default configuration shared by all hosts
-{
+{lib, ...}: {
   imports = [
     ./boot.nix
     ./locale.nix
@@ -8,12 +6,6 @@
     ./users.nix
   ];
 
-  # don't touch this
-  system.stateVersion = lib.mkDefault "23.11";
-
-  # compresses half the ram for use as swap
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-  };
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = lib.mkDefault "24.05";
 }
