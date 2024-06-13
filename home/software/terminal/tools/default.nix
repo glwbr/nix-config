@@ -1,19 +1,16 @@
 {pkgs, ...}: {
   imports = [
-    # import folders first
-    ./yazi
-
-    ./bat.nix
-    ./bottom.nix
-    ./git.nix
-    ./gpg.nix
-    ./inlyne.nix
-    ./nix.nix
-    ./skim.nix
-    ./screenshot-area.nix
-    ./screenshot-full.nix
+    ./bat
+    ./bottom
+    ./git
+    ./gpg
+    ./inlyne
+    ./neofetch
+    ./nix
+    ./skim
     ./transient-services.nix
-    ./xdg.nix
+    ./xdg
+    ./yazi
   ];
 
   home.packages = with pkgs; [
@@ -23,7 +20,6 @@
     unrar
 
     # media
-    amberol
     viewnior
     yt-dlp
 
@@ -33,7 +29,6 @@
 
     # utils
     bottom
-    du-dust
     duf
     fd
     file

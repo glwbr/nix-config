@@ -1,7 +1,5 @@
 {config, ...}: let
-  variant = config.theme.name;
-  c = config.programs.matugen.theme.colors.colors.${variant};
-  pointer = config.home.pointerCursor;
+  pointer = config.stylix.cursor;
 in {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
@@ -10,7 +8,7 @@ in {
     ];
 
     exec-once = [
-      # set cursor for HL itself
+      # Set cursor for Hyprland itself
       "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       "systemctl --user start clight"
       "hyprlock"
@@ -21,13 +19,11 @@ in {
     general = {
       gaps_in = 4;
       gaps_out = 8;
-      border_size = 1;
-      "col.inactive_border" = "0xff908caa";
-      "col.active_border" = "0xffebbcba 0xffeb6f92 0xffc4a7e7 45deg";
+      border_size = 2;
 
       monitor = [
-        "HDMI-A-1, 1920x1080@60, 0x0, 1"
-        "eDP-1, 1920x1080@60, 1920x0, 1.25"
+        "HDMI-A-1, 2560x1440@60, 0x0, 1"
+        "eDP-1, 1920x1080@60, 2560x0, 1"
       ];
 
       allow_tearing = true;
@@ -53,7 +49,6 @@ in {
       shadow_offset = "0 2";
       shadow_range = 20;
       shadow_render_power = 3;
-      "col.shadow" = "rgba(00000055)";
     };
 
     animations = {
@@ -71,7 +66,7 @@ in {
         "windowsMove, 1, 2.5, easeinoutsine, slide"
         "border, 1, 2, default"
 
-        # fading
+        # Fading
         "fadeIn, 1, 3, easeOutCubic"
         "fadeOut, 1, 3, easeOutCubic"
         "fadeSwitch, 1, 5, easeOutCirc"
@@ -95,11 +90,11 @@ in {
       kb_variant = ",intl";
       kb_options = "caps:swapescape,grp:alt_space_toggle";
 
-      # type really fast
-      #repeat_delay = 140;
-      #repeat_rate = 30;
+      # Type really fast
+      repeat_delay = 170;
+      repeat_rate = 30;
 
-      # focus change on cursor move
+      # Focus change on cursor move
       follow_mouse = true;
       accel_profile = "flat";
       touchpad = {
@@ -109,28 +104,27 @@ in {
     };
 
     dwindle = {
-      # keep floating dimentions while tiling
+      # Keep floating dimentions while tiling
       pseudotile = true;
       preserve_split = true;
     };
 
     master = {
-      new_is_master = true;
+      new_status = "master";
     };
 
     misc = {
-      # disable auto polling for config file changes
+      # Disable auto polling for config file changes
       disable_autoreload = true;
 
       force_default_wallpaper = 0;
 
-      # disable dragging animation
+      # Disable dragging animation
       animate_mouse_windowdragging = false;
 
-      # disable variable refresh rate
+      # Disable variable refresh rate
       vrr = false;
 
-      # we do, in fact, want direct scanout
       no_direct_scanout = false;
 
       enable_swallow = true;
@@ -140,7 +134,7 @@ in {
       disable_hyprland_logo = true;
     };
 
-    # touchpad gestures
+    # Touchpad gestures
     gestures = {
       workspace_swipe = true;
       workspace_swipe_forever = true;

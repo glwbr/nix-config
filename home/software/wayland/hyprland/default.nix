@@ -5,20 +5,22 @@
 }: {
   imports = [
     inputs.hyprland.homeManagerModules.default
+    ./plugins
+
     ./binds.nix
-    ./plugins.nix
     ./rules.nix
     ./settings.nix
   ];
 
   home = {
     packages = with pkgs; [
-      seatd
+      grimblast
       jaq
+      seatd
       xorg.xprop
-      inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       xwaylandvideobridge
     ];
+
     file = {
       ".config/hypr/scripts/colorpicker" = {
         source = ./scripts/colorpicker;

@@ -4,7 +4,6 @@ _: {
     ./backlight.nix
     ./gnome-services.nix
     ./greetd.nix
-    ./pipewire.nix
     ./power.nix
     ./samba.nix
   ];
