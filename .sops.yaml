@@ -1,9 +1,8 @@
 keys:
   - &users: 
-    - &glwbr age1cqrg22g9gzas55xna8wup9yaymd3vwsj07mdknhchmfezfsvqqeqx7qw7a
-    # - &glwbr F2958A358360AB1FD9ACAE112CEB532115AD1913
+    - &glwbr age1q8kpr53cx0wjhp46j3at0k5mggjk36z07h75n0qwa5nsme7su9as9q38sg
   - &hosts:
-    - &zion age1vq7z3ahkgj4k26ttuanmtkhc6a5ugn8e6qc7epfhgky4hthx8v9squ3zlu
+    - &zion age1v9mvn5dj27sj6rd54hzknvk47j6thepq8w8pzcgxfjsj0jcc0urscc7xzt
 creation_rules:
   - path_regex: hosts/shared/secrets.(ya?ml|json)$
     key_groups:
