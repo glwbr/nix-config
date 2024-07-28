@@ -22,8 +22,8 @@ in {
       border_size = 2;
 
       monitor = [
-        "HDMI-A-1, 2560x1440@60, 0x0, 1"
-        "eDP-1, 1920x1080@60, 2560x0, 1"
+        "eDP-1, 1920x1080@60, 0x0, 1"
+        "HDMI-A-1, 2560x1440@60, 1920x0, 1"
       ];
 
       allow_tearing = true;
