@@ -1,6 +1,6 @@
-{inputs, ...}: {
+_: {
   # nh default flake
-  environment.variables.FLAKE = "/home/glwbr/workspace/dotfiles";
+  environment.variables.FLAKE = "/home/glwbr/Workspace/nix-config";
 
   programs.nh = {
     enable = true;
