@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  browser = ["firefox"];
+  browser = ["google-chrome-stable"];
   imageViewer = ["viewnior"];
   videoPlayer = ["mpv"];
   audioPlayer = ["termusic"];
@@ -40,7 +40,7 @@
       "application/pdf" = ["org.pwmt.zathura-pdf-mupdf"];
       "text/html" = browser;
       "text/plain" = ["nvim"];
-      "x-scheme-handler/chrome" = ["chromium-browser"];
+      "x-scheme-handler/chrome" = ["google-chrome-stable"];
       "inode/directory" = ["yazi"];
     }
     // image
