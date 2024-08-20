@@ -11,6 +11,8 @@
   ];
 
   home.packages = with pkgs; [
+    (calibre.override {unrarSupport = true;})
+
     # social
     vesktop
     tdesktop
