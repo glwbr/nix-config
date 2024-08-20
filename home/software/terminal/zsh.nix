@@ -8,12 +8,12 @@
     autosuggestion.enable = true;
     autocd = true;
 
+    # !TODO: set hashes based on config.homeDirectory
     dirHashes = {
       dl = "$HOME/Downloads";
-      dev = "$HOME/workspace";
+      dev = "$HOME/Workspace";
       docs = "$HOME/Documents";
-      code = "$HOME/workspace/";
-      dots = "$HOME/workspace/dotfiles";
+      dots = "$HOME/Workspace/nix-config";
       pics = "$HOME/Pictures";
       vids = "$HOME/Videos";
     };
