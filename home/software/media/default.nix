@@ -1,8 +1,8 @@
 _: {
   imports = [
+    ./easyeffect
     ./gimp
     ./mpv
-    ./rnnoise
     ./spotify
     ./vlc
   ];
