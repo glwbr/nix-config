@@ -1,6 +1,7 @@
 _: {
   imports = [
-    ./neovim
     ./helix
+    ./neovim
+    ./vscode
   ];
 }
