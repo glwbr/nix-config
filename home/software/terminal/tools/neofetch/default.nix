@@ -3,7 +3,7 @@
   home.file.".config/neofetch/config.conf".text = ''
     print_info() {
     	prin ""
-    	prin "$(color 1)L O N E N"
+    	prin "$(color 1)G L W B R"
     	prin _____________________
       info "\e[34m  " distro
       info "\e[31m " kernel
