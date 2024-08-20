@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  config,
+  inputs,
+  ...
+}: {
   imports = [
     ./disko.nix
     ./hardware.nix
@@ -16,6 +20,7 @@
     # Load modules on boot
     kernelModules = ["v4l2loopback"];
     kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
+    extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
   };
 
   networking.hostName = "zion";
