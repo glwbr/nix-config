@@ -47,7 +47,9 @@
     nodejs
     nodePackages.npm
     nodePackages.yarn
+    nodePackages.jsonlint
     php
     typescript
+    yaml-language-server
   ];
 }
