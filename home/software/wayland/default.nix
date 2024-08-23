@@ -6,7 +6,7 @@
   imports = [
     # import folders first
     ./hyprland
-
+    ./waybar.nix
     ./hyprlock.nix
     ./wlogout.nix
   ];
