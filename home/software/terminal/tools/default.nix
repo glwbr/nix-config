@@ -5,7 +5,6 @@
     ./git
     ./gpg
     ./inlyne
-    ./neofetch
     ./nix
     ./skim
     ./transient-services.nix
@@ -26,6 +25,7 @@
     # misc
     libnotify
     fontconfig
+    fastfetch
 
     # utils
     bottom
@@ -35,8 +35,6 @@
     jaq
     killall
     ripgrep
-
-    onefetch
   ];
 
   programs = {
