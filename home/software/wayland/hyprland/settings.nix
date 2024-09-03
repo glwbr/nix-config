@@ -18,7 +18,7 @@ in {
 
     general = {
       gaps_in = 4;
-      gaps_out = 8;
+      gaps_out = 6;
       border_size = 2;
 
       monitor = [
@@ -32,6 +32,7 @@ in {
 
     decoration = {
       rounding = 4;
+
       blur = {
         enabled = true;
         brightness = 1.0;
@@ -107,6 +108,9 @@ in {
       # Keep floating dimentions while tiling
       pseudotile = true;
       preserve_split = true;
+      no_gaps_when_only = false;
+      smart_split = false;
+      smart_resizing = false;
     };
 
     master = {
