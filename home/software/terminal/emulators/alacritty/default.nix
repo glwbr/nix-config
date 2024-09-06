@@ -13,8 +13,11 @@
       };
 
       font = lib.mkForce {
-        normal.family = "DejaVu Sans Mono";
-        size = 14;
+        normal = {
+          family = "JetBrainsMono Nerd Font";
+          style = "Light";
+        };
+        size = 18;
       };
 
       keyboard.bindings = [

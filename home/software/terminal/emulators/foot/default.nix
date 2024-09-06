@@ -4,7 +4,7 @@
 
     settings = {
       main = {
-        font = lib.mkForce "DejaVu Sans Mono:size=14";
+        font = lib.mkForce "AestheticIosevka Nerd Font Mono:style=Regular:size=16";
         font-size-adjustment = 1;
         dpi-aware = "no";
         pad = "5x5center";
