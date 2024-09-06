@@ -1,17 +1,8 @@
-{inputs, ...}: {
-  imports = [
-    inputs.nixvim.homeManagerModules.nixvim
-    ./plugins
-
-    ./autocmds.nix
-    ./options.nix
-    ./remap.nix
-  ];
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   home.shellAliases.v = "nvim";
-  programs.nixvim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-  };
+  home.packages = [inputs.corgix.packages.${pkgs.system}.default];
 }

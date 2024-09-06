@@ -64,10 +64,7 @@
     hyprlock.url = "github:hyprwm/hyprlock";
     hyprpaper.url = "github:hyprwm/hyprpaper";
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    corgix.url = "github:glwbr/corgix";
 
     nix-index-db = {
       url = "github:Mic92/nix-index-database";
