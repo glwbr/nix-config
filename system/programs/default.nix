@@ -4,6 +4,7 @@
     ./fonts.nix
     ./home-manager.nix
     ./hyprland.nix
+    ./virt.nix
     ./xdg.nix
     ./zsh.nix
   ];
