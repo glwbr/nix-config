@@ -81,7 +81,8 @@ in {
 
     group = {
       groupbar = {
-        font_size = 16;
+        font_family = "UbuntuMono Nerd Font";
+        font_size = 12;
         gradients = false;
       };
     };
@@ -117,6 +118,10 @@ in {
       new_status = "master";
     };
 
+    render = {
+      direct_scanout = true;
+    };
+
     misc = {
       # Disable auto polling for config file changes
       disable_autoreload = true;
@@ -128,8 +133,6 @@ in {
 
       # Disable variable refresh rate
       vrr = false;
-
-      no_direct_scanout = false;
 
       enable_swallow = true;
       swallow_regex = "'^(Alacritty|kitty|footclient|foot)$'";
