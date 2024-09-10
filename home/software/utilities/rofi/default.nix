@@ -7,7 +7,6 @@
   inherit (pkgs) rofi-wayland;
   inherit (lib) mkForce;
   inherit (config.lib.formats.rasi) mkLiteral;
-  #inherit (config.lib.stylix.colors) base00 base05;
 in {
   programs.rofi = {
     enable = true;
@@ -26,7 +25,7 @@ in {
       display-window = "";
       display-combi = "";
       icon-theme = "Fluent-dark";
-      terminal = "kitty";
+      terminal = "alacritty";
       drun-match-fields = "name";
       drun-display-format = "{name}";
       me-select-entry = "";
