@@ -135,7 +135,7 @@ in {
       vrr = false;
 
       enable_swallow = true;
-      swallow_regex = "'^(Alacritty|kitty|footclient|foot)$'";
+      swallow_regex = "^(A|a)lacritty|footclient|foot$";
 
       disable_splash_rendering = true;
       disable_hyprland_logo = true;
