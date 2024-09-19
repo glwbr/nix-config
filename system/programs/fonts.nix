@@ -17,9 +17,6 @@
 
       # Monospace fonts
       maple-mono-SC-NF
-      inputs.aesthetic-iosevka.packages.${pkgs.system}.default
-      inputs.self.packages.${pkgs.system}.SF-Mono
-      inputs.self.packages.${pkgs.system}.SF-Pro
 
       # nerdfonts
       (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly" "JetBrainsMono" "DejaVuSansMono"];})

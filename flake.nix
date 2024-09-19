@@ -42,8 +42,6 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    aesthetic-iosevka.url = "github:alphatechnolog/aesthetic-iosevka";
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
