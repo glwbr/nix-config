@@ -3,7 +3,7 @@
     enable = true;
 
     settings = {
-      colors.draw_bold_text_with_bright_colors = true;
+      colors.draw_bold_text_with_bright_colors = false;
 
       cursor = {
         vi_mode_style = {
@@ -17,7 +17,7 @@
           family = "JetBrainsMono Nerd Font";
           style = "Light";
         };
-        size = 18;
+        size = 16;
       };
 
       keyboard.bindings = [
