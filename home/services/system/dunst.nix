@@ -25,7 +25,9 @@ _: {
         word_wrap = "yes";
       };
 
-      fullscreen_delay_everything = {fullscreen = "delay";};
+      fullscreen_delay_everything = {
+        fullscreen = "delay";
+      };
     };
   };
 }

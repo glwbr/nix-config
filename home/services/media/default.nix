@@ -1,6 +1,6 @@
-{
+_: {
   imports = [
     ./playerctl.nix
-    ./spotifyd.nix
+    # ./spotifyd.nix
   ];
 }

@@ -1,15 +1,19 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./bat
     ./bottom
+    ./direnv
+    ./eza
     ./git
+    ./glow
     ./gpg
-    ./inlyne
-    ./nix
     ./skim
+    ./ssh
+    ./tmux
     ./transient-services.nix
-    ./xdg
-    ./yazi
+    # ./xdg
+    #./yazi
   ];
 
   home.packages = with pkgs; [
@@ -23,12 +27,11 @@
     yt-dlp
 
     # misc
-    libnotify
-    fontconfig
+    # libnotify
+    # fontconfig
     fastfetch
 
     # utils
-    bottom
     duf
     fd
     file
@@ -36,9 +39,4 @@
     killall
     ripgrep
   ];
-
-  programs = {
-    eza.enable = true;
-    ssh.enable = true;
-  };
 }

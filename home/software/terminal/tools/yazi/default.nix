@@ -3,7 +3,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./theme/icons.nix
     ./theme/manager.nix
@@ -11,7 +12,7 @@
   ];
 
   # General file info
-  home.packages = [pkgs.exiftool];
+  home.packages = [ pkgs.exiftool ];
 
   # yazi file manager
   programs.yazi = {

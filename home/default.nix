@@ -1,23 +1,25 @@
+{ outputs, ... }:
 {
-  self,
-  inputs,
-  ...
-}: let
-  # get these into the module system
-  extraSpecialArgs = {inherit inputs self;};
+  imports = [
+    ./software
+    ./services
+  ];
 
-  homeImports = {"glwbr@zion" = [./home.nix];};
-  inherit (inputs.hm.lib) homeManagerConfiguration;
-  pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-in {
-  _module.args = {inherit homeImports;};
-
-  flake = {
-    homeConfiguration = {
-      "glwbr_zion" = homeManagerConfiguration {
-        modules = homeImports."glwbr@zion";
-        inherit pkgs extraSpecialArgs;
-      };
-    };
+  home = {
+    username = "glwbr";
+    homeDirectory = "/home/glwbr";
+    stateVersion = "24.05";
   };
+
+  nixpkgs = {
+    config.allowUnfree = true;
+    config.allowUnfreePredicate = _: true;
+    overlays = builtins.attrValues outputs.overlays;
+  };
+
+  # Hint electron apps to use wayland
+  home.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # Let HM manage itself when in standalone mode
+  programs.home-manager.enable = true;
 }

@@ -1,8 +1,10 @@
-{config, ...}: let
+{ config, ... }:
+let
   data = config.xdg.dataHome;
   conf = config.xdg.configHome;
   cache = config.xdg.cacheHome;
-in {
+in
+{
   imports = [
     # import folders first
     ./emulators
@@ -19,9 +21,8 @@ in {
     LESSKEY = "${conf}/less/lesskey";
 
     WINEPREFIX = "${data}/wine";
-    XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
+    # XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
 
-    EDITOR = "nvim";
     DIRENV_LOG_FORMAT = "";
 
     # auto-run programs using nix-index-database

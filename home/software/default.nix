@@ -1,20 +1,22 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     # import folders first
     ./browsers
+    ./desktop
+    ./editors
     ./media
     ./terminal
     ./utilities
-    ./wayland
 
-    ./gtk.nix
+    #  ./gtk.nix
   ];
 
   home.packages = with pkgs; [
-    (calibre.override {unrarSupport = true;})
+    # (calibre.override {unrarSupport = true;})
 
     # social
-    vesktop
+    # vesktop
     tdesktop
 
     # personalizations
@@ -32,9 +34,9 @@
     xcolor
 
     # ags
-    mission-center
-    dart-sass
-    overskride
+    # mission-center
+    # dart-sass
+    # overskride
 
     # Languages
     cmake

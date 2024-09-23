@@ -2,7 +2,7 @@ _: {
   imports = [
     ./obsidian
     ./obs-studio
-    ./rofi
+    # ./rofi
     ./zathura
   ];
 }
