@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (pkgs) rofi-wayland;
   inherit (lib) mkForce;
   inherit (config.lib.formats.rasi) mkLiteral;
-in {
+in
+{
   programs.rofi = {
     enable = true;
     cycle = false;
@@ -64,7 +66,10 @@ in {
         border-radius = mkLiteral "2px";
         #border-color = mkLiteral "#${base05}40";
 
-        children = map mkLiteral ["icon-search" "entry"];
+        children = map mkLiteral [
+          "icon-search"
+          "entry"
+        ];
       };
 
       prompt = {

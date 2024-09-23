@@ -1,54 +1,16 @@
 {
-  description = "Lonen's Floquinhos";
-
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux"];
-
-      imports = [
-        ./home
-        ./hosts
-        ./lib
-        ./modules
-        ./pkgs
-      ];
-
-      perSystem = {
-        config,
-        pkgs,
-        ...
-      }: {
-        devShells = {
-          default = pkgs.mkShell {
-            packages = [
-              pkgs.alejandra
-              pkgs.git
-              config.packages.repl
-            ];
-            name = "dots";
-            DIRENV_LOG_FORMAT = "";
-          };
-        };
-
-        formatter = pkgs.alejandra;
-      };
-    };
+  description = "My own flake, my own Aria.";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    corgix.url = "github:glwbr/corgix";
 
     disko = {
       url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -57,32 +19,92 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hypridle.url = "github:hyprwm/hypridle";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprlock.url = "github:hyprwm/hyprlock";
-    hyprpaper.url = "github:hyprwm/hyprpaper";
 
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hardware.url = "github:glwbr/nixos-hardware/feature-inspiron7460";
 
-    corgix.url = "github:glwbr/corgix";
+    impermanence.url = "github:nix-community/impermanence";
 
-    nix-index-db = {
-      url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    spicetify-nix = {
-      url = "github:MichaelPachec0/spicetify-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix.url = "github:danth/stylix";
-
-    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
-
-    yazi.url = "github:sxyazi/yazi";
   };
+
+  outputs =
+    {
+      self,
+      nixpkgs,
+      disko,
+      hm,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      lib = nixpkgs.lib.extend (prev: _: { aria = import ./lib/default.nix { lib = prev; }; } // hm.lib);
+
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs systems (
+        system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+      );
+    in
+    {
+      inherit lib;
+
+      # homeManagerModules = import ./modules/home;
+      # nixosModules = import ./modules/nixos;
+      overlays = import ./overlays { inherit inputs outputs; };
+
+      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
+      formatter = forEachSystem (pkgs: pkgs.nixfmt-rfc-style);
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+
+      # 'nixos-rebuild --flake .#hostname'
+      nixosConfigurations = {
+        sonata = lib.nixosSystem {
+          modules = [
+            ./hosts/sonata
+            disko.nixosModules.default
+          ];
+          specialArgs = {
+            inherit inputs outputs;
+          };
+        };
+
+        sinfonia = lib.nixosSystem {
+          modules = [
+            ./hosts/sinfonia
+            disko.nixosModules.default
+          ];
+          specialArgs = {
+            inherit inputs outputs;
+          };
+        };
+
+      };
+
+      # 'home-manager --flake .#username@hostname'
+      homeConfigurations = {
+        "glwbr@sonata" = lib.homeManagerConfiguration {
+          extraSpecialArgs = {
+            inherit inputs outputs lib;
+          };
+          modules = [ ./home/glwbr/sonata.nix ];
+          pkgs = pkgsFor.x86_64-linux;
+        };
+      };
+    };
 }

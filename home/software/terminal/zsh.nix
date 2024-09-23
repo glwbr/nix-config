@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -11,9 +12,9 @@
     # !TODO: set hashes based on config.homeDirectory
     dirHashes = {
       dl = "$HOME/Downloads";
-      dev = "$HOME/Workspace";
+      dev = "$HOME/projects";
       docs = "$HOME/Documents";
-      dots = "$HOME/Workspace/nix-config";
+      dots = "$HOME/projects/nix-config";
       pics = "$HOME/Pictures";
       vids = "$HOME/Videos";
     };
@@ -22,7 +23,15 @@
 
     syntaxHighlighting = {
       enable = true;
-      highlighters = ["main" "brackets" "pattern" "cursor" "regexp" "root" "line"];
+      highlighters = [
+        "main"
+        "brackets"
+        "pattern"
+        "cursor"
+        "regexp"
+        "root"
+        "line"
+      ];
     };
 
     history = {
@@ -94,69 +103,80 @@
       ''}
     '';
 
-    shellAliases =
-      {
-        q = "exit";
-        trimall = "sudo fstrim -va";
-        temp = "cd /tmp/";
+    shellAliases = {
+      q = "exit";
+      trimall = "sudo fstrim -va";
+      tmp = "cd /tmp/";
 
-        # nix build
-        bloat = "nix path-info -Sh /run/current-system";
-        switch = "sudo nixos-rebuild switch --flake .#zion";
-        rebuild = "sudo nixos-rebuild test --flake .#zion";
+      # nix
+      nd = "nix develop -c $SHELL";
+      ns = "nix shell";
+      nb = "nix build";
+      nf = "nix flake";
+      nr = "nixos-rebuild --flake .";
+      snr = "sudo nixos-rebuild --flake .";
 
-        # nix gc
-        cleanup = "sudo nix-collect-garbage --delete-older-than 1d";
-        listgen = "sudo nix-env -p /nix/var/nix/profiles/system --list-generations";
-        nixremove = "nix-store --gc";
+      bloat = "nix path-info -Sh /run/current-system";
+      switch = "sudo nixos-rebuild --flake . switch";
+      rebuild = "sudo nixos-rebuild --flake . test";
 
-        # nix packages
-        installed = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort | uniq | sk";
-        installedall = "nix-store --query --requisites /run/current-system | sk";
+      # home-manager
+      hms = "home-manager --flake . switch";
 
-        # git
-        g = "git";
-        commit = "git add . && git commit -m";
-        push = "git push";
-        pull = "git pull";
-        gcld = "git clone --depth";
-        gco = "git checkout";
-        gitgrep = "git ls-files | rg";
-        gitrm = "git ls-files --deleted -z | xargs -0 git rm";
+      # nix gc
+      cleanup = "sudo nix-collect-garbage --delete-older-than 1d";
+      listgen = "sudo nix-env -p /nix/var/nix/profiles/system --list-generations";
+      nixremove = "nix-store --gc";
 
-        ip = "ip --color";
+      # nix packages
+      installed = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort | uniq | sk";
+      installedall = "nix-store --query --requisites /run/current-system | sk";
 
-        # ls
-        l = "eza -lh";
-        la = "eza -lah";
-        ls = "eza --icons --color=auto --group-directories-first -s extension";
-        tree = "eza --tree --icons --tree";
+      # git
+      g = "git";
+      commit = "git add . && git commit -m";
+      push = "git push";
+      pull = "git pull";
+      gcld = "git clone --depth";
+      gco = "git checkout";
+      gitgrep = "git ls-files | rg";
+      gitrm = "git ls-files --deleted -z | xargs -0 git rm";
 
-        # cp mv rm mkdir
-        cp = "cp -vr";
-        mo = "inlyne";
-        md = "mkdir -p";
-        mv = "mv -v";
-        rm = "rm -rv";
+      ip = "ip --color";
 
-        # cat grep
-        # cat = "bat --theme=base16 --number --color=always --paging=never --tabs=2 --wrap=never";
-        grep = "rg";
+      # ls
+      l = "eza -lh";
+      la = "eza -lah";
+      ls = "eza --icons --color=auto --group-directories-first -s extension";
+      tree = "eza --tree --icons --tree";
 
-        # misc
-        df = "df -h";
-        du = "du-dust";
-        fm = "yazi";
-        jctl = "journalctl -p 3 -xb";
+      # cp mv rm mkdir
+      cp = "cp -vr";
+      md = "mkdir -p";
+      mv = "mv -v";
+      rm = "rm -rv";
 
-        # youtube-dl
-        ytmp3 = "yt-dlp --ignore-errors -x --audio-format mp3 -f bestaudio --audio-quality 0 --embed-metadata --embed-thumbnail --output '%(title)s.%(ext)s'";
+      # cat grep
+      # cat = "bat --theme=base16 --number --color=always --paging=never --tabs=2 --wrap=never";
+      grep = "rg";
 
-        # systemctl
-        us = "systemctl --user";
-        rs = "sudo systemctl";
-      }
-      // lib.optionalAttrs config.programs.bat.enable {cat = "bat";};
-    shellGlobalAliases = {eza = "eza --icons --git";};
+      # misc
+      df = "df -h";
+      du = "du-dust";
+      fm = "yazi";
+      jctl = "journalctl -p 3 -xb";
+      htop = "btm -b";
+      btop = "btm";
+
+      # youtube-dl
+      ytmp3 = "yt-dlp --ignore-errors -x --audio-format mp3 -f bestaudio --audio-quality 0 --embed-metadata --embed-thumbnail --output '%(title)s.%(ext)s'";
+
+      # systemctl
+      us = "systemctl --user";
+      rs = "sudo systemctl";
+    } // lib.optionalAttrs config.programs.bat.enable { cat = "bat"; };
+    shellGlobalAliases = {
+      eza = "eza --icons --git";
+    };
   };
 }

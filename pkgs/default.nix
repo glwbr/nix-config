@@ -1,9 +1,5 @@
+{ pkgs, ... }:
 {
-  systems = ["x86_64-linux"];
-
-  perSystem = {pkgs, ...}: {
-    packages = {
-      wl-ocr = pkgs.callPackage ./wl-ocr {};
-    };
-  };
+  monolisa = pkgs.callPackage ./monolisa { };
+  wl-ocr = pkgs.callPackage ./wl-ocr { };
 }

@@ -1,8 +1,4 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    (writeScriptBin "btop" ''exec btm'')
-    (writeScriptBin "htop" ''exec btm -b'')
-  ];
+_: {
   programs.bottom = {
     enable = true;
     settings = {
@@ -11,8 +7,8 @@
         {
           ratio = 2;
           child = [
-            {type = "cpu";}
-            {type = "mem";}
+            { type = "cpu"; }
+            { type = "mem"; }
           ];
         }
         {

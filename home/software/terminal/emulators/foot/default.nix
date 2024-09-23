@@ -1,14 +1,20 @@
-{lib, ...}: {
+{ config, lib, ... }:
+let
+  cfg = config.aria.terminal.foot;
+in
+{
   programs.foot = {
-    enable = true;
+    # FIXME: enable only if wayland is present
+    enable = lib.mkIf cfg.enable;
+    server.enable = true;
 
     settings = {
       main = {
-        font = lib.mkForce "AestheticIosevka Nerd Font Mono:style=Regular:size=16";
-        font-size-adjustment = 1;
         dpi-aware = "no";
-        pad = "5x5center";
-        notify = "notify-send -a \${app-id} -i \${app-id} \${title} \${body}";
+        font = lib.mkForce "JetBrainsMono Nerd Font Mono:style=Regular:size=16";
+        font-size-adjustment = 1;
+        pad = "1x1 center";
+        term = "xterm-256color";
       };
 
       mouse.hide-when-typing = "yes";
@@ -29,7 +35,7 @@
 
       cursor = {
         color = "191724 e0def4";
-        style = "beam";
+        style = "block";
         beam-thickness = 1;
       };
     };

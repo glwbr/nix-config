@@ -2,22 +2,39 @@
   config,
   pkgs,
   ...
-}: let
-  browser = ["google-chrome-stable"];
-  imageViewer = ["viewnior"];
-  videoPlayer = ["mpv"];
-  audioPlayer = ["termusic"];
+}:
+let
+  browser = [ "google-chrome-stable" ];
+  imageViewer = [ "viewnior" ];
+  videoPlayer = [ "mpv" ];
+  audioPlayer = [ "termusic" ];
 
-  xdgAssociations = type: program: list:
-    builtins.listToAttrs (map (e: {
+  xdgAssociations =
+    type: program: list:
+    builtins.listToAttrs (
+      map (e: {
         name = "${type}/${e}";
         value = program;
-      })
-      list);
+      }) list
+    );
 
-  image = xdgAssociations "image" imageViewer ["png" "svg" "jpeg" "gif"];
-  video = xdgAssociations "video" videoPlayer ["mp4" "avi" "mkv"];
-  audio = xdgAssociations "audio" audioPlayer ["mp3" "flac" "wav" "aac"];
+  image = xdgAssociations "image" imageViewer [
+    "png"
+    "svg"
+    "jpeg"
+    "gif"
+  ];
+  video = xdgAssociations "video" videoPlayer [
+    "mp4"
+    "avi"
+    "mkv"
+  ];
+  audio = xdgAssociations "audio" audioPlayer [
+    "mp3"
+    "flac"
+    "wav"
+    "aac"
+  ];
   browserTypes =
     (xdgAssociations "application" browser [
       "json"
@@ -36,18 +53,21 @@
     ]);
 
   # XDG MIME types
-  associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) ({
-      "application/pdf" = ["org.pwmt.zathura-pdf-mupdf"];
+  associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) (
+    {
+      "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf" ];
       "text/html" = browser;
-      "text/plain" = ["nvim"];
-      "x-scheme-handler/chrome" = ["google-chrome-stable"];
-      "inode/directory" = ["yazi"];
+      "text/plain" = [ "nvim" ];
+      "x-scheme-handler/chrome" = [ "google-chrome-stable" ];
+      "inode/directory" = [ "yazi" ];
     }
     // image
     // video
     // audio
-    // browserTypes);
-in {
+    // browserTypes
+  );
+in
+{
   xdg = {
     enable = true;
     cacheHome = config.home.homeDirectory + "/.local/cache";

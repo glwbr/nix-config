@@ -1,8 +1,13 @@
-{config, ...}: {
+{ config, ... }:
+{
   programs.yazi = {
     settings = {
       manager = {
-        layout = [1 4 3];
+        layout = [
+          1
+          4
+          3
+        ];
         sort_by = "alphabetical";
         sort_sensitive = true;
         sort_reverse = false;
@@ -37,8 +42,18 @@
         border_symbol = "│";
 
         # Offset;
-        folder_offset = [1 0 1 0];
-        preview_offset = [1 1 1 1];
+        folder_offset = [
+          1
+          0
+          1
+          0
+        ];
+        preview_offset = [
+          1
+          1
+          1
+          1
+        ];
       };
     };
   };
