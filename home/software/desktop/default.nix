@@ -3,5 +3,6 @@ _: {
     ./i3
     ./hyprland
     ./sway
+    ./xdg
   ];
 }
