@@ -12,7 +12,6 @@
     ./ssh
     ./tmux
     ./transient-services.nix
-    # ./xdg
     #./yazi
   ];
 
