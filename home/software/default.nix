@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     # import folders first
     ./browsers
@@ -10,6 +9,7 @@
     ./utilities
 
     #  ./gtk.nix
+    ./datagrip.nix
   ];
 
   home.packages = with pkgs; [
