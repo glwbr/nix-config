@@ -1,7 +1,7 @@
 { config, ... }:
 {
   sops.secrets.wireless = {
-    sopsFile = ../secrets.yaml;
+    sopsFile = ../../secrets.yaml;
     neededForUsers = true;
   };
 
