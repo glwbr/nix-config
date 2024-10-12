@@ -1,5 +1,12 @@
 _: {
   imports = [
-    ./greetd.nix
+    ./i3
+    ./bluetooth
+    ./docker
+    ./greetd
+    ./hyprland
+    ./logitech
+    ./sway
+    ./wireless
   ];
 }
