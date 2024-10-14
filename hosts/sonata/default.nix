@@ -7,21 +7,16 @@
 {
   imports = [
     inputs.hardware.nixosModules.dell-inspiron-7460
+    ./boot.nix
+    ./disko.nix
     ./hardware.nix
     ./stylix.nix
-    ./disko.nix
 
     ../shared/core
     ../shared/optional
   ];
 
   aria.dms.greetd.enable = true;
-
-  boot = {
-    kernelModules = [ "v4l2loopback" ];
-    kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
-    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
-  };
 
   networking.hostName = "sonata";
   nixpkgs.config.allowUnfree = true;
