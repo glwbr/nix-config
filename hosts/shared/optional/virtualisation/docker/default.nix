@@ -14,5 +14,7 @@ in
     virtualisation.docker = {
       enable = true;
     };
+
+    aria.user.extraGroups = [ "docker" ];
   };
 }
