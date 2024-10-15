@@ -3,7 +3,6 @@ _: {
     ./security
     ./services
     ./system
-
-    ./users.nix
+    ./user
   ];
 }
