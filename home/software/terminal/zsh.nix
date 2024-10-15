@@ -114,6 +114,7 @@
       nb = "nix build";
       nf = "nix flake";
       nr = "nixos-rebuild --flake .";
+      nui = "nix flake lock --update-input";
       snr = "sudo nixos-rebuild --flake .";
 
       bloat = "nix path-info -Sh /run/current-system";
