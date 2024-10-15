@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkIf;
   inherit (lib.aria) mkBoolOpt;
 
   cfg = config.aria.programs.terminal.tools.tmux;
@@ -41,7 +41,7 @@ let
         ''
           set -g @resurect-strategy-vim 'session'
           set -g @resurect-strategy-nvim 'session'
-          set -g @resurect-capture-pane-contents' 'on'
+          set -g @resurect-capture-pane-contents 'on'
           set -g @resurect-processes 'ssh lazygit yazi'
           set -g @resurect-dir '~/.tmux/resurrect'
         '';
@@ -50,7 +50,7 @@ let
 in
 {
   options.aria.programs.terminal.tools.tmux = {
-    enable = mkEnableOption "tmux";
+    enable = mkBoolOpt false "Whether or not to enable tmux.";
   };
 
   config = mkIf cfg.enable {
