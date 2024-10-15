@@ -4,7 +4,6 @@ _: {
     ./services
     ./system
 
-    ./minimal.nix
     ./users.nix
   ];
 }
