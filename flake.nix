@@ -21,7 +21,7 @@
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
-    hardware.url = "github:glwbr/nixos-hardware/feature-inspiron7460";
+    hardware.url = "github:nixos/nixos-hardware";
 
     impermanence.url = "github:nix-community/impermanence";
 
