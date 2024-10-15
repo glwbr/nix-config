@@ -1,12 +1,11 @@
 _: {
   imports = [
     ./i3
-    ./bluetooth
-    ./docker
     ./greetd
+    ./hardware
     ./hyprland
-    ./logitech
     ./sway
     ./wireless
+    ./virtualisation
   ];
 }

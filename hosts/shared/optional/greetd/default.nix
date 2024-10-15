@@ -3,13 +3,15 @@
   lib,
   ...
 }:
-with lib;
 let
   cfg = config.aria.dms.greetd;
+
+  inherit (lib) mkIf;
+  inherit (lib.aria) mkBoolOpt;
 in
 {
   options.aria.dms.greetd = {
-    enable = mkEnableOption "greetd";
+    enable = mkBoolOpt false "Whether or not to enable greetd.";
   };
 
   config = mkIf cfg.enable {
@@ -18,7 +20,7 @@ in
       settings = rec {
         default_session = {
           command = "Hyprland &> /dev/null";
-          user = "glwbr";
+          user = config.aria.user.name;
         };
         initial_session = default_session;
       };
