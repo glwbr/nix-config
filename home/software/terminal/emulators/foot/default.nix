@@ -1,42 +1,52 @@
 { config, lib, ... }:
 let
   cfg = config.aria.terminal.foot;
+  isHyprland = config.aria.wms.hyprland.enable;
+
+  inherit (lib) mkForce mkIf;
+  inherit (lib.aria) mkBoolOpt;
+
 in
 {
-  programs.foot = {
-    # FIXME: enable only if wayland is present
-    enable = lib.mkIf cfg.enable;
-    server.enable = true;
+  options.aria.terminal.foot = {
+    enable = mkBoolOpt false "Whether or not to enable foot terminal.";
+  };
 
-    settings = {
-      main = {
-        dpi-aware = "no";
-        font = lib.mkForce "JetBrainsMono Nerd Font Mono:style=Regular:size=16";
-        font-size-adjustment = 1;
-        pad = "1x1 center";
-        term = "xterm-256color";
-      };
+  config = mkIf (cfg.enable && isHyprland) {
+    programs.foot = {
+      enable = true;
+      server.enable = true;
 
-      mouse.hide-when-typing = "yes";
+      settings = {
+        main = {
+          dpi-aware = "no";
+          font = mkForce "JetBrainsMono Nerd Font Mono:style=Regular:size=16";
+          font-size-adjustment = 1;
+          pad = "1x1 center";
+          term = "xterm-256color";
+        };
 
-      scrollback = {
-        lines = 10000;
-        multiplier = 5;
-        indicator-position = "none";
-      };
+        mouse.hide-when-typing = "yes";
 
-      url = {
-        launch = "xdg-open \${url}";
-        label-letters = "sadfjklewcmpgh";
-        osc8-underline = "url-mode";
-        protocols = "http, https, ftp, ftps, file";
-        uri-characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.,~:;/?#@!$&%*+=\"'()[]";
-      };
+        scrollback = {
+          lines = 10000;
+          multiplier = 5;
+          indicator-position = "none";
+        };
 
-      cursor = {
-        color = "191724 e0def4";
-        style = "block";
-        beam-thickness = 1;
+        url = {
+          launch = "xdg-open \${url}";
+          label-letters = "sadfjklewcmpgh";
+          osc8-underline = "url-mode";
+          protocols = "http, https, ftp, ftps, file";
+          uri-characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.,~:;/?#@!$&%*+=\"'()[]";
+        };
+
+        cursor = {
+          color = "191724 e0def4";
+          style = "block";
+          beam-thickness = 1;
+        };
       };
     };
   };
