@@ -22,7 +22,16 @@
 
       "UAIFAI_5G" = {
         pskRaw = "ext:uaifai_5g";
-        priority = 2;
+        priority = 99;
+      };
+
+      "SALA DOS FUNDOS_5G" = {
+        pskRaw = "ext:sala_c4w";
+        priority = 98;
+      };
+
+      "Club4Work" = {
+        pskRaw = "ext:c4w";
       };
     };
 
@@ -39,6 +48,7 @@
   };
 
   # Ensure group exists
-  users.groups.network = { };
+  aria.user.extraGroups = [ "network" ];
   systemd.services.wpa_supplicant.preStart = "touch /etc/wpa_supplicant.conf";
+  users.groups.network = { };
 }
