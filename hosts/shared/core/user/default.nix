@@ -14,13 +14,7 @@ in
 {
   options.aria.user = with types; {
     email = mkOpt str "hello@glwbr.me" "The email of the user.";
-    extraGroups = mkOpt (listOf str) [
-      "nix"
-      "plugdev"
-      "mpd"
-      "network"
-      "video"
-    ] "Groups for the user to be assigned.";
+    extraGroups = mkOpt (listOf str) [ ] "Groups for the user to be assigned.";
     extraOptions = mkOpt attrs { } "Extra options passed to users.users.<name>.option.";
     fullName = mkOpt str "Glauber Santana" "The full name of the user.";
     name = mkOpt str "glwbr" "The name to use for the user account.";
@@ -45,6 +39,7 @@ in
       extraGroups = [
         "input"
         "power"
+        "video"
         "wheel"
       ] ++ ifTheyExist cfg.extraGroups;
 
