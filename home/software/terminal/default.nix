@@ -9,10 +9,9 @@ in
     # import folders first
     ./emulators
     ./tools
+    ./zsh
 
-    ./starship.nix
     ./zoxide.nix
-    ./zsh.nix
   ];
 
   home.sessionVariables = {
