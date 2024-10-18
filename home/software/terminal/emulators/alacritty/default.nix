@@ -18,7 +18,7 @@
           family = "JetBrainsMono Nerd Font";
           style = "Light";
         };
-        size = 16;
+        size = 24;
       };
 
       keyboard.bindings = [
