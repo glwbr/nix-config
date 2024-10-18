@@ -33,6 +33,8 @@
     };
 
     stylix.url = "github:danth/stylix";
+
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
   outputs =
@@ -45,7 +47,7 @@
     }@inputs:
     let
       inherit (self) outputs;
-      lib = nixpkgs.lib.extend (prev: _: { aria = import ./lib/default.nix { lib = prev; }; } // hm.lib);
+      lib = nixpkgs.lib.extend (final: _: import ./lib { lib = final; } // hm.lib);
 
       systems = [
         "aarch64-linux"
