@@ -7,9 +7,13 @@
       colors.draw_bold_text_with_bright_colors = false;
 
       cursor = {
+        style = {
+          shape = "Block";
+          blinking = "On";
+        };
+
         vi_mode_style = {
           shape = "Beam";
-          blinking = "Always";
         };
       };
 
@@ -37,7 +41,7 @@
 
       window = {
         decorations = "none";
-        dynamic_padding = true;
+        # dynamic_padding = true;
         padding.x = 2;
         padding.y = 2;
         startup_mode = "Maximized";

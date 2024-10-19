@@ -20,7 +20,7 @@ in
       settings = {
         main = {
           dpi-aware = "no";
-          font = mkForce "JetBrainsMono Nerd Font Mono:style=Light:size=24";
+          font = mkForce "JetBrainsMono Nerd Font Mono:style=Light:size=32";
           font-size-adjustment = 1;
           pad = "1x1 center";
           term = "xterm-256color";
