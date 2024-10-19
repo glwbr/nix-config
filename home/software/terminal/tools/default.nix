@@ -5,10 +5,10 @@
     ./bottom
     ./direnv
     ./eza
+    ./fzf
     ./git
     ./glow
     ./gpg
-    ./skim
     ./ssh
     ./tmux
     ./transient-services.nix
@@ -33,10 +33,8 @@
 
     # utils
     duf
-    fd
     file
     jaq
     killall
-    ripgrep
   ];
 }
