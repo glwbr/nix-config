@@ -5,6 +5,7 @@
   ...
 }:
 let
+  aliases = import ./aliases.nix;
   flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
 in
 {
@@ -51,4 +52,7 @@ in
   };
 
   nixpkgs.overlays = builtins.attrValues outputs.overlays;
+  environment = {
+    inherit (aliases) shellAliases;
+  };
 }
