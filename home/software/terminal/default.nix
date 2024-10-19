@@ -6,13 +6,9 @@ let
 in
 {
   imports = [
-    # import folders first
     ./emulators
+    ./shells
     ./tools
-
-    ./starship.nix
-    ./zoxide.nix
-    ./zsh.nix
   ];
 
   home.sessionVariables = {
