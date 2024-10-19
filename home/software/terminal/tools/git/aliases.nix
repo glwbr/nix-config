@@ -34,5 +34,14 @@
     oops = "checkout --";
   };
 
-  shellAliases = { };
+  shellAliases = {
+    g = "git";
+    commit = "git add . && git commit -m";
+    push = "git push";
+    pull = "git pull";
+    gcld = "git clone --depth";
+    gco = "git checkout";
+    gitgrep = "git ls-files | rg";
+    gitrm = "git ls-files --deleted -z | xargs -0 git rm";
+  };
 }
