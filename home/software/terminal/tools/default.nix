@@ -12,6 +12,7 @@
     ./ssh
     ./tmux
     ./transient-services.nix
+    ./zoxide
     #./yazi
   ];
 
