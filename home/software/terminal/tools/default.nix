@@ -5,6 +5,7 @@
     ./bottom
     ./direnv
     ./eza
+    ./fastfetch
     ./fzf
     ./git
     ./glow
@@ -29,7 +30,6 @@
     # misc
     # libnotify
     # fontconfig
-    fastfetch
 
     # utils
     duf
