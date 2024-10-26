@@ -25,8 +25,8 @@ zstyle ':completion:*' keep-prefix true
 # Group matches and describe
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-grouped false
-zstyle ':completion:*' list-separator '''
-zstyle ':completion:*' group-name '''
+zstyle ':completion:*' list-separator ''
+zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*:warnings' format '%F{red}%B-- No match for: %d --%b%f'
@@ -47,7 +47,7 @@ zstyle ':completion:*' squeeze-slashes true
 
 # Sort
 zstyle ':completion:*' sort false
-zstyle ":completion:*:git-checkout:*" sort false
+zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*' file-sort modification
 zstyle ':completion:*:eza' sort false
 zstyle ':completion:complete:*:options' sort false
