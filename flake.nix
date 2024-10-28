@@ -33,8 +33,6 @@
     };
 
     stylix.url = "github:danth/stylix";
-
-    zen-browser.url = "github:ch4og/zen-browser-flake";
   };
 
   outputs =
@@ -87,6 +85,7 @@
         };
 
         sinfonia = lib.nixosSystem {
+          system = "aarch64-linux";
           modules = [
             ./hosts/sinfonia
             disko.nixosModules.default
@@ -95,7 +94,6 @@
             inherit inputs outputs;
           };
         };
-
       };
 
       # 'home-manager --flake .#username@hostname'
