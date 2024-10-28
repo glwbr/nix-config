@@ -10,7 +10,7 @@ let
 in
 {
   imports = [
-    ./nh.nix
+    ./nh
     ./substituters.nix
   ];
 
