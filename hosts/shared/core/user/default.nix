@@ -36,12 +36,16 @@ in
     users.mutableUsers = false;
     users.users.${cfg.name} = {
       inherit (cfg) name;
-      extraGroups = [
-        "input"
-        "power"
-        "video"
-        "wheel"
-      ] ++ ifTheyExist cfg.extraGroups;
+      extraGroups =
+        ifTheyExist [
+          "audio"
+          "input"
+          "plugdev"
+          "power"
+          "video"
+          "wheel"
+        ]
+        ++ cfg.extraGroups;
 
       hashedPasswordFile = config.sops.secrets."${cfg.name}".path;
       home = "/home/${cfg.name}";
