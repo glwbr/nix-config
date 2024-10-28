@@ -1,7 +1,6 @@
 _: {
   imports = [
-    ./chromium
+    ./google-chrome
     ./firefox
-    ./librewolf
   ];
 }
