@@ -3,5 +3,6 @@ _: {
     ./audio
     ./bluetooth
     ./logitech
+    ./serial
   ];
 }
