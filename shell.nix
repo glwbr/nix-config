@@ -11,6 +11,7 @@
       gnupg
       home-manager
       nix
+      neovim
       ripgrep
       ssh-to-age
       sops
