@@ -10,25 +10,47 @@ let
 in
 {
   imports = [
-    ../shared/core/system/nix
+    ./boot.nix
+    ./hardware.nix
+    ../shared/core
   ];
-  boot = {
-    kernelPackages = crossPkgs.linuxPackages_latest;
-
-    loader = {
-      grub.enable = false;
-      generic-extlinux-compatible.enable = true;
-    };
-
-    consoleLogLevel = 7;
-  };
 
   hardware.deviceTree.name = "rockchip/rk3566-orangepi-3b-v1.1.dtb";
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "ext4";
-    options = [ "noatime" ];
+  # Options to move to minimal config
+  environment.defaultPackages = [ ];
+  documentation.enable = false;
+
+  zramSwap = {
+    enable = true;
+    swapDevices = 1;
+    algorithm = "zstd";
+  };
+
+  networking = {
+    hostName = "sinfonia";
+    interfaces.end0 = {
+      ipv4.addresses = [
+        {
+          address = "192.168.31.160";
+          prefixLength = 24;
+        }
+      ];
+    };
+  };
+
+  aria = {
+    security.sops.enable = true;
+    system.nix.nh.enable = true;
+    system.locale.enable = true;
+    services = {
+      openssh.enable = true;
+      dbus.enable = true;
+    };
+  };
+
+  services = {
+    journald.extraConfig = "SystemMaxUse=100M";
   };
 
   system.build = {
@@ -38,5 +60,6 @@ in
       inherit config lib pkgs;
     };
   };
+
   system.stateVersion = "24.11";
 }

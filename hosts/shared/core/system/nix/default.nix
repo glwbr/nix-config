@@ -27,7 +27,6 @@ in
       experimental-features = [
         "nix-command"
         "flakes"
-        "ca-derivations"
       ];
       flake-registry = "/etc/nix/registry.json";
       system-features = [

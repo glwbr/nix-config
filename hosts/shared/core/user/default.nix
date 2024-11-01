@@ -8,6 +8,10 @@ let
   cfg = config.aria.user;
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 
+  keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFXukX2AWQ/fGA0N03jcbJt4obdlcnHCI68V4oz65/br"
+  ];
+
   inherit (lib) types;
   inherit (lib.aria) mkOpt;
 in
@@ -33,6 +37,11 @@ in
       neededForUsers = true;
     };
 
+    users.users.root = {
+      shell = pkgs.zsh;
+      openssh.authorizedKeys.keys = keys;
+    };
+
     users.mutableUsers = false;
     users.users.${cfg.name} = {
       inherit (cfg) name;
@@ -46,11 +55,11 @@ in
           "wheel"
         ]
         ++ cfg.extraGroups;
-
       hashedPasswordFile = config.sops.secrets."${cfg.name}".path;
       home = "/home/${cfg.name}";
       isNormalUser = true;
       shell = pkgs.zsh;
+      openssh.authorizedKeys.keys = keys;
       uid = 1000;
     } // cfg.extraOptions;
   };
