@@ -2,10 +2,12 @@ keys:
   # Users
   - &glwbr age12x8nwx2ka3y77cuaalunak5rg7vzkfghytlyvczl7jlvk3ap8edqm4vzhe
   # Hosts
-  - &zion age10m42yy7ta3k3fycnkvc0l32u5llxxfeeqej5ts7jy3ewun5h4uuq7ycj4j
+  - &sinfonia age1knznfhwu89ffp60qa5tdkf83ajwslug2ysz64dzpwq2tvy6ph4zsdd4fa9
+  - &sonata age10m42yy7ta3k3fycnkvc0l32u5llxxfeeqej5ts7jy3ewun5h4uuq7ycj4j
 creation_rules:
   - path_regex: hosts/shared/secrets.(ya?ml|json)$
     key_groups:
       - age:
           - *glwbr
-          - *zion
+          - *sonata
+          - *sinfonia
