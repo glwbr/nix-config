@@ -1,11 +1,15 @@
-_: {
+_:
+let
+  screenshotarea = "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copysave area; hyprctl keyword animation 'fadeOut,1,4,default'";
+in
+{
   wayland.windowManager.hyprland.settings = {
     bind = [
-      "SUPER_SHIFT, E, exec, pkill Hyprland"
-      "SUPER, RETURN, exec, alacritty"
-
       "SUPER, Q, killactive,"
+      "SUPER, F, fullscreen, 1"
+      "SUPER, P, pseudo,"
 
+      "SUPER, RETURN, exec, alacritty"
       "SUPER, SPACE, togglefloating,"
 
       "SUPER, 1, workspace,1"
@@ -13,14 +17,52 @@ _: {
       "SUPER, 3, workspace,3"
       "SUPER, 4, workspace,4"
       "SUPER, 5, workspace,5"
+      "SUPER, 6, workspace,6"
+      "SUPER, 7, workspace,7"
+      "SUPER, 8, workspace,8"
+      "SUPER, 9, workspace,9"
 
       "SUPER_SHIFT, 1, movetoworkspacesilent, 1"
       "SUPER_SHIFT, 2, movetoworkspacesilent, 2"
       "SUPER_SHIFT, 3, movetoworkspacesilent, 3"
       "SUPER_SHIFT, 4, movetoworkspacesilent, 4"
       "SUPER_SHIFT, 5, movetoworkspacesilent, 5"
+      "SUPER_SHIFT, 6, movetoworkspacesilent, 6"
+      "SUPER_SHIFT, 7, movetoworkspacesilent, 7"
+      "SUPER_SHIFT, 8, movetoworkspacesilent, 8"
+      "SUPER_SHIFT, 9, movetoworkspacesilent, 9"
 
-      ",Print,exec,screenshot"
+      "SUPER_SHIFT, E, exec, pkill Hyprland"
+
+      # move focus
+      "SUPER, K, movefocus, u"
+      "SUPER, J, movefocus, d"
+      "SUPER, L, movefocus, r"
+      "SUPER, H, movefocus, l"
+
+      # move windows
+      "SUPER_SHIFT, K, movewindow, u"
+      "SUPER_SHIFT, J, movewindow, d"
+      "SUPER_SHIFT, L, movewindow, r"
+      "SUPER_SHIFT, H, movewindow, l"
+
+      # cycle workspaces
+      "SUPER, bracketleft, workspace, m-1"
+      "SUPER, bracketright, workspace, m+1"
+
+      # cycle monitors
+      "SUPER_SHIFT, bracketleft, focusmonitor, l"
+      "SUPER_SHIFT, bracketright, focusmonitor, r"
+
+      # send focused workspace to left/right monitors
+      "SUPER_SHIFT, bracketleft, movecurrentworkspacetomonitor, l"
+      "SUPER_SHIFT, bracketright, movecurrentworkspacetomonitor, r"
+
+      # screenshot
+      "CTRL, Print, exec, grimblast --notify --cursor copysave output"
+      "ALT, Print, exec, grimblast --notify --cursor copysave screen"
+
+      ",Print,exec,${screenshotarea}"
     ];
 
     bindl = [
