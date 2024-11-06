@@ -4,25 +4,23 @@
   pkgs,
   ...
 }:
-with lib;
-
 let
   cfg = config.aria.services.dbus;
+
+  inherit (lib.aria) mkBoolOpt;
 in
 {
   options.aria.services.dbus = {
-    enable = mkEnableOption "dbus";
+    enable = mkBoolOpt false "Whether or not to enable dbus.";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.dbus = {
       enable = true;
-      packages = with pkgs; [
-        dconf
-        gcr
-        udisks2
-      ];
       implementation = "broker";
+      packages = [ pkgs.gcr ];
     };
+
+    programs.dconf.enable = true;
   };
 }
