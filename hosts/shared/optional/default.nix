@@ -4,6 +4,7 @@ _: {
     ./greetd
     ./hardware
     ./hyprland
+    ./services
     ./wireless
     ./virtualisation
   ];
