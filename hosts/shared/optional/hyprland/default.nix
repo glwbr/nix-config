@@ -1,12 +1,29 @@
-{ inputs, ... }:
 {
+  config,
+  inputs,
+  lib,
+  ...
+}:
+let
+  cfg = config.aria.wms.hyprland;
+  inherit (lib.aria) mkBoolOpt;
+in
+{
+
+  options.aria.wms.hyprland = {
+    enable = mkBoolOpt false "Whether or not to enable hyprland.";
+  };
+
   imports = [ inputs.hyprland.nixosModules.default ];
 
-  environment.variables.NIXOS_OZONE_WL = "1";
+  config = lib.mkIf cfg.enable {
 
-  # Enable hyprland
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
+    environment.variables.NIXOS_OZONE_WL = "1";
+
+    # Enable hyprland
+    programs.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
   };
 }
