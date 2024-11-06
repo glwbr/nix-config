@@ -5,9 +5,9 @@ in
 {
   imports = [ ./keybindings.nix ];
   wayland.windowManager.hyprland.settings = {
-    exec = [
-      "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
-    ];
+    exec = [ "hyprctl setcursor ${pointer.name} ${toString pointer.size}" ];
+
+    exec-once = [ "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1" ];
 
     animations = {
       enabled = true;
