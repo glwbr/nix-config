@@ -29,6 +29,7 @@ in
 
       settings = {
         AcceptEnv = "WAYLAND_DISPLAY";
+        AllowAgentForwarding = true;
         GatewayPorts = "clientspecified";
         PasswordAuthentication = false;
         PermitRootLogin = "no";
