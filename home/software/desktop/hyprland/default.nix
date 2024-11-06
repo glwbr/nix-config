@@ -13,6 +13,7 @@
   home.packages = with pkgs; [
     grimblast
     hyprpicker
+    slurp
   ];
 
   # Enable hyprland
