@@ -8,7 +8,7 @@ pkgs: {
         owner = "Aloxaf";
         repo = "fzf-tab";
         rev = "b6e1b22458a131f835c6fe65bdb88eb45093d2d2";
-        sha256 = "0lfl4r44ci0wflfzlzzxncrb3frnwzghll8p365ypfl0n04bkxvl";
+        sha256 = "04mj0kfjai8yzgh0z7s7jqdckap7c1n9mssa9gpx7b5mlfjz63p0";
       };
     }
     {
