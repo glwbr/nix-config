@@ -1,5 +1,5 @@
 _: {
   imports = [
-    ./easyeffects
+    ./firewall
   ];
 }
