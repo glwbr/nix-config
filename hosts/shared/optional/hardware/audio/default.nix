@@ -7,24 +7,18 @@
 let
   cfg = config.aria.hardware.audio;
 
-  inherit (lib) types mkIf;
   inherit (lib.aria) mkBoolOpt mkOpt;
 in
 {
-  options.aria.hardware.audio = with types; {
+  options.aria.hardware.audio = with lib; {
     enable = mkBoolOpt false "Whether or not to enable audio support.";
-    extraPackages = mkOpt (listOf package) [
-      pkgs.easyeffects
-    ] "Additional packages to include with audio settings.";
+    extraPackages =
+      mkOpt (types.listOf types.package) [ ]
+        "Additional packages to include with audio settings.";
   };
 
-  config = mkIf cfg.enable {
-    environment.systemPackages =
-      with pkgs;
-      [
-        pulsemixer
-      ]
-      ++ cfg.extraPackages;
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = [ pkgs.pulsemixer ] ++ cfg.extraPackages;
 
     aria.user.extraGroups = [ "audio" ];
 
