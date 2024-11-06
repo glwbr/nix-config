@@ -105,6 +105,15 @@
           modules = [ ./home/glwbr/sonata.nix ];
           pkgs = pkgsFor.x86_64-linux;
         };
+
+        "glwbr@sinfonia" = lib.homeManagerConfiguration {
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [ ./home/glwbr/sinfonia.nix ];
+          pkgs = pkgsFor.aarch64-linux;
+        };
+
       };
     };
 }
