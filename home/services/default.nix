@@ -1,6 +1,9 @@
 _: {
   imports = [
-    ./media
-    ./system
+    ./dunst
+    ./easyeffects
+    ./playerctl
+    ./spotifyd
+    ./udiskie
   ];
 }
