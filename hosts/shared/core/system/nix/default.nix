@@ -40,14 +40,6 @@ in
       ];
       warn-dirty = false;
     };
-
-    # TODO: run build from Pi to laptop with distributedBuilds
-
-    gc = {
-      automatic = false;
-      dates = "weekly";
-      options = "--delete-older-than +3";
-    };
   };
 
   nixpkgs.overlays = builtins.attrValues outputs.overlays;
