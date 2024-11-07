@@ -5,7 +5,7 @@ keys:
   - &sinfonia age1knznfhwu89ffp60qa5tdkf83ajwslug2ysz64dzpwq2tvy6ph4zsdd4fa9
   - &sonata age10m42yy7ta3k3fycnkvc0l32u5llxxfeeqej5ts7jy3ewun5h4uuq7ycj4j
 creation_rules:
-  - path_regex: hosts/shared/secrets.(ya?ml|json)$
+  - path_regex: hosts/options/secrets.(ya?ml|json)$
     key_groups:
       - age:
           - *glwbr

@@ -4,5 +4,6 @@ _: {
     ./bluetooth
     ./logitech
     ./serial
+    ./wireless
   ];
 }
