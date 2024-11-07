@@ -1,11 +1,11 @@
 _: {
   imports = [
-    ./i3
-    ./greetd
+    ./graphical
     ./hardware
-    ./hyprland
+    ./security
     ./services
-    ./wireless
+    ./system
+    ./user
     ./virtualisation
   ];
 }

@@ -33,7 +33,7 @@ in
     };
 
     sops.secrets."${cfg.name}" = {
-      sopsFile = ../../secrets.yaml;
+      sopsFile = ../secrets.yaml;
       neededForUsers = true;
     };
 
