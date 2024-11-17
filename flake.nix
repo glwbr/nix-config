@@ -108,7 +108,7 @@
 
         "glwbr@sinfonia" = lib.homeManagerConfiguration {
           extraSpecialArgs = {
-            inherit inputs outputs;
+            inherit inputs outputs lib;
           };
           modules = [ ./home/glwbr/sinfonia.nix ];
           pkgs = pkgsFor.aarch64-linux;
