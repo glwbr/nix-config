@@ -29,6 +29,7 @@ in
         esbenp.prettier-vscode
         mkhl.direnv
         ms-azuretools.vscode-docker
+        ms-vscode-remote.remote-ssh
         vscodevim.vim
         vue.volar
         yzhang.markdown-all-in-one
@@ -50,7 +51,7 @@ in
         "editor.fontLigatures" = true;
         "editor.fontSize" = 16;
         "editor.fontWeight" = "300";
-        "editor.formatOnSave" = true;
+        "editor.formatOnSave" = false;
         "editor.minimap.enabled" = false;
         "editor.rulers" = [ 120 ];
 
