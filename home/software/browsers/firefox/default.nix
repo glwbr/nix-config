@@ -5,9 +5,8 @@
   ...
 }:
 let
-  cfg = config.aria.programs.browsers.firefox;
-
   inherit (lib.aria) mkBoolOpt mkOpt;
+  cfg = config.aria.programs.browsers.firefox;
 in
 {
 
@@ -19,8 +18,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.browserpass.enable = true;
-
     programs.firefox = {
       enable = true;
 
@@ -89,14 +86,13 @@ in
         extensions = with pkgs.inputs.firefox-addons; [
           angular-devtools
           bitwarden
-          browserpass
           darkreader
           # languagetool
           ublock-origin
         ];
 
         settings = lib.mkMerge [
-	  cfg.settings
+          cfg.settings
           {
             "browser.startup.homepage" = "about:home";
 

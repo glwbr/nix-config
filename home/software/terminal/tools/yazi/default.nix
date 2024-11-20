@@ -1,26 +1,39 @@
 {
   config,
-  inputs,
+  lib,
   pkgs,
   ...
 }:
+let
+  inherit (lib.aria) mkBoolOpt;
+  cfg = config.aria.programs.terminal.tools.yazi;
+in
 {
+  options.aria.programs.terminal.tools.yazi = {
+    enable = mkBoolOpt false "Whether or not to enable yazi.";
+  };
+
   imports = [
     ./theme/icons.nix
     ./theme/manager.nix
     ./theme/status.nix
   ];
 
-  # General file info
-  home.packages = [ pkgs.exiftool ];
+  config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      catimg
+      exiftool
+      ffmpegthumbnailer
+      imagemagick
+      ueberzugpp
+    ];
 
-  # yazi file manager
-  programs.yazi = {
-    enable = true;
+    programs.yazi = {
+      enable = true;
+      package = pkgs.inputs.yazi.default;
 
-    package = inputs.yazi.packages.${pkgs.system}.default;
-
-    enableBashIntegration = config.programs.bash.enable;
-    enableZshIntegration = config.programs.zsh.enable;
+      enableBashIntegration = config.programs.bash.enable;
+      enableZshIntegration = config.programs.zsh.enable;
+    };
   };
 }

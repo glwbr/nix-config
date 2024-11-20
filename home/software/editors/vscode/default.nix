@@ -5,18 +5,16 @@
   ...
 }:
 let
-  inherit (lib) mkDefault mkEnableOption mkIf;
   inherit (lib.aria) mkBoolOpt;
-
   cfg = config.aria.programs.editors.vscode;
 in
 {
   options.aria.programs.editors.vscode = {
-    enable = mkEnableOption "vscode";
-    declarativeConfig = mkBoolOpt true "Whether to let nix manage user settings";
+    enable = mkBoolOpt false "Whether or not to enable Visual Studio Code.";
+    declarativeConfig = mkBoolOpt true "Whether to let nix manage user settings.";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.vscode = {
       enable = true;
       enableUpdateCheck = true;
@@ -29,15 +27,14 @@ in
         esbenp.prettier-vscode
         mkhl.direnv
         ms-azuretools.vscode-docker
-        ms-vscode-remote.remote-ssh
         vscodevim.vim
         vue.volar
         yzhang.markdown-all-in-one
       ];
 
-      mutableExtensionsDir = false;
+      mutableExtensionsDir = true;
 
-      userSettings = mkIf cfg.declarativeConfig {
+      userSettings = lib.mkIf cfg.declarativeConfig {
         "editor.defaultFormatter" = "esbenp.prettier-vscode";
         "[dockerfile]" = {
           "editor.defaultFormatter" = "ms-azuretools.vscode-docker";
@@ -47,7 +44,7 @@ in
         };
 
         "editor.bracketPairColorization.enabled" = true;
-        "editor.fontFamily" = mkDefault "JetBrainsMono Nerd Font";
+        "editor.fontFamily" = lib.mkForce "JetBrainsMono Nerd Font";
         "editor.fontLigatures" = true;
         "editor.fontSize" = 16;
         "editor.fontWeight" = "300";
@@ -56,13 +53,18 @@ in
         "editor.rulers" = [ 120 ];
 
         "git.openRepositoryInParentFolders" = "always";
+        "gitblame.inlineMessageEnabled" = true;
+        "gitblame.inlineMessageFormat" = "\${author.name} • (\${time.ago}) \${commit.summary}";
+        "gitblame.currentUserAlias" = "You";
 
         "keyboard.dispatch" = "keyCode";
 
+        "terminal.integrated.fontFamily" = lib.mkForce "JetBrainsMono Nerd Font";
+
+        "workbench.colorTheme" = lib.mkForce "Kanagawa";
         "workbench.fontAliasing" = "antialised";
         "workbench.startupEditor" = "none";
         "workbench.tree.indent" = 4;
-        "workbench.iconTheme" = "vscode-icons";
 
         # Misc
         "typescript.updateImportsOnFileMove.enabled" = "always";

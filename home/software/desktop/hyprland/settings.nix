@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   pointer = config.stylix.cursor;
 in
@@ -15,66 +20,78 @@ in
     animations = {
       enabled = true;
       bezier = [
-        "fluent_decel, 0, 0.2, 0.4, 1"
-        "easeOutCirc, 0, 0.55, 0.45, 1"
-        "easeOutCubic, 0.33, 1, 0.68, 1"
-        "easeinoutsine, 0.37, 0, 0.63, 1"
+        "easein,0.1, 0, 0.5, 0"
+        "easeinback,0.35, 0, 0.95, -0.3"
+        "easeout,0.5, 1, 0.9, 1"
+        "easeoutback,0.35, 1.35, 0.65, 1"
+        "easeinout,0.45, 0, 0.55, 1"
       ];
 
       animation = [
-        "windowsIn, 1, 1.7, easeOutCubic, slide"
-        "windowsOut, 1, 1.7, easeOutCubic, slide"
-        "windowsMove, 1, 2.5, easeinoutsine, slide"
-        "border, 1, 2, default"
+        "fadeIn,1,3,easeout"
+        "fadeLayersIn,1,3,easeoutback"
+        "layersIn,1,3,easeoutback,slide"
+        "windowsIn,1,3,easeoutback,slide"
 
-        # Fading
-        "fadeIn, 1, 3, easeOutCubic"
-        "fadeOut, 1, 3, easeOutCubic"
-        "fadeSwitch, 1, 5, easeOutCirc"
-        "fadeShadow, 1, 5, easeOutCirc"
-        "fadeDim, 1, 6, fluent_decel"
-        "border, 1, 2.7, easeOutCirc"
-        "workspaces, 1, 2, fluent_decel, slide"
-        "specialWorkspace, 1, 3, fluent_decel, slidevert"
+        "fadeLayersOut,1,3,easeinback"
+        "fadeOut,1,3,easein"
+        "layersOut,1,3,easeinback,slide"
+        "windowsOut,1,3,easeinback,slide"
+
+        "border,1,3,easeout"
+        "fadeDim,1,3,easeinout"
+        "fadeShadow,1,3,easeinout"
+        "fadeSwitch,1,3,easeinout"
+        "windowsMove,1,3,easeoutback"
+        "workspaces,1,2.6,easeoutback,slide"
       ];
+
     };
 
-    decoration = {
+    decoration = lib.mkForce {
+      active_opacity = 1.0;
+      dim_inactive = true;
+      dim_strength = 0.2;
+      inactive_opacity = 0.98;
+      fullscreen_opacity = 1.0;
       rounding = 4;
 
       blur = {
         enabled = true;
         brightness = 1.0;
-        contrast = 1.0;
-        noise = 2.0e-2;
+        ignore_opacity = true;
         new_optimizations = true;
 
         passes = 3;
-        size = 8;
+        size = 4;
         xray = true;
       };
 
-      drop_shadow = false;
-      shadow_ignore_window = true;
-      shadow_offset = "0 2";
-      shadow_range = 20;
-      shadow_render_power = 3;
+      shadow = {
+        enabled = true;
+        offset = "3 3";
+        range = 12;
+        color = "0x44000000";
+        color_inactive = "0x66000000";
+      };
     };
 
-    debug.disable_logs = false;
+    debug = {
+      disable_logs = false;
+      suppress_errors = true;
+    };
 
     dwindle = {
-      no_gaps_when_only = false;
       pseudotile = true;
       preserve_split = true;
       smart_split = false;
-      smart_resizing = false;
+      split_width_multiplier = 1.35;
     };
 
     general = {
       gaps_in = 2;
       gaps_out = 4;
-      border_size = 1;
+      border_size = 2;
 
       monitor = [
         "eDP-1, 1920x1080@60, 0x0, 1"
@@ -112,6 +129,8 @@ in
       disable_splash_rendering = true;
 
       force_default_wallpaper = false;
+
+      new_window_takes_over_fullscreen = 2;
 
       enable_swallow = true;
       swallow_regex = "^(A|a)lacritty|footclient|foot$";

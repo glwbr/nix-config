@@ -4,7 +4,7 @@
     enable = true;
 
     settings = {
-      colors.draw_bold_text_with_bright_colors = false;
+      colors.draw_bold_text_with_bright_colors = true;
 
       cursor = {
         style = {
@@ -17,12 +17,12 @@
         };
       };
 
-      font = lib.mkForce {
+      font = lib.mkDefault {
         normal = {
           family = "JetBrainsMono Nerd Font";
-          style = "Light";
+          style = "ExtraLight";
         };
-        size = 24;
+        size = 18;
       };
 
       keyboard.bindings = [
@@ -42,9 +42,10 @@
       window = {
         decorations = "none";
         # dynamic_padding = true;
-        padding.x = 2;
-        padding.y = 2;
-        startup_mode = "Maximized";
+        padding = {
+          x = 0;
+          y = 0;
+        };
       };
     };
   };

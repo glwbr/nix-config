@@ -5,7 +5,7 @@
     ./bottom
     ./direnv
     ./eza
-    ./fastfetch
+    ./pfetch
     ./fzf
     ./git
     ./glow
@@ -14,7 +14,7 @@
     ./tmux
     ./transient-services.nix
     ./zoxide
-    #./yazi
+    ./yazi
   ];
 
   home.packages = with pkgs; [
