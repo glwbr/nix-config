@@ -9,11 +9,11 @@
   stylix = {
     enable = true;
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
 
     cursor = {
-      name = "macOS-BigSur";
       package = pkgs.apple-cursor;
+      name = "macOS";
       size = 24;
     };
 
@@ -24,8 +24,8 @@
       };
 
       monospace = {
-        name = "UbuntuMono Nerd Font";
-        package = with pkgs; nerdfonts.override { fonts = [ "UbuntuMono" ]; };
+        name = "JetBrainsMono Nerd Font";
+        package = with pkgs; nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
       };
 
       sansSerif = {
@@ -42,14 +42,14 @@
         applications = 12;
         desktop = 10;
         popups = 12;
-        terminal = 24;
+        terminal = 19;
       };
     };
 
     # Global wallpaper definition
     image = pkgs.fetchurl {
-      url = "https://gruvbox-wallpapers.pages.dev/wallpapers/minimalistic/gruv-limits.png";
-      sha256 = "sha256-kTkkAESPcuqIuy1PSLVFbazbELmfXLogxxNMfr5wHoU=";
+      url = "https://i.imgur.com/l6xe2Rj.jpg";
+      sha256 = "sha256-DdSly61XV61My9s0mU7SvovQDiAaw6BnUjHZeUaQ4gY=";
     };
 
     opacity = {
