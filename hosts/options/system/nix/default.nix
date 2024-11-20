@@ -11,6 +11,7 @@ in
 {
   imports = [
     ./nh
+    ./nix-ld
     ./substituters.nix
   ];
 
