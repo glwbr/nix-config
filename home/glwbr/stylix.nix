@@ -25,7 +25,7 @@
 
       monospace = {
         name = "JetBrainsMono Nerd Font";
-        package = with pkgs; nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        package = pkgs.nerd-fonts.jetbrains-mono;
       };
 
       sansSerif = {
@@ -34,15 +34,15 @@
       };
 
       serif = {
-        name = "DejaVu Serif";
-        package = pkgs.dejavu_fonts;
+        name = "Noto Sans";
+        package = pkgs.noto-fonts;
       };
 
       sizes = {
         applications = 12;
         desktop = 10;
         popups = 12;
-        terminal = 19;
+        terminal = 17;
       };
     };
 

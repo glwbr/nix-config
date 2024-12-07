@@ -31,15 +31,11 @@ in
         noto-fonts-emoji
         noto-fonts-color-emoji
         roboto
-
-        # Nerd Fonts
-        (nerdfonts.override {
-          fonts = [
-            "NerdFontsSymbolsOnly"
-            "JetBrainsMono"
-            "FiraCode"
-          ];
-        })
+        nerd-fonts.fira-code
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.meslo-lg
+        nerd-fonts.symbols-only
+        nerd-fonts.ubuntu-mono
       ];
 
       fontconfig = {
