@@ -1,18 +1,17 @@
 { config, lib, ... }:
 let
-  cfg = config.aria.terminal.foot;
-  isHyprland = config.aria.wms.hyprland.enable;
+  cfg = config.aria.programs.terminal.foot;
+  isHyprland = config.aria.programs.wms.hyprland.enable;
 
-  inherit (lib) mkForce mkIf;
   inherit (lib.aria) mkBoolOpt;
 
 in
 {
-  options.aria.terminal.foot = {
+  options.aria.programs.terminal.foot = {
     enable = mkBoolOpt false "Whether or not to enable foot terminal.";
   };
 
-  config = mkIf (cfg.enable && isHyprland) {
+  config = lib.mkIf (cfg.enable && isHyprland) {
     programs.foot = {
       enable = true;
       server.enable = true;
@@ -20,7 +19,7 @@ in
       settings = {
         main = {
           dpi-aware = "no";
-          font = mkForce "JetBrainsMono Nerd Font Mono:style=Light:size=32";
+          font = lib.mkForce "JetBrainsMono Nerd Font:style=Light:size=17";
           font-size-adjustment = 1;
           pad = "1x1 center";
           term = "xterm-256color";
