@@ -30,16 +30,17 @@ in
       };
 
       terminal = {
+        foot = enabled;
         tools = {
           direnv = enabled;
-          fastfetch = enabled;
+          pfetch = enabled;
           fzf = enabled;
           git = {
             enable = true;
             userEmail = "glauber.silva14@gmail.com";
           };
           tmux = enabled;
-	  yazi = enabled;
+          yazi = enabled;
           zoxide = enabled;
         };
         shell.zsh = enabled;

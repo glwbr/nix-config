@@ -29,7 +29,7 @@
 
     # misc
     # libnotify
-    # fontconfig
+    #fontconfig
 
     # utils
     duf
