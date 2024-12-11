@@ -82,7 +82,8 @@ in
           set -sg escape-time 0
           set -g renumber-windows on
           set -g status-interval 3
-          set-option -g terminal-overrides "alacritty:RGB"
+          set -g terminal-overrides "alacritty:RGB"
+          set -g status-position top
         '';
       inherit plugins;
     };

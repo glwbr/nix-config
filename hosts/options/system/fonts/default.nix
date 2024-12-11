@@ -41,24 +41,6 @@ in
       fontconfig = {
         enable = true;
         antialias = true;
-        defaultFonts = {
-          emoji = [ "Noto Color Emoji" ];
-          monospace = [
-            "Symbols Nerd Font Mono"
-            "JetBrainsMono Nerd Font"
-            "Noto Emoji"
-          ];
-          sansSerif = [
-            "Symbols Nerd Font"
-            "Inter"
-            "Noto Color Emoji"
-          ];
-          serif = [
-            "Symbols Nerd Font"
-            "Noto Serif"
-            "Noto Color Emoji"
-          ];
-        };
         hinting = {
           enable = true;
           autohint = false;

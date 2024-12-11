@@ -1,6 +1,7 @@
 { lib, pkgs, ... }:
 let
   grimblast = lib.getExe pkgs.grimblast;
+  screenshotarea = "hyprctl keyword animation 'fadeOut,0,0,default'; ${grimblast} --notify copysave area; hyprctl keyword animation 'fadeOut,1,4,default'";
 in
 {
   wayland.windowManager.hyprland.settings = {
@@ -8,9 +9,9 @@ in
       "SUPER, Q, killactive,"
       "SUPER, F, fullscreen, 1"
       "SUPER, P, pseudo,"
-      "SUPER, E, exec, alacritty -e yazi"
+      "SUPER, E, exec, footclient -e yazi"
 
-      "SUPER, RETURN, exec, alacritty"
+      "SUPER, RETURN, exec, footclient"
       "SUPER, SPACE, togglefloating,"
 
       "SUPER, 1, workspace,1"
@@ -60,11 +61,12 @@ in
       "SUPER_SHIFT, bracketright, movecurrentworkspacetomonitor, r"
 
       # screenshot
-      "CTRL, Print, exec, grimblast --notify --cursor copysave output"
-      "ALT, Print, exec, grimblast --notify --cursor copysave screen"
+      #"CTRL, Print, exec, grimblast --notify --cursor copysave output"
+      #"ALT, Print, exec, grimblast --notify --cursor copysave screen"
 
+      "ALT, Print,exec,${grimblast} --notify --freeze copy output"
+      "SUPER_SHIFT, S, exec, ${screenshotarea}"
       ",Print,exec,${grimblast} --notify --freeze copy area"
-      "SHIFT,Print,exec,${grimblast} --notify --freeze copy output"
     ];
 
     bindl = [

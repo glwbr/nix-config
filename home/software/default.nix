@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     # import folders first
     ./browsers
@@ -6,10 +7,10 @@
     ./editors
     ./media
     ./terminal
-    ./utilities
+    #./utilities
 
-    #  ./gtk.nix
-    ./datagrip.nix
+    # ./gtk.nix
+    # ./datagrip.nix
   ];
 
   home.packages = with pkgs; [
@@ -17,21 +18,17 @@
 
     # social
     # vesktop
-    tdesktop
+    # tdesktop
 
     # personalizations
-    nixos-icons
+    #nixos-icons
 
     # misc
-    catimg
-    cliphist
-    colord
-    ffmpegthumbnailer
-    imagemagick
-    jq
+    #cliphist
+    #colord
+    #jq
     pciutils
-    ueberzugpp
-    xcolor
+    #xcolor
 
     # ags
     # mission-center
@@ -39,19 +36,18 @@
     # overskride
 
     # Languages
-    cmake
-    gcc
-    gnumake
-    gnupatch
-    clang-tools
-    elixir
-    go
-    nodejs
-    nodePackages.npm
+    #cmake
+    #gcc
+    #gnumake
+    #gnupatch
+    #clang-tools
+    #elixir
+    #go
+    nodejs_latest
     nodePackages.yarn
     nodePackages.jsonlint
-    php
-    typescript
-    yaml-language-server
+    php83
+    # typescript
+    # yaml-language-server
   ];
 }
