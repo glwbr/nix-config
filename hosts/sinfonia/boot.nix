@@ -1,9 +1,8 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   boot = {
     initrd = {
-      supportedFilesystems = [ "ntfs" ];
-      kernelModules = [ "phy_rockchip_naneng_combphy" ];
+      supportedFilesystems = ["ntfs"];
+      kernelModules = ["phy_rockchip_naneng_combphy"];
       systemd = {
         enable = true;
         emergencyAccess = true;
