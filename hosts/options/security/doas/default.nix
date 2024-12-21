@@ -28,8 +28,9 @@ in
       extraRules = [
         {
           keepEnv = true;
-          noPass = true;
+          noPass = false;
           users = [ config.aria.user.name ];
+          persist = true;
         }
       ];
     };
