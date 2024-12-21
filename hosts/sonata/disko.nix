@@ -16,7 +16,7 @@ _: {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
+                mountOptions = ["umask=0077"];
               };
             };
 
@@ -28,31 +28,58 @@ _: {
                 settings = {
                   allowDiscards = true;
                   bypassWorkqueues = true;
-                  crypttabExtraOpts = [ "fido2-device=auto" "token-timeout=10" ];
+                  crypttabExtraOpts = [
+                    "fido2-device=auto"
+                    "token-timeout=10"
+                  ];
                 };
                 content = {
                   type = "btrfs";
-                  extraArgs = [ "-L" "nixos" "-f" ];
+                  extraArgs = [
+                    "-L"
+                    "nixos"
+                    "-f"
+                  ];
                   subvolumes = {
                     "@/" = {
                       mountpoint = "/";
-                      mountOptions = [ "compress=zstd:1" "discard=async" "noatime" ];
+                      mountOptions = [
+                        "compress=zstd:1"
+                        "discard=async"
+                        "noatime"
+                      ];
                     };
                     "@/home" = {
                       mountpoint = "/home";
-                      mountOptions = [ "compress=zstd:1" "discard=async" "noatime" ];
+                      mountOptions = [
+                        "compress=zstd:1"
+                        "discard=async"
+                        "noatime"
+                      ];
                     };
                     "@/nix" = {
                       mountpoint = "/nix";
-                      mountOptions = [ "compress=zstd:1" "discard=async" "noatime" ];
+                      mountOptions = [
+                        "compress=zstd:1"
+                        "discard=async"
+                        "noatime"
+                      ];
                     };
                     "@/persist" = {
                       mountpoint = "/persist";
-                      mountOptions = [ "compress=zstd:1" "discard=async" "noatime" ];
+                      mountOptions = [
+                        "compress=zstd:1"
+                        "discard=async"
+                        "noatime"
+                      ];
                     };
                     "@/log" = {
                       mountpoint = "/var/log";
-                      mountOptions = [ "compress=zstd:1" "discard=async" "noatime" ];
+                      mountOptions = [
+                        "compress=zstd:1"
+                        "discard=async"
+                        "noatime"
+                      ];
                     };
                     "@/swap" = {
                       mountpoint = "/swap";

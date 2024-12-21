@@ -4,11 +4,9 @@
   pkgs,
   inputs,
   ...
-}:
-let
+}: let
   crossPkgs = pkgs.pkgsCross.aarch64-multiplatform;
-in
-{
+in {
   imports = [
     ./boot.nix
     ./hardware.nix
@@ -18,7 +16,7 @@ in
   hardware.deviceTree.name = "rockchip/rk3566-orangepi-3b-v1.1.dtb";
 
   # Options to move to minimal config
-  environment.defaultPackages = [ ];
+  environment.defaultPackages = [];
   documentation.enable = false;
 
   zramSwap = {
