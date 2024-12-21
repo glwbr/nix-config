@@ -16,6 +16,7 @@ _: {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
+                mountOptions = [ "umask=0077" ];
               };
             };
 
@@ -27,60 +28,33 @@ _: {
                 settings = {
                   allowDiscards = true;
                   bypassWorkqueues = true;
-                  crypttabExtraOpts = [
-                    "fido2-device=auto"
-                    "token-timeout=10"
-                  ];
+                  crypttabExtraOpts = [ "fido2-device=auto" "token-timeout=10" ];
                 };
                 content = {
                   type = "btrfs";
-                  extraArgs = [
-                    "-L"
-                    "nixos"
-                    "-f"
-                  ]; # Override existing partition
+                  extraArgs = [ "-L" "nixos" "-f" ];
                   subvolumes = {
-                    "/root" = {
+                    "@/" = {
                       mountpoint = "/";
-                      mountOptions = [
-                        "subvol=root"
-                        "compress=zstd"
-                        "noatime"
-                      ];
+                      mountOptions = [ "compress=zstd:1" "discard=async" "noatime" ];
                     };
-                    "/home" = {
+                    "@/home" = {
                       mountpoint = "/home";
-                      mountOptions = [
-                        "subvol=home"
-                        "compress=zstd"
-                        "noatime"
-                      ];
+                      mountOptions = [ "compress=zstd:1" "discard=async" "noatime" ];
                     };
-                    "/nix" = {
+                    "@/nix" = {
                       mountpoint = "/nix";
-                      mountOptions = [
-                        "subvol=nix"
-                        "compress=zstd"
-                        "noatime"
-                      ];
+                      mountOptions = [ "compress=zstd:1" "discard=async" "noatime" ];
                     };
-                    "/persist" = {
+                    "@/persist" = {
                       mountpoint = "/persist";
-                      mountOptions = [
-                        "subvol=persist"
-                        "compress=zstd"
-                        "noatime"
-                      ];
+                      mountOptions = [ "compress=zstd:1" "discard=async" "noatime" ];
                     };
-                    "/log" = {
+                    "@/log" = {
                       mountpoint = "/var/log";
-                      mountOptions = [
-                        "subvol=log"
-                        "compress=zstd"
-                        "noatime"
-                      ];
+                      mountOptions = [ "compress=zstd:1" "discard=async" "noatime" ];
                     };
-                    "/swap" = {
+                    "@/swap" = {
                       mountpoint = "/swap";
                       swap.swapfile.size = "16G";
                     };
