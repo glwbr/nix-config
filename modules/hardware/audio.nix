@@ -10,7 +10,7 @@
   cfg = config.aria.hardware.audio;
 in {
   options.aria.hardware.audio = with types; {
-    enable = mkBoolOpt false "Whether enable audio support";
+    enable = mkBoolOpt false "Whether to enable audio support";
     extraPackages = mkOpt (listOf package) [] "Additional packages to include with audio settings";
   };
 

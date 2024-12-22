@@ -14,41 +14,7 @@ in {
   ];
 
   aria = {
-    hardware = {
-      audio = enabled;
-      bluetooth = enabled;
-      # logitech = enabled;
-      wireless = {
-        iwd = enabled;
-      };
-    };
-
-    system = {
-      boot = {
-        enable = true;
-        plymouth = false;
-        silentBoot = true;
-      };
-      fonts = enabled;
-      nix = {
-        nh = enabled;
-        ld = enabled;
-      };
-      xkb = enabled;
-    };
-
-    security = {
-      polkit = enabled;
-    };
-
-    services = {
-      dbus = enabled;
-    };
-
-    shell = {
-      zsh = enabled;
-    };
-
+    profiles.desktop = enabled;
     users = {
       enable = true;
       defaultUserShell = pkgs.zsh;
@@ -59,7 +25,7 @@ in {
         email = "hello@glwbr.me";
         fullName = "Glauber Santana";
         hashedPassword = "$y$j9T$gRWruTQzJkmoHO7AaStnb1$1QHo3o.vdl.64VV3ooLsUxs0DHTTMSrCMzY1Kl2FL61";
-	extraGroups = [ "wheel" ];
+        extraGroups = ["wheel"];
         # sshKeys = [ ];
       };
 
