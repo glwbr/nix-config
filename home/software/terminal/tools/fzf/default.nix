@@ -3,15 +3,13 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.aria.programs.terminal.tools.fzf;
   hasZsh = config.aria.programs.terminal.shell.zsh.enable;
 
   inherit (lib) getExe mkIf;
   inherit (lib.aria) mkBoolOpt;
-in
-{
+in {
   options.aria.programs.terminal.tools.fzf = {
     enable = mkBoolOpt true "Whether or not to enable fzf.";
   };

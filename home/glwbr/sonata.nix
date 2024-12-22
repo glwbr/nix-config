@@ -1,8 +1,6 @@
-{ lib, ... }:
-let
+{lib, ...}: let
   inherit (lib.aria) enabled;
-in
-{
+in {
   imports = [
     ../default.nix
     ./stylix.nix

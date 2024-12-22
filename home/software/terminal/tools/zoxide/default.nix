@@ -2,13 +2,11 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   cfg = config.aria.programs.terminal.tools.zoxide;
   inherit (lib) mkIf;
   inherit (lib.aria) mkBoolOpt;
-in
-{
+in {
   options.aria.programs.terminal.tools.zoxide = {
     enable = mkBoolOpt false "Whether or not to enable zoxide.";
   };
@@ -19,7 +17,7 @@ in
 
       enableBashIntegration = true;
       enableZshIntegration = true;
-      options = [ "--cmd cd" ];
+      options = ["--cmd cd"];
     };
   };
 }

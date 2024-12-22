@@ -3,11 +3,10 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   inherit (builtins) concatStringsSep mapAttrs toString;
 
-  path = lib.optionalString (config.home.sessionPath != [ ]) ''
+  path = lib.optionalString (config.home.sessionPath != []) ''
     export PATH=${concatStringsSep ":" config.home.sessionPath}:$PATH
   '';
 
@@ -16,7 +15,8 @@ let
   variables = lib.concatStrings (
     lib.mapAttrsToList (k: v: ''
       export ${k}="${toString v}"
-    '') stringVariables
+    '')
+    stringVariables
   );
 
   apply-hm-env = pkgs.writeShellScript "apply-hm-env" ''
@@ -35,7 +35,6 @@ let
       --wait \
       bash -lc "exec ${apply-hm-env} $@"
   '';
-in
-{
-  home.packages = [ run-as-service ];
+in {
+  home.packages = [run-as-service];
 }

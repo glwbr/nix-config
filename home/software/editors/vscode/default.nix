@@ -3,12 +3,10 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (lib.aria) mkBoolOpt;
   cfg = config.aria.programs.editors.vscode;
-in
-{
+in {
   options.aria.programs.editors.vscode = {
     enable = mkBoolOpt false "Whether or not to enable Visual Studio Code.";
     declarativeConfig = mkBoolOpt true "Whether to let nix manage user settings.";
@@ -50,7 +48,7 @@ in
         "editor.fontWeight" = "300";
         "editor.formatOnSave" = false;
         "editor.minimap.enabled" = false;
-        "editor.rulers" = [ 120 ];
+        "editor.rulers" = [120];
 
         "git.openRepositoryInParentFolders" = "always";
         "gitblame.inlineMessageEnabled" = true;

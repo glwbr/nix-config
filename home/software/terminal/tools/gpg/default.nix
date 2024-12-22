@@ -3,39 +3,39 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
-    sshKeys = [ "" ];
+    sshKeys = [""];
     enableExtraSocket = true;
-    pinentryPackage = if config.gtk.enable then pkgs.pinentry-gnome3 else pkgs.pinentry-tty;
+    pinentryPackage =
+      if config.gtk.enable
+      then pkgs.pinentry-gnome3
+      else pkgs.pinentry-tty;
   };
 
   home.packages = lib.optional config.gtk.enable pkgs.gcr;
 
-  programs =
-    let
-      fixGpg =
-        # bash
-        ''
-          gpgconf --launch gpg-agent
-        '';
-    in
-    {
-      # Start gpg-agent if it's not running or tunneled in
-      bash.profileExtra = fixGpg;
-      zsh.loginExtra = fixGpg;
+  programs = let
+    fixGpg =
+      # bash
+      ''
+        gpgconf --launch gpg-agent
+      '';
+  in {
+    # Start gpg-agent if it's not running or tunneled in
+    bash.profileExtra = fixGpg;
+    zsh.loginExtra = fixGpg;
 
-      gpg = {
-        enable = true;
-        settings = {
-          trust-model = "tofu+pgp";
-        };
-        # publicKeys = [{trust = 5;}];
+    gpg = {
+      enable = true;
+      settings = {
+        trust-model = "tofu+pgp";
       };
+      # publicKeys = [{trust = 5;}];
     };
+  };
 
   systemd.user.services = {
     # Link /run/user/$UID/gnupg to ~/.gnupg-sockets
@@ -50,8 +50,9 @@
         ExecStop = "${pkgs.coreutils}/bin/rm $HOME/.gnupg-sockets";
         RemainAfterExit = true;
       };
-      Install.WantedBy = [ "default.target" ];
+      Install.WantedBy = ["default.target"];
     };
   };
 }
 # vim: filetype=nix
+

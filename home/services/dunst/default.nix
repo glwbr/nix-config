@@ -3,12 +3,10 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.aria.services.dunst;
   inherit (lib.aria) mkBoolOpt;
-in
-{
+in {
   options.aria.services.dunst = {
     enable = mkBoolOpt false "Whether or not to enable dunst.";
   };

@@ -1,12 +1,13 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.aria.programs.terminal.foot;
   isHyprland = config.aria.programs.wms.hyprland.enable;
 
   inherit (lib.aria) mkBoolOpt;
-
-in
-{
+in {
   options.aria.programs.terminal.foot = {
     enable = mkBoolOpt false "Whether or not to enable foot terminal.";
   };

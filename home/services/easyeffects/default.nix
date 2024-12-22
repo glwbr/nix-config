@@ -2,14 +2,12 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   cfg = config.aria.services.easyeffects;
   #TODO: find a way to access this: audio = osConfig.aria.hardware.audio;
 
   inherit (lib.aria) mkBoolOpt;
-in
-{
+in {
   options.aria.services.easyeffects = {
     enable = mkBoolOpt false "Whether or not to manage easyeffects settings.";
   };

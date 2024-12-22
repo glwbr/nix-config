@@ -3,13 +3,11 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (pkgs) rofi-wayland;
   inherit (lib) mkForce;
   inherit (config.lib.formats.rasi) mkLiteral;
-in
-{
+in {
   programs.rofi = {
     enable = true;
     cycle = false;

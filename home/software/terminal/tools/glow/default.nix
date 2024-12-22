@@ -1,4 +1,3 @@
-{ pkgs, ... }:
-{
-  home.packages = with pkgs; [ glow ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [glow];
 }

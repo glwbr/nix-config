@@ -3,18 +3,15 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (lib.aria) mkBoolOpt mkOpt;
   cfg = config.aria.programs.browsers.firefox;
-in
-{
-
+in {
   options.aria.programs.browsers.firefox = with lib; {
     enable = mkBoolOpt false "Whether or not to enable firefox.";
     gpuAcceleration = mkBoolOpt false "Enable GPU acceleration.";
     hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
-    settings = mkOpt types.attrs { } "Settings to apply to the profile.";
+    settings = mkOpt types.attrs {} "Settings to apply to the profile.";
   };
 
   config = lib.mkIf cfg.enable {
@@ -49,7 +46,7 @@ in
                 }
               ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@np" ];
+              definedAliases = ["@np"];
             };
 
             "NixOs Options" = {
@@ -69,19 +66,19 @@ in
                 }
               ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@no" ];
+              definedAliases = ["@no"];
             };
 
             "NixOS Wiki" = {
-              urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
+              urls = [{template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";}];
               iconUpdateURL = "https://wiki.nixos.org/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000;
-              definedAliases = [ "@nw" ];
+              definedAliases = ["@nw"];
             };
           };
         };
 
-        bookmarks = { };
+        bookmarks = {};
 
         extensions = with pkgs.inputs.firefox-addons; [
           angular-devtools
@@ -178,7 +175,7 @@ in
                 "widget-overflow-fixed-list"
               ];
               placements = {
-                PersonalToolbar = [ "personal-bookmarks" ];
+                PersonalToolbar = ["personal-bookmarks"];
                 TabsToolbar = [
                   "tabbrowser-tabs"
                   "new-tab-button"
@@ -195,9 +192,9 @@ in
                   "reset-pbm-toolbar-button"
                   "unified-extensions-button"
                 ];
-                toolbar-menubar = [ "menubar-items" ];
-                unified-extensions-area = [ ];
-                widget-overflow-fixed-list = [ ];
+                toolbar-menubar = ["menubar-items"];
+                unified-extensions-area = [];
+                widget-overflow-fixed-list = [];
               };
 
               seen = [
@@ -219,7 +216,6 @@ in
             "media.gpu-process-decoder" = true;
             "media.hardware-video-decoding.enabled" = true;
           })
-
         ];
       };
     };

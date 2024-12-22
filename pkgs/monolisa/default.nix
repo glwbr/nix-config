@@ -24,6 +24,6 @@ stdenv.mkDerivation {
     description = "Monolisa Fonts";
     homepage = "https://github.com/glwbr/Monolisa";
     license = licenses.mit;
-    maintainers = [ maintainers.glwbr ];
+    maintainers = [maintainers.glwbr];
   };
 }
