@@ -3,14 +3,12 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (lib) mkIf;
   inherit (lib.aria) mkBoolOpt;
 
   cfg = config.aria.programs.editors.neovim;
-in
-{
+in {
   options.aria.programs.editors.neovim = {
     enable = mkBoolOpt true "Whether to enable neovim.";
     default = mkBoolOpt true "Whether to set neovim as the session EDITOR.";
@@ -18,7 +16,7 @@ in
 
   config = mkIf cfg.enable {
     home = {
-      packages = [ pkgs.inputs.corgix.default ];
+      packages = [pkgs.inputs.corgix.default];
       sessionVariables.EDITOR = "nvim";
       shellAliases.v = "nvim";
     };

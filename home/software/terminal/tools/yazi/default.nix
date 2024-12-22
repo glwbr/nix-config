@@ -3,12 +3,10 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (lib.aria) mkBoolOpt;
   cfg = config.aria.programs.terminal.tools.yazi;
-in
-{
+in {
   options.aria.programs.terminal.tools.yazi = {
     enable = mkBoolOpt false "Whether or not to enable yazi.";
   };

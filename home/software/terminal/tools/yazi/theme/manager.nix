@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, ...}: {
   programs.yazi = {
     settings = {
       manager = {

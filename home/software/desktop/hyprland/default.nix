@@ -4,14 +4,11 @@
   inputs,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.aria.programs.wms.hyprland;
 
   inherit (lib.aria) mkBoolOpt;
-in
-{
-
+in {
   imports = [
     inputs.hyprland.homeManagerModules.default
     ./settings.nix
@@ -22,7 +19,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     home.packages = with pkgs; [
       grimblast
       hyprpicker
@@ -33,7 +29,7 @@ in
     wayland.windowManager.hyprland = {
       enable = true;
       systemd = {
-        variables = [ "--all" ];
+        variables = ["--all"];
         extraCommands = lib.mkBefore [
           "systemctl --user stop graphical-session.target"
           "systemctl --user start hyprland-session.target"

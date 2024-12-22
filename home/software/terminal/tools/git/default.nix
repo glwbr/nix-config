@@ -3,15 +3,13 @@
   lib,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.aria.programs.terminal.tools.git;
   aliases = import ./aliases.nix;
   ignores = import ./ignores.nix;
   inherit (config.home) homeDirectory;
   inherit (lib.aria) mkOpt mkBoolOpt;
-in
-{
+in {
   options.aria.programs.terminal.tools.git = {
     enable = mkEnableOption "git";
     userName = mkOpt types.str "Glauber Santana" "The name to configure git with.";

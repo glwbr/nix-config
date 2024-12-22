@@ -3,12 +3,10 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.aria.services.udiskie;
   inherit (lib.aria) mkBoolOpt;
-in
-{
+in {
   options.aria.services.udiskie = {
     enable = mkBoolOpt false "Whether or not to enable udiskie.";
   };

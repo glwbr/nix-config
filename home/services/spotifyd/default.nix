@@ -3,12 +3,10 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.aria.services.spotifyd;
   inherit (lib.aria) mkBoolOpt;
-in
-{
+in {
   options.aria.services.spotifyd = {
     enable = mkBoolOpt false "Whether or not to enable spotifyd.";
   };
@@ -16,7 +14,7 @@ in
   config = lib.mkIf cfg.enable {
     services.spotifyd = {
       enable = true;
-      package = pkgs.spotifyd.override { withMpris = true; };
+      package = pkgs.spotifyd.override {withMpris = true;};
       settings.global = {
         autoplay = true;
         backend = "pulseaudio";

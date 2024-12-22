@@ -3,14 +3,12 @@
   lib,
   namespace,
   ...
-}:
-let
+}: let
   inherit (lib) mkIf;
   inherit (lib.aria) mkBoolOpt enabled;
 
   cfg = config.aria.programs.terminal.tools.direnv;
-in
-{
+in {
   options.aria.programs.terminal.tools.direnv = {
     enable = mkBoolOpt false "Whether or not to enable direnv.";
   };

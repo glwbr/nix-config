@@ -2,20 +2,19 @@
   config,
   pkgs,
   ...
-}:
-let
-  browser = [ "google-chrome-stable" ];
-  imageViewer = [ "viewnior" ];
-  videoPlayer = [ "mpv" ];
-  audioPlayer = [ "termusic" ];
+}: let
+  browser = ["google-chrome-stable"];
+  imageViewer = ["viewnior"];
+  videoPlayer = ["mpv"];
+  audioPlayer = ["termusic"];
 
-  xdgAssociations =
-    type: program: list:
+  xdgAssociations = type: program: list:
     builtins.listToAttrs (
       map (e: {
         name = "${type}/${e}";
         value = program;
-      }) list
+      })
+      list
     );
 
   image = xdgAssociations "image" imageViewer [
@@ -55,19 +54,18 @@ let
   # XDG MIME types
   associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) (
     {
-      "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf" ];
+      "application/pdf" = ["org.pwmt.zathura-pdf-mupdf"];
       "text/html" = browser;
-      "text/plain" = [ "nvim" ];
-      "x-scheme-handler/chrome" = [ "google-chrome-stable" ];
-      "inode/directory" = [ "yazi" ];
+      "text/plain" = ["nvim"];
+      "x-scheme-handler/chrome" = ["google-chrome-stable"];
+      "inode/directory" = ["yazi"];
     }
     // image
     // video
     // audio
     // browserTypes
   );
-in
-{
+in {
   xdg = {
     enable = true;
     cacheHome = config.home.homeDirectory + "/.local/cache";

@@ -1,9 +1,11 @@
-{ lib, pkgs, ... }:
-let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   grimblast = lib.getExe pkgs.grimblast;
   screenshotarea = "hyprctl keyword animation 'fadeOut,0,0,default'; ${grimblast} --notify copysave area; hyprctl keyword animation 'fadeOut,1,4,default'";
-in
-{
+in {
   wayland.windowManager.hyprland.settings = {
     bind = [
       "SUPER, Q, killactive,"

@@ -1,12 +1,8 @@
-{ lib, ... }:
-
-let
+{lib, ...}: let
   inherit (lib) mkOption types;
-in
-rec {
-  mkOpt =
-    type: default: description:
-    mkOption { inherit type default description; };
+in rec {
+  mkOpt = type: default: description:
+    mkOption {inherit type default description;};
 
   mkOpt' = type: default: mkOpt type default null;
 

@@ -3,19 +3,17 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   pointer = config.stylix.cursor;
-in
-{
+in {
   imports = [
     ./keybindings.nix
     ./windowrules.nix
   ];
   wayland.windowManager.hyprland.settings = {
-    exec = [ "hyprctl setcursor ${pointer.name} ${toString pointer.size}" ];
+    exec = ["hyprctl setcursor ${pointer.name} ${toString pointer.size}"];
 
-    exec-once = [ "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1" ];
+    exec-once = ["${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"];
 
     animations = {
       enabled = true;
@@ -45,7 +43,6 @@ in
         "windowsMove,1,3,easeoutback"
         "workspaces,1,2.6,easeoutback,slide"
       ];
-
     };
 
     decoration = lib.mkForce {

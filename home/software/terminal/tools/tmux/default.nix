@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (lib) mkIf;
   inherit (lib.aria) mkBoolOpt;
 
@@ -12,7 +11,8 @@ let
   plugins = with pkgs.tmuxPlugins; [
     {
       plugin = better-mouse-mode;
-      extraConfig = # tmux
+      extraConfig =
+        # tmux
         ''
           set-option -g mouse on
         '';
@@ -22,7 +22,8 @@ let
     }
     {
       plugin = rose-pine;
-      extraConfig = # tmux
+      extraConfig =
+        # tmux
         ''
           set -g @rose_pine_variant 'main'
           set -g @rose_pine_host 'on'
@@ -34,7 +35,8 @@ let
     }
     {
       plugin = resurrect;
-      extraConfig = # tmux
+      extraConfig =
+        # tmux
         ''
           set -g @resurrect-strategy-nvim 'session'
           set -g @resurect-capture-pane-contents 'on'
@@ -44,15 +46,15 @@ let
     }
     {
       plugin = continuum;
-      extraConfig = # tmux
+      extraConfig =
+        # tmux
         ''
           set -g @continuum-restore 'on'
           set -g @continuum-save-interval '60'
         '';
     }
   ];
-in
-{
+in {
   options.aria.programs.terminal.tools.tmux = {
     enable = mkBoolOpt false "Whether or not to enable tmux.";
   };
