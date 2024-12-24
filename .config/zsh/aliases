@@ -1,0 +1,29 @@
+alias cat="bat"
+alias cp="cp -vr"
+alias df="df -h"
+alias free="free -h"
+alias fm="yazi"
+alias fonts="fc-cache -f -v"
+alias g="git"
+alias grep="rg"
+alias ls="eza --icons --group-directories-first"
+alias ll="ls --long --header"
+alias lla="ll --all --sort filename"
+alias htop="btm -b"
+alias btop="btm"
+
+#FIXME: get the alternative
+# alias jctl="journalctl -p 3 -xb"
+
+alias md="mkdir -p"
+alias mv="mv -v"
+alias rm="rm -rv"
+alias v="nvim"
+alias poweroff="loginctl poweroff"
+alias reboot="loginctl reboot"
+
+# tree
+alias tree="ls --tree --level=3"
+alias q="exit"
+
+# vim:ft=zsh
