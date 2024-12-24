@@ -1,0 +1,22 @@
+export KEYTIMEOUT=1
+export HISTFILE="$XDG_CACHE_HOME/.zsh_history"
+export HISTFILESIZE=10000
+export HISTSIZE=1000
+export SAVEHIST=$HISTSIZE
+
+setopt autocd
+setopt extendedhistory
+setopt hist_save_no_dups
+setopt hist_ignore_all_dups
+setopt inc_append_history_time
+unsetopt share_history
+unsetopt inc_append_history
+
+bindkey -s '^o' '^llfcd\n'
+bindkey -s '^K' '_smooth_fzf^M'
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
+
+# vim:ft=zsh

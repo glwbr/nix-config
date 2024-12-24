@@ -1,4 +1,3 @@
-### Function extract for common file formats ###
 SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
 
@@ -40,3 +39,5 @@ fi
 }
 
 IFS=$SAVEIFS
+
+# vim:ft=zsh
