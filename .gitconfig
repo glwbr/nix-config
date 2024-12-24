@@ -1,20 +1,26 @@
 [user]
-	name = placeholder
-	email = placeholder
-[core]
-	pager = delta
-	fileMode = false
-
-[interactive]
-	diffFilter = delta --color-only
-
-[delta]
-	navigate = true	# use n and N to move between diff sections
-	light = false 	# enables light background
-	line-numbers = true
-
-[merge]
-	conflictstyle = diff3
-
-[diff]
-	colormoved = dimmed-zebra
+	name = glwbr
+	email = glauber.silva14@gmail.com
+[alias]
+    a = "add"
+    b = "branch"
+    c = "commit"
+    d = "diff"
+    l = "log"
+    p = "push"
+    r = "restore"
+    s = "status"
+    ca = "commit --amend"
+    cm = "commit -m"
+    co = "checkout"
+    ds = "diff --staged"
+    pf = "push --force-with-lease"
+    pl = "pull"
+    rb = "rebase"
+    rs = "restore --staged"
+    cob = "checkout -b"
+    rbi = "rebase -i"
+    forgor = "commit --amend --no-edit"
+    graph = "log --all --decorate --graph --oneline"
+    last = "log -1 HEAD"
+    oops = "checkout --"
