@@ -5,25 +5,25 @@ draw_bold_text_with_bright_colors = true
 size = 16
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
-style = "Medium"
+family = 'JetBrainsMono Nerd Font'
+style = 'Medium'
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
-style = "Medium Italic"
+family = 'JetBrainsMono Nerd Font'
+style = 'Medium Italic'
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
-style = "Light Italic"
+family = 'JetBrainsMono Nerd Font'
+style = 'Light Italic'
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
-style = "Light"
+family = 'JetBrainsMono Nerd Font'
+style = 'Light'
 
 [[keyboard.bindings]]
-action = "CreateNewWindow"
-key = "Return"
-mods = "Super|Shift"
+action = 'CreateNewWindow'
+key = 'Return'
+mods = 'Super|Shift'
 
 [scrolling]
 history = 10000
@@ -33,15 +33,15 @@ multiplier = 3
 save_to_clipboard = false
 
 [terminal.shell]
-program = "/usr/bin/zsh"
+program = '/usr/bin/zsh'
 
 [window]
 opacity = 0.95
-decorations = "None"
+decorations = 'None'
 
 [window.class]
-general = "Alacritty"
-instance = "Alacritty"
+general = 'Alacritty'
+instance = 'Alacritty'
 
 [window.padding]
 x = 4
