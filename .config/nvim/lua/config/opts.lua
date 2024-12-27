@@ -43,7 +43,7 @@ opt.splitbelow = true                       -- Split windows below
 opt.splitkeep = "screen"                    -- Keep split windows' screen position
 
 -- Timeouts & Updates
-opt.timeoutlen = 1000                       -- Set timeout length for key sequences
+opt.timeoutlen = 500                       -- Set timeout length for key sequences
 opt.updatetime = 200                        -- Set time to wait before triggering events
 
 -- Line Wrapping

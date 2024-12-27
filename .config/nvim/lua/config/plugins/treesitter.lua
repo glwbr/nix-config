@@ -1,20 +1,16 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
-  config = function()
-    local setup = require("nvim-treesitter.configs").setup
-    setup({
+  opts = {
       ensure_installed = {
         "bash",
         "dockerfile",
         "go",
-        "hyprlang",
         "javascript",
         "jsdoc",
         "json",
         "lua",
         "nginx",
-        "nix",
         "tmux",
         "typescript",
         "tsx",
@@ -33,6 +29,8 @@ return {
         end,
         additional_vim_regex_highlighting = true,
       },
-    })
+  },
+  config = function(_, opts)
+    require("nvim-treesitter.configs").setup(opts)
   end,
 }

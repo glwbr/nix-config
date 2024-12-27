@@ -36,11 +36,11 @@ map("n", "<leader>Y", "\"+Y", { desc = "Yank Line to clipboard" })
 
 map("x", "<leader>p", "\"_dP", { desc = "Paste over selection (no clipboard)" })
 
-map("n", '<Q>', '<nop>', { desc = 'Disable Q' })
-map("n", '<Up>', '<nop>', { desc = 'Disable Up Arrow' })
-map("n", '<Down>', '<nop>', { desc = 'Disable Down Arrow' })
-map("n", '<Left>', '<nop>', { desc = 'Disable Left Arrow' })
-map("n", '<Right>', '<nop>', { desc = 'Disable Right Arrow' })
+map("n", "<Q>", "<nop>", { desc = "Disable Q" })
+map("n", "<Up>", "<nop>", { desc = "Disable Up Arrow" })
+map("n", "<Down>", "<nop>", { desc = "Disable Down Arrow" })
+map("n", "<Left>", "<nop>", { desc = "Disable Left Arrow" })
+map("n", "<Right>", "<nop>", { desc = "Disable Right Arrow" })
 
 map("n", "J", "mzJ`z", { desc = "Join Lines" })
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
