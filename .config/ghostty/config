@@ -1,0 +1,15 @@
+confirm-close-surface = false
+
+font-family = "JetBrainsMono Nerd Font"
+font-style = "Light"
+font-style-bold = "Medium"
+font-style-italic = "Light Italic"
+font-style-bold-italic = "Medium Italic"
+font-size = 16
+
+title = " "
+theme = rose-pine
+
+window-decoration = false
+window-padding-x = 0
+window-padding-y = 0
