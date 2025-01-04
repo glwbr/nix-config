@@ -17,17 +17,10 @@ in {
       enableDefaultPackages = false;
       fontDir.enable = true;
       packages = with pkgs; [
-        # Icon font
-        # material-symbols
-
-        (nerdfonts.override {
-          fonts = [
-            "JetBrainsMono"
-            "UbuntuMono"
-            "NerdFontsSymbolsOnly"
-            "Meslo"
-          ];
-        })
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.ubuntu-mono
+        nerd-fonts.meslo-lg
+        nerd-fonts.symbols-only
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-color-emoji
