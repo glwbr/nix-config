@@ -8,6 +8,7 @@
     config = {
       pager = "less -FR";
       theme = lib.mkForce "base16";
+      tabs = "2";
       style = "numbers,changes,header";
     };
   };
