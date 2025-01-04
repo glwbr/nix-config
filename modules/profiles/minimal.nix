@@ -13,7 +13,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.defaultPackages = with pkgs; [git neovim];
+    environment.defaultPackages = with pkgs; [
+      git
+      neovim
+    ];
 
     aria = {
       hardware = {

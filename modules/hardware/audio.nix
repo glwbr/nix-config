@@ -19,7 +19,7 @@ in {
 
     aria.users.users.glwbr.extraGroups = ["audio"];
 
-    hardware.pulseaudio.enable = lib.mkForce false;
+    services.pulseaudio.enable = false;
 
     security.rtkit.enable = true;
 
