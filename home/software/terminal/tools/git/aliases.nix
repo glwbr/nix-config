@@ -1,36 +1,29 @@
 {
   aliases = {
     a = "add";
-
     b = "branch";
-
     c = "commit";
-    ca = "commit --amend";
-    cm = "commit -m";
-
-    co = "checkout";
-    cob = "checkout -b";
-
     d = "diff";
-    ds = "diff --staged";
-
     l = "log";
-
     p = "push";
-    pf = "push --force-with-lease";
-
-    pl = "pull";
-
     r = "restore";
+    s = "status";
+    ca = "commit --amend";
+    cl = "clone";
+    cm = "commit -m";
+    co = "checkout";
+    ds = "diff --staged";
+    pf = "push --force-with-lease";
+    pl = "pull";
+    rb = "rebase";
     rs = "restore --staged";
 
-    rb = "rebase";
+    cob = "checkout -b";
     rbi = "rebase -i";
-
-    s = "status";
 
     forgor = "commit --amend --no-edit";
     graph = "log --all --decorate --graph --oneline";
+    last = "log -1 HEAD";
     oops = "checkout --";
   };
 
