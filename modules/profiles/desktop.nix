@@ -21,6 +21,9 @@ in {
       };
 
       system = {
+        boot = {
+          silentBoot = true;
+        };
         fonts = enabled;
       };
 
