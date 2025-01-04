@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.aria.programs.terminal.shell.zsh;
   plugins = import ./plugins pkgs;
 
@@ -11,9 +12,10 @@
   inherit (lib) mkIf;
   inherit (lib.aria) mkBoolOpt;
   inherit (lib.strings) fileContents;
-in {
+in
+{
   options.aria.programs.terminal.shell.zsh = {
-    enable = mkBoolOpt false "Whether or not to enable zsh.";
+    enable = mkBoolOpt false "Whether to manage zsh settings";
   };
 
   config = mkIf cfg.enable {
@@ -58,43 +60,36 @@ in {
       inherit (plugins) plugins;
 
       shellAliases = {
-        q = "exit";
         trimall = "sudo fstrim -va";
         tmp = "cd /tmp/";
 
-        # home-manager
-        hms = "home-manager --flake . switch";
-
-        # ls
-        l = "eza -lh";
-        la = "eza -lah";
-        ls = "eza --icons --color=auto --group-directories-first -s extension";
-        tree = "eza --tree --icons --tree";
-
-        # cp mv rm mkdir
+        ls = "eza --icons --group-directories-first";
+        ll = "ls --long --header";
+        lla = "ll --all --sort filename";
+        tree = "ls --tree --level=3";
         cp = "cp -vr";
+
+        df = "df -h";
+        du = "dust";
+        free = "free -h";
+        grep = "rg";
+
+        fm = "yazi";
+
+        ytmp3 = "yt-dlp --ignore-errors -x --audio-format mp3 -f bestaudio --audio-quality 0 --embed-metadata --embed-thumbnail --output '%(title)s.%(ext)s'";
+
+        jctl = "journalctl -p 3 -xb";
+        rs = "sudo systemctl";
+        us = "systemctl --user";
+
+        btop = "btm";
+        htop = "btm -b";
+
         md = "mkdir -p";
         mv = "mv -v";
         rm = "rm -rv";
 
-        # cat grep
-        # cat = "bat --theme=base16 --number --color=always --paging=never --tabs=2 --wrap=never";
-        grep = "rg";
-
-        # misc
-        df = "df -h";
-        du = "du-dust";
-        fm = "yazi";
-        jctl = "journalctl -p 3 -xb";
-        htop = "btm -b";
-        btop = "btm";
-
-        # youtube-dl
-        ytmp3 = "yt-dlp --ignore-errors -x --audio-format mp3 -f bestaudio --audio-quality 0 --embed-metadata --embed-thumbnail --output '%(title)s.%(ext)s'";
-
-        # systemctl
-        us = "systemctl --user";
-        rs = "sudo systemctl";
+        q = "exit";
       };
 
       syntaxHighlighting = {
