@@ -8,6 +8,7 @@
   inherit (lib.aria) mkBoolOpt;
 
   cfg = config.aria.virtualisation;
+  desktop = config.aria.profiles.desktop.enable;
 in {
   options.aria.virtualisation.podman = {
     enable = mkBoolOpt false "Whether to enable podman";
@@ -15,8 +16,7 @@ in {
 
   config = lib.mkIf (podman.enable && !docker.enable) {
     boot.enableContainers = true;
-    environment.systemPackages = with pkgs; [podman-compose];
-    # ++ lib.optionals display [ podman-desktop ];
+    environment.systemPackages = with pkgs; [podman-compose] ++ lib.optionals desktop [podman-desktop];
 
     aria.users.extraGroups = ["podman"];
 
