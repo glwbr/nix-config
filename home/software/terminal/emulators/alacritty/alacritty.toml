@@ -1,0 +1,58 @@
+[general]
+import = ["./themes/rose-pine.toml"]
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[cursor.style]
+shape = "Block"
+blinking = "On"
+
+[cursor.vi_mode_style]
+shape = "Beam"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 16
+
+[font.bold]
+family = 'JetBrainsMono Nerd Font'
+style = 'Medium'
+
+[font.bold_italic]
+family = 'JetBrainsMono Nerd Font'
+style = 'Medium Italic'
+
+[font.italic]
+family = 'JetBrainsMono Nerd Font'
+style = 'Light Italic'
+
+[font.normal]
+family = 'JetBrainsMono Nerd Font'
+style = 'Light'
+
+[[keyboard.bindings]]
+action = 'CreateNewWindow'
+key = 'Return'
+mods = 'Super|Shift'
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = false
+
+[window]
+opacity = 0.95
+decorations = 'None'
+
+[window.class]
+general = 'Alacritty'
+instance = 'Alacritty'
+
+[window.padding]
+x = 4
+y = 4
