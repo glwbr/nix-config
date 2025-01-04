@@ -4,7 +4,6 @@
     ./bottom
     ./direnv
     ./eza
-    ./pfetch
     ./fzf
     ./git
     ./glow
@@ -32,6 +31,7 @@
 
     # utils
     duf
+    du-dust
     file
     jaq
     killall
