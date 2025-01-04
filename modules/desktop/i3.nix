@@ -12,6 +12,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    services.displayManager.defaultSession = "none+i3";
     services.xserver = {
       enable = true;
       desktopManager.xterm.enable = false;
