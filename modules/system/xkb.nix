@@ -11,7 +11,7 @@ in {
   options.aria.system.xkb = with types; {
     enable = mkBoolOpt false "Whether to enable xkb settings";
     layout = mkOpt str "us,us" "Keyboard layouts to use";
-    options = mkOpt str "caps:swapescape" "XKB options like caps key behavior and layout switching";
+    options = mkOpt str "caps:swapescape,grp:alt_space_toggle" "XKB options like caps key behavior and layout switching";
     variant = mkOpt str ",intl" "Keyboard variants for the layouts";
   };
 
@@ -27,9 +27,6 @@ in {
         options = cfg.options;
         layout = cfg.layout;
       };
-
-      enableCtrlAltBackspace = true;
     };
-    # options = "caps:swapescape,grp:alt_space_toggle";
   };
 }
