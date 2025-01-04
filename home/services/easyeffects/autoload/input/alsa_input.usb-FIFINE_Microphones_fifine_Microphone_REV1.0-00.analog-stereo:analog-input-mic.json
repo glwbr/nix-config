@@ -1,0 +1,6 @@
+{
+  "device": "alsa_input.usb-FIFINE_Microphones_fifine_Microphone_REV1.0-00.analog-stereo",
+  "device-description": "fifine Microphone Analog Stereo",
+  "device-profile": "analog-input-mic",
+  "preset-name": "FIFINEK688"
+}
