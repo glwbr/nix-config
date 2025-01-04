@@ -3,16 +3,14 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.aria.programs.terminal.shell.zsh;
   plugins = import ./plugins pkgs;
 
   inherit (config.home) homeDirectory;
   inherit (lib.aria) mkBoolOpt;
   inherit (lib) strings;
-in
-{
+in {
   options.aria.programs.terminal.shell.zsh = {
     enable = mkBoolOpt false "Whether to manage zsh settings";
   };
