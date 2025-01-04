@@ -1,50 +1,25 @@
-{lib, ...}: {
-  programs.alacritty = {
-    enable = true;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.aria.programs.terminal.alacritty;
 
-    settings = {
-      colors.draw_bold_text_with_bright_colors = true;
+  inherit (lib.aria) mkBoolOpt;
+in {
+  options.aria.programs.terminal.alacritty = {
+    enable = mkBoolOpt false "Whether to enable alacritty";
+  };
 
-      cursor = {
-        style = {
-          shape = "Block";
-          blinking = "On";
-        };
+  config = lib.mkIf cfg.enable {
+    programs.alacritty.enable = true;
 
-        vi_mode_style = {
-          shape = "Beam";
-        };
-      };
-
-      font = lib.mkDefault {
-        normal = {
-          family = "JetBrainsMono Nerd Font";
-          style = "ExtraLight";
-        };
-        size = 18;
-      };
-
-      keyboard.bindings = [
-        {
-          key = "Escape";
-          mods = "Alt";
-          action = "ToggleViMode";
-        }
-      ];
-
-      env = {
-        TERM = "xterm-256color"; # Better color support in some apps
-      };
-
-      scrolling.history = 10000;
-
-      window = {
-        decorations = "none";
-        # dynamic_padding = true;
-        padding = {
-          x = 0;
-          y = 0;
-        };
+    home.file = {
+      ".config/alacritty/alacritty.toml".source = ./alacritty.toml;
+      ".config/alacritty/themes" = {
+        recursive = true;
+        source = ./themes;
       };
     };
   };
