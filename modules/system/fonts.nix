@@ -9,7 +9,7 @@
   cfg = config.aria.system.fonts;
 in {
   options.aria.system.fonts = {
-    enable = mkBoolOpt false "Whether enable font settings";
+    enable = mkBoolOpt false "Whether to enable font settings";
   };
 
   config = lib.mkIf cfg.enable {
@@ -19,10 +19,9 @@ in {
       packages = with pkgs; [
         nerd-fonts.jetbrains-mono
         nerd-fonts.ubuntu-mono
-        nerd-fonts.meslo-lg
         nerd-fonts.symbols-only
         noto-fonts
-        noto-fonts-cjk-sans
+        noto-fonts-cjk
         noto-fonts-color-emoji
         noto-fonts-emoji
         roboto

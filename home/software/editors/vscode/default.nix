@@ -8,8 +8,8 @@
   cfg = config.aria.programs.editors.vscode;
 in {
   options.aria.programs.editors.vscode = {
-    enable = mkBoolOpt false "Whether or not to enable Visual Studio Code.";
-    declarativeConfig = mkBoolOpt true "Whether to let nix manage user settings.";
+    enable = mkBoolOpt false "Whether to enable Visual Studio Code";
+    declarativeConfig = mkBoolOpt true "Whether to let nix manage user settings";
   };
 
   config = lib.mkIf cfg.enable {
