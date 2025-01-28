@@ -28,6 +28,7 @@ in {
       };
 
       security = {
+        keyring = enabled;
         polkit = enabled;
       };
 
