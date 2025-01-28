@@ -21,5 +21,7 @@ in {
         package = pkgs.i3-gaps;
       };
     };
+
+    environment.systemPackages = [pkgs.xclip];
   };
 }

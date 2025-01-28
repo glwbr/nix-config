@@ -21,7 +21,7 @@ in {
         nerd-fonts.ubuntu-mono
         nerd-fonts.symbols-only
         noto-fonts
-        noto-fonts-cjk
+        noto-fonts-cjk-sans
         noto-fonts-color-emoji
         noto-fonts-emoji
         roboto
