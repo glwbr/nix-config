@@ -16,7 +16,7 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      packages = [pkgs.inputs.corgix.default];
+      packages = [pkgs.inputs.nvim.default];
       sessionVariables.EDITOR = "nvim";
       shellAliases.v = "nvim";
     };
