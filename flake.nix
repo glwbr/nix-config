@@ -2,8 +2,6 @@
   description = "My own flake, my own Aria.";
 
   inputs = {
-    corgix.url = "github:glwbr/corgix";
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +24,8 @@
     impermanence.url = "github:nix-community/impermanence";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    nvim.url = "github:glwbr/nvim";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
