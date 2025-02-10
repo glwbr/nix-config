@@ -1,17 +1,25 @@
-## Hi there! :octocat:
+<a name="readme-top"></a>
 
-Those are my dotfiles, I'm trying to keep it simple, and I hope you find something useful here. ^^
+<main>
 
-I had a lot of trouble using Arch, so lets have new troubles with nix, hehehe, hehe, he, h,...
-I really hope that reproducible builds helps with my needs of rolling back my machine.
+## 🛠️ Dotfiles
 
-### TODO
-- Remove or move flake-parts
-- Add options to control nix-modules
+Hey there! 👋 These are my simple personal configs. I hope you find something useful here.
 
-### Special thanks to
-- [Fufexan](https://github.com/fufexan)
-- [Misterio77](https://github.com/Misterio77/nix-starter-configs)
-- [VimJoyer](https://github.com/vimjoyer) 
+## 🎯 Motivation
 
-<img src="https://c.tenor.com/jr9t3yabkH8AAAAC/tenor.gif" alt="" align="center" width="350px">
+After encountering some challenges with `Arch`, I decided to embrace _new_ challenges with `nixOS`. These dotfiles reflect my evolving workflow and preferences.
+
+Feel free to explore, tweak, and borrow whatever you like!
+
+</main>
+
+<hr/>
+<footer>
+    <div align="center">
+        <img src="https://res.cloudinary.com/djb3ju61n/image/upload/v1739197636/corgi_shake.gif" alt="Corgi shake" width="350px">
+        <p><em>Have fun!</em></p>
+    </div>
+</footer>
+
+[corgi_shake]: "https://res.cloudinary.com/djb3ju61n/image/upload/v1739197636/corgi_shake.gif"
