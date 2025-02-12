@@ -11,27 +11,24 @@ blinking = "On"
 [cursor.vi_mode_style]
 shape = "Beam"
 
-[env]
-TERM = "xterm-256color"
-
 [font]
-size = 12
+size = 17
 
 [font.bold]
 family = 'JetBrainsMono Nerd Font'
-style = 'Medium'
+style = 'Regular'
 
 [font.bold_italic]
 family = 'JetBrainsMono Nerd Font'
-style = 'Medium Italic'
+style = 'Bold Italic'
 
 [font.italic]
 family = 'JetBrainsMono Nerd Font'
-style = 'Light Italic'
+style = 'Italic'
 
 [font.normal]
 family = 'JetBrainsMono Nerd Font'
-style = 'Light'
+style = 'Regular'
 
 [[keyboard.bindings]]
 action = 'CreateNewWindow'
@@ -54,5 +51,5 @@ general = 'Alacritty'
 instance = 'Alacritty'
 
 [window.padding]
-x = 4
-y = 4
+x = 2
+y = 2
