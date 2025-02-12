@@ -1,6 +1,1 @@
-_: {
-  imports = [
-    ./alacritty
-    ./foot
-  ];
-}
+_: { imports = [ ./alacritty ./foot ]; }
