@@ -1,9 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config, lib, pkgs, ... }:
+let
   cfg = config.aria.system.nix.nh;
   inherit (lib.aria) mkBoolOpt;
 in {
