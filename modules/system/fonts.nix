@@ -1,9 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config, lib, pkgs, ... }:
+let
   inherit (lib.aria) mkBoolOpt;
 
   cfg = config.aria.system.fonts;
@@ -15,30 +11,15 @@ in {
   config = lib.mkIf cfg.enable {
     fonts = {
       enableDefaultPackages = false;
-      fontDir.enable = true;
       packages = with pkgs; [
         nerd-fonts.jetbrains-mono
-        nerd-fonts.ubuntu-mono
-        nerd-fonts.symbols-only
-        noto-fonts
-        noto-fonts-cjk-sans
-        noto-fonts-color-emoji
-        noto-fonts-emoji
-        roboto
+        nerd-fonts.monaspace
+        nerd-fonts.noto
       ];
 
       fontconfig = {
         enable = true;
-        antialias = true;
-        hinting = {
-          enable = true;
-          autohint = false;
-          style = "slight";
-        };
-        subpixel = {
-          lcdfilter = "light";
-          rgba = "rgb";
-        };
+        subpixel = { lcdfilter = "none"; };
       };
     };
   };
