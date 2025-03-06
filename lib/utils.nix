@@ -1,20 +1,29 @@
-{lib, ...}: let
-  inherit (lib) mkOption types;
-in rec {
-  mkOpt = type: default: description:
-    mkOption {inherit type default description;};
+{ lib, inputs, outputs, ... }:
+let
+  systems = [ "aarch64-linux" "x86_64-linux" ];
+  nixpkgs = inputs.nixpkgs;
+in
+rec {
 
-  mkOpt' = type: default: mkOpt type default null;
-
-  mkBoolOpt = mkOpt types.bool;
-
-  mkBoolOpt' = mkOpt' types.bool;
-
-  enabled = {
-    enable = true;
+  mkSystem = { 
+    hostname,
+    system ? "x86_64-linux", 
+    extraModules ? [],
+  }: lib.nixosSystem {
+    inherit system;
+    modules = [ ../hosts/${hostname} ../modules inputs.disko.nixosModules.default ];
+    specialArgs = { inherit lib inputs outputs; };
   };
 
-  disabled = {
-    enable = false;
-  };
-}
+	pkgsFor = lib.genAttrs systems (
+        system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+      );
+
+
+  forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+
+      }
