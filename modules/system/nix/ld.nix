@@ -5,7 +5,7 @@
 }:
 let
   inherit (lib.aria) mkBoolOpt;
-  cfg = config.aria.system.nix.nh;
+  cfg = config.aria.system.nix.ld;
 in
 {
   options.aria.system.nix.ld = {
