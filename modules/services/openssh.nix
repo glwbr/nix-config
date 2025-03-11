@@ -2,12 +2,13 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) types;
   inherit (lib.aria) mkBoolOpt mkOpt;
-
   cfg = config.aria.services.openssh;
-in {
+in
+{
   options.aria.services.openssh = with types; {
     enable = mkBoolOpt false "Whether to enable openssh";
     port = mkOpt port 2222 "The port to listen on";
@@ -23,7 +24,7 @@ in {
         }
       ];
 
-      ports = [cfg.port];
+      ports = [ cfg.port ];
 
       settings = {
         AcceptEnv = "WAYLAND_DISPLAY";
@@ -40,7 +41,7 @@ in {
     # INFO: Passwordless sudo when SSH'ing with keys
     security.pam.sshAgentAuth = {
       enable = true;
-      authorizedKeysFiles = ["/etc/ssh/authorized_keys.d/%u"];
+      authorizedKeysFiles = [ "/etc/ssh/authorized_keys.d/%u" ];
     };
   };
 }

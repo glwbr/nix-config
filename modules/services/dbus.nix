@@ -3,11 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib.aria) mkBoolOpt;
-
   cfg = config.aria.services.dbus;
-in {
+in
+{
   options.aria.services.dbus = {
     enable = mkBoolOpt false "Whether to enable dbus";
   };
@@ -16,9 +17,8 @@ in {
     services.dbus = {
       enable = true;
       implementation = "broker";
-      packages = [pkgs.gcr];
+      packages = [ pkgs.gcr ];
     };
-
     programs.dconf.enable = true;
   };
 }

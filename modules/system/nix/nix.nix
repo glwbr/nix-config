@@ -3,17 +3,18 @@
   lib,
   outputs,
   ...
-}: let
-  aliases = import ./aliases.nix;
+}:
+let
   flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-in {
-  imports = [./substituters.nix];
+in
+{
+  imports = [ ./substituters.nix ];
 
   nix = {
-    # pin the registry to avoid re-downloading a nixpkgs version
-    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    # NOTE: pin the registry to avoid re-downloading a nixpkgs version
+    registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
 
-    # set the path for channels compat
+    # NOTE: set the path for channels compat
     nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") flakeInputs;
 
     settings = {
@@ -38,7 +39,4 @@ in {
   };
 
   nixpkgs.overlays = builtins.attrValues outputs.overlays;
-  environment = {
-    inherit (aliases) shellAliases;
-  };
 }
