@@ -45,6 +45,9 @@ in
     };
 
     environment.pathsToLink = [ "/libexec" ];
-    environment.systemPackages = [ pkgs.xclip ];
+    environment.systemPackages = [
+      pkgs.dunst
+      pkgs.xclip
+    ];
   };
 }
