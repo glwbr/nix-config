@@ -34,7 +34,6 @@ in
       "plugdev"
       "power"
       "video"
-      "wheel"
     ] "Groups to add to all normal users";
 
     extraGroups = mkOpt (listOf str) [ ] "Additional groups to add to all normal users";
