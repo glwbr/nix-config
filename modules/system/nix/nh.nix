@@ -1,10 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.aria.system.nix.nh;
   inherit (lib.aria) mkBoolOpt;
-in {
+in
+{
   options.aria.system.nix.nh = {
-    enable = mkBoolOpt false "Whether or not to enable nh.";
+    enable = mkBoolOpt false "Whether or not to enable nh";
   };
 
   config = lib.mkIf cfg.enable {
@@ -15,13 +20,5 @@ in {
       clean.extraArgs = "--keep-since 4d --keep 3";
       flake = "/home/glwbr/projects/nix-config";
     };
-
-    environment.systemPackages = [
-      #FIXME: remove after https://github.com/viperML/nh/pull/107
-      (pkgs.writeScriptBin "snh" ''
-        #!/bin/sh
-        exec doas nh "$@" -R
-      '')
-    ];
   };
 }

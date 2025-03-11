@@ -2,13 +2,14 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib.aria) mkBoolOpt;
-
   cfg = config.aria.system.locale;
-in {
+in
+{
   options.aria.system.locale = {
-    enable = mkBoolOpt false "Whether to enable local";
+    enable = mkBoolOpt false "Whether to manage locale settings";
   };
 
   config = lib.mkIf cfg.enable {
@@ -17,6 +18,7 @@ in {
 
       extraLocaleSettings = {
         LC_TIME = lib.mkDefault "pt_BR.UTF-8";
+        LC_CTYPE = lib.mkDefault "pt_BR.UTF-8";
       };
 
       supportedLocales = lib.mkDefault [
@@ -26,7 +28,6 @@ in {
     };
 
     location.provider = "geoclue2";
-
     time.timeZone = lib.mkDefault "America/Bahia";
     time.hardwareClockInLocalTime = lib.mkDefault true;
   };

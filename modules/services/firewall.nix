@@ -2,11 +2,12 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib.aria) mkBoolOpt;
-
   cfg = config.aria.services.firewall;
-in {
+in
+{
   options.aria.services.firewall = {
     enable = mkBoolOpt false "Whether to enable firewall rules";
   };
