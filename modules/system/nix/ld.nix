@@ -1,12 +1,11 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
-  cfg = config.aria.system.nix.nh;
   inherit (lib.aria) mkBoolOpt;
+  cfg = config.aria.system.nix.nh;
 in
 {
   options.aria.system.nix.ld = {

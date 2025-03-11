@@ -1,9 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib.aria) mkBoolOpt;
-
   cfg = config.aria.system.fonts;
-in {
+in
+{
   options.aria.system.fonts = {
     enable = mkBoolOpt false "Whether to enable font settings";
   };
@@ -13,13 +18,15 @@ in {
       enableDefaultPackages = false;
       packages = with pkgs; [
         nerd-fonts.jetbrains-mono
-        nerd-fonts.monaspace
+        noto-fonts-cjk-sans
         nerd-fonts.noto
       ];
 
       fontconfig = {
         enable = true;
-        subpixel = { lcdfilter = "none"; };
+        subpixel = {
+          lcdfilter = "none";
+        };
       };
     };
   };
