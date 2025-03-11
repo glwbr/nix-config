@@ -2,11 +2,12 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib.aria) mkBoolOpt;
-
   cfg = config.aria.security.pam;
-in {
+in
+{
   options.aria.security.pam = {
     enable = mkBoolOpt false "Whether to enable pam";
   };
@@ -21,9 +22,6 @@ in {
           value = "65536";
         }
       ];
-
-      # TODO: handle this inside hyprlock or swaylock config
-      services.hyprlock.text = "auth include login";
     };
   };
 }
