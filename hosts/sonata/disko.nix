@@ -16,75 +16,59 @@ _: {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["umask=0077"];
+                mountOptions = [ "umask=0077" ];
               };
             };
 
-            luks = {
+            root = {
               size = "100%";
               content = {
-                type = "luks";
-                name = "crypted";
-                settings = {
-                  allowDiscards = true;
-                  bypassWorkqueues = true;
-                  crypttabExtraOpts = [
-                    "fido2-device=auto"
-                    "token-timeout=10"
-                  ];
-                };
-                content = {
-                  type = "btrfs";
-                  extraArgs = [
-                    "-L"
-                    "nixos"
-                    "-f"
-                  ];
-                  subvolumes = {
-                    "@/" = {
-                      mountpoint = "/";
-                      mountOptions = [
-                        "compress=zstd:1"
-                        "discard=async"
-                        "noatime"
-                      ];
-                    };
-                    "@/home" = {
-                      mountpoint = "/home";
-                      mountOptions = [
-                        "compress=zstd:1"
-                        "discard=async"
-                        "noatime"
-                      ];
-                    };
-                    "@/nix" = {
-                      mountpoint = "/nix";
-                      mountOptions = [
-                        "compress=zstd:1"
-                        "discard=async"
-                        "noatime"
-                      ];
-                    };
-                    "@/persist" = {
-                      mountpoint = "/persist";
-                      mountOptions = [
-                        "compress=zstd:1"
-                        "discard=async"
-                        "noatime"
-                      ];
-                    };
-                    "@/log" = {
-                      mountpoint = "/var/log";
-                      mountOptions = [
-                        "compress=zstd:1"
-                        "discard=async"
-                        "noatime"
-                      ];
-                    };
-                    "@/swap" = {
-                      mountpoint = "/swap";
-                      swap.swapfile.size = "16G";
-                    };
+                type = "btrfs";
+                extraArgs = [
+                  "-L"
+                  "nixos"
+                  "-f"
+                ];
+                subvolumes = {
+                  "@/" = {
+                    mountpoint = "/";
+                    mountOptions = [
+                      "compress=zstd:1"
+                      "discard=async"
+                      "noatime"
+                    ];
+                  };
+                  "@/home" = {
+                    mountpoint = "/home";
+                    mountOptions = [
+                      "compress=zstd:1"
+                      "discard=async"
+                      "noatime"
+                    ];
+                  };
+                  "@/nix" = {
+                    mountpoint = "/nix";
+                    mountOptions = [
+                      "compress=zstd:1"
+                      "discard=async"
+                      "noatime"
+                    ];
+                  };
+                  "@/persist" = {
+                    mountpoint = "/persist";
+                    mountOptions = [
+                      "compress=zstd:1"
+                      "discard=async"
+                      "noatime"
+                    ];
+                  };
+                  "@/log" = {
+                    mountpoint = "/var/log";
+                    mountOptions = [
+                      "compress=zstd:1"
+                      "discard=async"
+                      "noatime"
+                    ];
                   };
                 };
               };
