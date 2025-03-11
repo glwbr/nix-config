@@ -2,11 +2,12 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib.aria) mkBoolOpt;
-
   cfg = config.aria.virtualisation.docker;
-in {
+in
+{
   options.aria.virtualisation.docker = {
     enable = mkBoolOpt false "Whether to enable docker";
   };
@@ -14,6 +15,6 @@ in {
   config = lib.mkIf cfg.enable {
     virtualisation.docker.enable = true;
 
-    aria.users.extraGroups = ["docker"];
+    aria.users.extraGroups = [ "docker" ];
   };
 }
