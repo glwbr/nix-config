@@ -1,14 +1,13 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
   inherit (lib) types;
   inherit (lib.aria) mkBoolOpt mkOpt;
-  cfg = config.aria.shell.zsh;
-  shellAliases = import ./shell-aliases.nix;
+  cfg = config.aria.terminal.shell.zsh;
+  shellAliases = import ./aliases.nix;
 in
 {
   options.aria.shell.zsh = with types; {
