@@ -7,6 +7,7 @@ _: {
     ./services
     ./shell
     ./system
+    ./tools
     ./users
     ./virtualisation
   ];

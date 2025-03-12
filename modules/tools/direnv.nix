@@ -6,10 +6,10 @@
 let
   inherit (lib) mkIf;
   inherit (lib.aria) mkBoolOpt enabled;
-  cfg = config.aria.shell.tools.direnv;
+  cfg = config.aria.tools.direnv;
 in
 {
-  options.aria.shell.tools.direnv = {
+  options.aria.tools.direnv = {
     enable = mkBoolOpt false "Whether to enable direnv";
   };
 
