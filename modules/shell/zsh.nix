@@ -6,7 +6,7 @@
 let
   inherit (lib) types;
   inherit (lib.aria) mkBoolOpt mkOpt;
-  cfg = config.aria.terminal.shell.zsh;
+  cfg = config.aria.shell.zsh;
   shellAliases = import ./aliases.nix;
 in
 {
