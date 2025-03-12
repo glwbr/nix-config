@@ -1,0 +1,27 @@
+# System files
+.cache/
+._*
+
+# Temporary files
+tmp/
+*.tmp
+.~lock*
+
+# Logs
+log/
+
+# Editor and IDE files
+.idea/
+*.swp
+
+# Environment files
+.direnv/
+
+# Node.js modules
+node_modules/
+
+# Build artifacts
+result
+result-*
+
+# vim: set filetype=gitignore:
