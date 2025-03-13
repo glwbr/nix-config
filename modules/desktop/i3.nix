@@ -28,13 +28,6 @@ in
         package = pkgs.i3-gaps;
       };
 
-      xkb = {
-        model = "pc104";
-        layout = "us,us";
-        options = "compose:ralt, caps:swapescape, grp:alt_space_toggle";
-        variant = ",intl";
-      };
-
       xrandrHeads = [
         {
           output = "HDMI-1";

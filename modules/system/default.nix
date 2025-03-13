@@ -3,7 +3,6 @@ _: {
     ./boot.nix
     ./fonts.nix
     ./locale.nix
-    ./xkb.nix
 
     ./nix
   ];
