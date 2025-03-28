@@ -40,8 +40,7 @@ in
 
         # Configuration for continuum plugin
         set -g @continuum-restore 'on'
-        set -g @continuum-save-interval '15'
-        set -g status-right 'Continuum status: #{continuum_status}'
+        set -g @continuum-save-interval '30'
       '';
       extraConfig = builtins.readFile ./tmux.conf;
     };
