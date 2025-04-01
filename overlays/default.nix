@@ -1,17 +1,8 @@
-{inputs, ...}: {
-  flake-inputs = final: _: {
-    inputs =
-      builtins.mapAttrs (
-        _: flake: let
-          legacyPackages = (flake.legacyPackages or {}).${final.system} or {};
-          packages = (flake.packages or {}).${final.system} or {};
-        in
-          if legacyPackages != {}
-          then legacyPackages
-          else packages
-      )
-      inputs;
-  };
+{ inputs, ... }:
+{
+
+  apple-fonts = import ./apple-fonts.nix { inherit inputs; };
+  flake-inputs = import ./flake-inputs.nix { inherit inputs; };
 
   # lib-aria = final: prev: {
   #   lib = prev.lib // (import ../lib { inherit lib; });
