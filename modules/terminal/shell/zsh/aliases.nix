@@ -19,6 +19,7 @@
   df = "df -h";
   du = "dust";
   free = "free -h";
+  fzf = "sk";
   grep = "rg";
   fm = "yazi";
   ytmp3 = "yt-dlp --ignore-errors -x --audio-format mp3 -f bestaudio --audio-quality 0 --embed-metadata --embed-thumbnail --output '%(title)s.%(ext)s'";
