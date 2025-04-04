@@ -26,18 +26,37 @@ in
       config = {
         inherit alias;
 
-        init = {
-          defaultBranch = "main";
-        };
-
         checkout = {
           defaultRemote = "origin";
         };
 
         core = {
           editor = "nvim";
+          pager = "delta";
           excludesFile = "/etc/ignore";
           whitespace = "trailing-space,space-before-tab,indent-with-non-tab";
+        };
+
+        delta = {
+          dark = true;
+          navigate = true;
+          true-color = "always";
+        };
+
+        diff = {
+          colorMoved = "default";
+        };
+
+        init = {
+          defaultBranch = "main";
+        };
+
+        interactive = {
+          diffFilter = "delta --color-only";
+        };
+
+        merge = {
+          conflictStyle = "zdiff3";
         };
 
         pull = {
@@ -45,12 +64,16 @@ in
           rebase = true;
         };
 
+        push = {
+          autoSetupRemote = true;
+        };
+
         rebase = {
           autoStash = true;
         };
 
         user = {
-          name = "Glauber S. Santana";
+          name = "Glauber Santana";
           email = "hello@glwbr.me";
         };
       };
