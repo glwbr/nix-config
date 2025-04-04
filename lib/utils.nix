@@ -1,29 +1,42 @@
-{ lib, inputs, outputs, ... }:
+{
+  lib,
+  inputs,
+  outputs,
+  ...
+}:
 let
-  systems = [ "aarch64-linux" "x86_64-linux" ];
+  systems = [
+    "aarch64-linux"
+    "x86_64-linux"
+  ];
+
   nixpkgs = inputs.nixpkgs;
-in
-rec {
 
-  mkSystem = { 
-    hostname,
-    system ? "x86_64-linux", 
-    extraModules ? [],
-  }: lib.nixosSystem {
-    inherit system;
-    modules = [ ../hosts/${hostname} ../modules inputs.disko.nixosModules.default ];
-    specialArgs = { inherit lib inputs outputs; };
-  };
+  pkgsFor = lib.genAttrs systems (
+    system:
+    import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    }
+  );
 
-	pkgsFor = lib.genAttrs systems (
-        system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        }
-      );
-
+  mkSystem =
+    {
+      hostname,
+      system ? "x86_64-linux",
+      extraModules ? [ ],
+    }:
+    lib.nixosSystem {
+      inherit system;
+      modules = [
+        ../hosts/${hostname}
+        ../modules
+      ] ++ extraModules;
+      specialArgs = { inherit lib inputs outputs; };
+    };
 
   forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-
-      }
+in
+{
+  inherit mkSystem pkgsFor forEachSystem;
+}
