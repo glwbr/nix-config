@@ -17,6 +17,7 @@
       self,
       nixpkgs,
       disko,
+      nvim,
       ...
     }@inputs:
     let
@@ -31,10 +32,17 @@
 
       # 'nixos-rebuild --flake .#hostname'
       nixosConfigurations = {
-        sonata = utils.mkSystem { hostname = "sonata"; };
+        sonata = utils.mkSystem {
+          hostname = "sonata";
+          extraModules = [
+            disko.nixosModules.disko
+            nvim.nixosModule
+          ];
+        };
         sinfonia = utils.mkSystem {
           system = "aarch64-linux";
           hostname = "sinfonia";
+          extraModules = [ nvim.nixosModules ];
         };
       };
     };
