@@ -4,26 +4,17 @@
   pkgs,
   inputs,
   ...
-}: let
-  crossPkgs = pkgs.pkgsCross.aarch64-multiplatform;
-in {
+}:
+let
+  inherit (lib.aria) enabled;
+in
+{
   imports = [
     ./boot.nix
     ./hardware.nix
-    ../options
   ];
 
   hardware.deviceTree.name = "rockchip/rk3566-orangepi-3b-v1.1.dtb";
-
-  # Options to move to minimal config
-  environment.defaultPackages = [];
-  documentation.enable = false;
-
-  zramSwap = {
-    enable = true;
-    swapDevices = 1;
-    algorithm = "zstd";
-  };
 
   networking = {
     hostName = "sinfonia";
@@ -38,12 +29,18 @@ in {
   };
 
   aria = {
-    security.sops.enable = true;
-    system.nix.nh.enable = true;
-    system.locale.enable = true;
-    services = {
-      openssh.enable = true;
-      dbus.enable = true;
+    profiles.minimal = enabled;
+    users = {
+      enable = true;
+      defaultUserShell = pkgs.zsh;
+
+      users.glwbr = {
+        name = "glwbr";
+        email = "glauber.silva14@gmail.com";
+        fullName = "Glauber Santana";
+        hashedPassword = "$y$j9T$gRWruTQzJkmoHO7AaStnb1$1QHo3o.vdl.64VV3ooLsUxs0DHTTMSrCMzY1Kl2FL61";
+        extraGroups = [ "wheel" ];
+      };
     };
   };
 
@@ -59,5 +56,6 @@ in {
     };
   };
 
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.11";
 }
