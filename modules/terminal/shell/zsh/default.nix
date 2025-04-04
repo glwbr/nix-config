@@ -6,11 +6,11 @@
 let
   inherit (lib) types;
   inherit (lib.aria) mkBoolOpt mkOpt;
-  cfg = config.aria.shell.zsh;
+  cfg = config.aria.terminal.shell.zsh;
   shellAliases = import ./aliases.nix;
 in
 {
-  options.aria.shell.zsh = with types; {
+  options.aria.terminal.shell.zsh = with types; {
     enable = mkBoolOpt false "Whether to enable ZSH configuration";
     historySize = mkOpt int 10000 "Size of history to keep";
     historyFile = mkOpt str "/home/glwbr/.cache/zsh_history" "Location of history file";
