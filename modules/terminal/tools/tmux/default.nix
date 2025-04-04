@@ -7,10 +7,10 @@
 let
   inherit (lib) mkIf;
   inherit (lib.aria) mkBoolOpt;
-  cfg = config.aria.tools.tmux;
+  cfg = config.aria.terminal.tools.tmux;
 in
 {
-  options.aria.tools.tmux = {
+  options.aria.terminal.tools.tmux = {
     enable = mkBoolOpt false "Whether to enable tmux";
   };
 

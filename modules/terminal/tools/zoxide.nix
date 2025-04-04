@@ -1,14 +1,15 @@
 { config, lib, ... }:
 let
+  inherit (lib) mkIf;
   inherit (lib.aria) mkBoolOpt;
-  cfg = config.aria.tools.zoxide;
+  cfg = config.aria.terminal.tools.zoxide;
 in
 {
-  options.aria.shell.zoxide = {
+  options.aria.terminal.tools.zoxide = {
     enable = mkBoolOpt false "Whether to enable zoxide";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs.zoxide = {
       enable = true;
       flags = [ "--cmd cd" ];

@@ -5,9 +5,8 @@ _: {
     ./profiles
     ./security
     ./services
-    ./shell
     ./system
-    ./tools
+    ./terminal
     ./users
     ./virtualisation
   ];

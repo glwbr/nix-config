@@ -1,16 +1,17 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
   inherit (lib) mkIf;
   inherit (lib.aria) mkBoolOpt;
   alias = import ./aliases.nix;
-  cfg = config.aria.tools.git;
+  cfg = config.aria.terminal.tools.git;
 in
 {
-  options.aria.tools.git = {
+  options.aria.terminal.tools.git = {
     enable = mkBoolOpt false "Whether to enable git";
   };
 
@@ -19,6 +20,8 @@ in
       source = ./ignore;
       mode = "0644";
     };
+
+    environment.systemPackages = with pkgs; [ delta ];
 
     programs.git = {
       enable = true;
