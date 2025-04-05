@@ -4,6 +4,6 @@ _: {
     ./tmux
     ./git
     ./direnv.nix
-    # ./zoxide.nix
+    ./zoxide.nix
   ];
 }
