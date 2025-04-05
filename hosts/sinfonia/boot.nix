@@ -1,8 +1,9 @@
-{pkgs, ...}: {
+{ lib, pkgs, ... }:
+{
   boot = {
     initrd = {
-      supportedFilesystems = ["ntfs"];
-      kernelModules = ["phy_rockchip_naneng_combphy"];
+      supportedFilesystems = [ "ntfs" ];
+      kernelModules = [ "phy_rockchip_naneng_combphy" ];
       systemd = {
         enable = true;
         emergencyAccess = true;
@@ -16,12 +17,12 @@
       tmpfsSize = "100%";
     };
 
-    loader = {
+    loader = lib.mkDefault {
       grub.enable = false;
       generic-extlinux-compatible.enable = true;
       timeout = 5;
     };
 
-    consoleLogLevel = 7;
+    consoleLogLevel = lib.mkDefault 7;
   };
 }
