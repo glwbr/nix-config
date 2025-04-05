@@ -3,15 +3,19 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib.aria) disabled enabled;
-in {
+in
+{
   imports = [
     ./boot.nix
     ./disko.nix
     ./hardware.nix
     inputs.hardware.nixosModules.dell-inspiron-7460
   ];
+
+  nvim = enabled;
 
   aria = {
     profiles.desktop = enabled;
@@ -24,10 +28,19 @@ in {
         email = "hello@glwbr.me";
         fullName = "Glauber Santana";
         hashedPassword = "$y$j9T$gRWruTQzJkmoHO7AaStnb1$1QHo3o.vdl.64VV3ooLsUxs0DHTTMSrCMzY1Kl2FL61";
-        extraGroups = ["wheel"];
+        extraGroups = [ "wheel" ];
         sshKeys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFkSOeY0WaBCtd5ahpSD4GrAiPXLF/o8Y6VYV6xd5hmg"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOw9mnJmXKHKGvkdlSHJ7dFP2XhlKvQbKogHxwBXFg9o"
         ];
+        extraOptions = {
+          packages = with pkgs; [
+            firefox
+            google-chrome
+            spotify
+            (discord.override { withVencord = true; })
+          ];
+        };
+
       };
     };
 
@@ -35,6 +48,7 @@ in {
       docker = enabled;
     };
 
+    services.gpg = enabled;
     wms.i3 = enabled;
   };
 
