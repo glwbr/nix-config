@@ -17,10 +17,13 @@ in
   config = lib.mkIf cfg.enable {
     fonts = {
       packages = with pkgs; [
-        lexend
+        ny
+        sf-pro
+        sf-mono
         noto-fonts
-        noto-fonts-cjk-sans
+        sf-mono-liga
         noto-fonts-emoji
+        noto-fonts-cjk-sans
         nerd-fonts.jetbrains-mono
       ];
 
@@ -29,15 +32,16 @@ in
       fontconfig = {
         defaultFonts = {
           monospace = [
-            "JetBrainsMono"
-            "JetBrainsMono Nerd Font"
+            "SF Mono"
+            "Liga SFMono Nerd Font"
             "Noto Color Emoji"
           ];
           sansSerif = [
-            "Lexend"
+            "SF Pro"
             "Noto Color Emoji"
           ];
           serif = [
+            "New York"
             "Noto Serif"
             "Noto Color Emoji"
           ];
