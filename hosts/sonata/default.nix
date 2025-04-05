@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib.aria) disabled enabled;
+  inherit (lib.aria) enabled;
 in
 {
   imports = [
@@ -40,7 +40,6 @@ in
             (discord.override { withVencord = true; })
           ];
         };
-
       };
     };
 
