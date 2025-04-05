@@ -42,6 +42,9 @@ in
         extraGroups = [ "wheel" ];
       };
     };
+    system = {
+      nix.nh = enabled;
+    };
   };
 
   services = {
