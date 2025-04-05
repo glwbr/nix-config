@@ -14,8 +14,6 @@ in
     ./hardware.nix
   ];
 
-  hardware.deviceTree.name = "rockchip/rk3566-orangepi-3b-v1.1.dtb";
-
   networking = {
     hostName = "sinfonia";
     interfaces.end0 = {
