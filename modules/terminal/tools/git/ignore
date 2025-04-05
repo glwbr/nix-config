@@ -5,7 +5,6 @@
 # Temporary files
 tmp/
 *.tmp
-.~lock*
 
 # Logs
 log/
