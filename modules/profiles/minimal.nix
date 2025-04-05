@@ -33,7 +33,10 @@ in
 
       security.pam = enabled;
 
-      services.openssh = enabled;
+      services = {
+        firewall = enabled;
+        openssh = enabled;
+      };
 
       terminal = {
         shell.zsh = enabled;
