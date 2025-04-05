@@ -23,8 +23,6 @@ in
       algorithm = "zstd";
     };
 
-    nvim = enabled;
-
     aria = {
       hardware = {
         wireless.iwd = enabled;
@@ -49,7 +47,6 @@ in
       };
 
       system = {
-        boot = enabled;
         locale = enabled;
         nix = enabled;
       };
