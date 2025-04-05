@@ -43,11 +43,9 @@ in
       };
     };
 
-    virtualisation = {
-      docker = enabled;
-    };
-
     services.gpg = enabled;
+    terminal.tools.zoxide = enabled;
+    virtualisation.docker = enabled;
     wms.i3 = enabled;
   };
 
