@@ -31,6 +31,7 @@ in
         experimental-features = [
           "nix-command"
           "flakes"
+          "ca-derivations"
         ];
         flake-registry = "/etc/nix/registry.json";
         system-features = [
@@ -38,10 +39,7 @@ in
           "big-parallel"
           "nixos-test"
         ];
-        trusted-users = [
-          "root"
-          "@wheel"
-        ];
+        trusted-users = [ "@wheel" ];
         warn-dirty = false;
       };
     };
