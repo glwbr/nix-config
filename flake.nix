@@ -42,7 +42,7 @@
         sinfonia = utils.mkSystem {
           system = "aarch64-linux";
           hostname = "sinfonia";
-          extraModules = [ nvim.nixosModules ];
+          extraModules = [ nvim.nixosModule ];
         };
       };
     };
