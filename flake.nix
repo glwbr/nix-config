@@ -9,6 +9,7 @@
     hardware.url = "github:nixos/nixos-hardware";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nvim.url = "github:glwbr/nvim";
+    systems.url = "github:nix-systems/default-linux";
     apple-fonts.url = "github:glwbr/apple-fonts-flake";
   };
 

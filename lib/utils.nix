@@ -5,10 +5,7 @@
   ...
 }:
 let
-  systems = [
-    "aarch64-linux"
-    "x86_64-linux"
-  ];
+  systems = inputs.systems;
 
   nixpkgs = inputs.nixpkgs;
 
