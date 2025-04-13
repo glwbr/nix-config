@@ -19,6 +19,8 @@ in
     environment.systemPackages = with pkgs; [
       fd
       bat
+      dua
+      duf
       eza
       skim
       bottom
