@@ -14,6 +14,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.sessionVariables.DIRENV_WARN_TIMEOUT = "1m";
+
     programs.direnv = {
       enable = true;
       enableBashIntegration = true;
