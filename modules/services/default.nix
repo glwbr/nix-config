@@ -3,6 +3,7 @@ _: {
     ./dbus.nix
     ./firewall.nix
     ./gpg.nix
+    ./power.nix
     ./openssh.nix
   ];
 }
