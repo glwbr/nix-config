@@ -2,13 +2,14 @@
   config,
   lib,
   ...
-}: let
-  inherit (lib.aria) disabled enabled mkBoolOpt;
-
+}:
+let
+  inherit (lib.aria) enabled disabled mkBoolOpt;
   cfg = config.aria.profiles.desktop;
-in {
+in
+{
   options.aria.profiles.desktop = {
-    enable = mkBoolOpt false "Whether to enable minimal profile";
+    enable = mkBoolOpt false "Whether to enable desktop profile";
   };
 
   config = lib.mkIf cfg.enable {
@@ -21,10 +22,12 @@ in {
       };
 
       system = {
-        boot = {
-          silentBoot = true;
-        };
         fonts = enabled;
+        nix.nh = enabled;
+      };
+
+      terminal.tools = {
+        alacritty = enabled;
       };
 
       security = {
@@ -34,6 +37,7 @@ in {
 
       services = {
         dbus = enabled;
+        power = disabled;
       };
     };
   };
