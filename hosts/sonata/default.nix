@@ -1,11 +1,12 @@
 {
+  config,
   inputs,
   lib,
   pkgs,
   ...
 }:
 let
-  inherit (lib.aria) enabled;
+  inherit (lib.aria) disabled enabled;
 in
 {
   imports = [
@@ -19,6 +20,7 @@ in
 
   aria = {
     profiles.desktop = enabled;
+
     users = {
       enable = true;
       defaultUserShell = pkgs.zsh;
@@ -34,9 +36,11 @@ in
         ];
         extraOptions = {
           packages = with pkgs; [
+            kitty
             firefox
             google-chrome
             spotify
+            telegram-desktop
             (discord.override { withVencord = true; })
           ];
         };
@@ -46,11 +50,13 @@ in
     services.gpg = enabled;
     terminal.tools.zoxide = enabled;
     virtualisation.docker = enabled;
-    wms.i3 = enabled;
+    wms = {
+      i3 = disabled;
+      hyprland = enabled;
+    };
   };
 
   networking.hostName = "sonata";
-  nixpkgs.config.allowUnfree = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = lib.mkDefault "24.05";
