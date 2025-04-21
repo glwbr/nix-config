@@ -44,6 +44,7 @@ in
       };
     };
 
+    nixpkgs.config.allowUnfree = true;
     nixpkgs.overlays = builtins.attrValues outputs.overlays;
   };
 }
