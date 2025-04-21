@@ -2,6 +2,6 @@ _: {
   imports = [
     ./i3.nix
     ./greetd
-    # ./hyprland
+    ./hyprland
   ];
 }
