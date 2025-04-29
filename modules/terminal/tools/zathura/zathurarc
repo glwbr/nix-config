@@ -1,0 +1,36 @@
+# Zathura configuration
+
+# General settings
+set window-title-basename "true"
+set adjust-open "best-fit"
+set pages-per-row 1
+set page-padding 1
+set scroll-step 50
+set selection-clipboard clipboard
+set render-loading "false"
+
+# Status bar settings
+set statusbar-h-padding 2
+set statusbar-v-padding 2
+
+# Zoom settings
+set zoom-min 10
+set guioptions ""  # GUI options: empty disables GUI elements (e.g., toolbar)
+
+# Key mappings
+map j feedkeys "<C-Down>"
+map k feedkeys "<C-Up>"
+
+# Zoom key mappings
+unmap +
+unmap -
+map "<C-=>" zoom in      # Zoom in
+map "<C-->" zoom out     # Zoom out
+map "<C-0>" zoom reset   # Reset zoom
+
+# === THEME START ===
+# THEME_HERE
+# === THEME END ===
+
+# vim: ft=cfg
+
