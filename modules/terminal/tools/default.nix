@@ -1,8 +1,9 @@
 _: {
   imports = [
     ./alacritty
-    ./tmux
     ./git
+    ./tmux
+    ./zathura
     ./direnv.nix
     ./zoxide.nix
   ];
