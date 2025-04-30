@@ -28,6 +28,7 @@ in
 
       terminal.tools = {
         alacritty = enabled;
+        zathura = enabled;
       };
 
       security = {
