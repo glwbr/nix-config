@@ -3,5 +3,6 @@ _: {
     ./i3.nix
     ./greetd
     ./hyprland
+    ./obs
   ];
 }
