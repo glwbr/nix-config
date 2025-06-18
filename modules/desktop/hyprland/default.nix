@@ -1,20 +1,19 @@
 { config, lib, pkgs, ... }: let
-  cfg = config.aria.wms.hyprland;
+  cfg = config.aria.desktop.hyprland;
 in
 {
-  options.aria.wms.hyprland = {
-    enable = lib.aria.mkBoolOpt false "Whether to enable hyprland";
-  };
+  options.aria.desktop.hyprland.enable = lib.mkEnableOption "hyprland";
 
   config = lib.mkIf cfg.enable {
     # environment.variables = {
-    #   # Wayland session environment
-    #   NIXOS_OZONE_WL = "1";
+    #   WARN: already setup, check if its needed
     #   XDG_CURRENT_DESKTOP = "Hyprland";
     #   XDG_SESSION_DESKTOP = "Hyprland";
     #   XDG_SESSION_TYPE = "wayland";
-    #   XCURSOR_THEME = "WhiteSur-cursors";
     #   XCURSOR_SIZE = "24";
+
+    #   XCURSOR_THEME = "WhiteSur-cursors";
+    #   NIXOS_OZONE_WL = "1";
 
     #   # Wayland-related platform hints
     #   EGL_PLATFORM = "wayland";
@@ -43,6 +42,9 @@ in
     #   MOZ_ENABLE_WAYLAND = 1;
     # };
 
+    hardware.brillo.enable = true;
+    services.hypridle.enable = true;
+
     programs.hyprland = {
       enable = true;
       withUWSM = false;
@@ -59,28 +61,18 @@ in
           wayland.enable = true;
         };
         defaultSession = "hyprland";
-        # Enable full range of RGB values on HDMI connector (107)
+        #INFO: Enable full range of RGB values on HDMI connector (107)
         preStart = "${pkgs.libdrm.bin}/bin/proptest -M i915 -D /dev/dri/card0 107 connector 103 1";
       };
     };
 
     environment.pathsToLink = [ "/libexec" ];
-    environment.systemPackages = with pkgs; [
-      rofi
-      dunst
-      brillo
-      waybar
-      socat
-      swaylock
-      grimblast
-      hyprpaper
-      libnotify
-      wl-clipboard
-      whitesur-cursors
-    ];
+    environment.systemPackages = with pkgs; [ rofi dunst waybar socat swaylock grimblast hyprpaper libnotify wl-clipboard whitesur-cursors ];
 
-    xdg.portal.enable = true;
-    xdg.portal.config.hyprland.default = [ "hyprland" "gtk" ];
-    xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-hyprland ];
+    xdg.portal = {
+      enable = true;
+      config.hyprland.default = [ "hyprland" "gtk" ];
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-hyprland ];
+    };
   };
 }

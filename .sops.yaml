@@ -1,0 +1,24 @@
+keys:
+  # User keys
+  - &glwbr B3CDDAC8787FB17949D6431D73023DC2439F06B8
+  # Host keys
+  - &sonata age1ps8ucxns3sjt368es8asqer9qarsh002tu3tzjnsxuayjw8ln4qsaklx2x
+  - &sinfonia age1knznfhwu89ffp60qa5tdkf83ajwslug2ysz64dzpwq2tvy6ph4zsdd4fa9
+
+creation_rules:
+  # Shared secrets (accessible by all hosts)
+  - path_regex: secrets/(common|shared)\.yaml$
+    key_groups:
+      - age: [*sonata, *sinfonia]
+        pgp: [*glwbr]
+
+  # Host-specific secrets
+  - path_regex: hosts/sonata/secrets\.ya?ml$
+    key_groups:
+      - age: [*sonata]
+        pgp: [*glwbr]
+
+  - path_regex: hosts/sinfonia/secrets\.ya?ml$
+    key_groups:
+      - age: [*sinfonia]
+        pgp: [*glwbr]

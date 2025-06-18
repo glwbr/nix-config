@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
-}:
+{ lib, pkgs, modulesPath, ... }:
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
@@ -16,19 +10,14 @@
   powerManagement.cpuFreqGovernor = "schedutil";
 
   boot = {
-    loader = {
-      grub.enable = false;
-      generic-extlinux-compatible.enable = true;
-    };
+    loader.grub.enable = false;
+    loader.generic-extlinux-compatible.enable = true;
 
     initrd = {
-      systemd = {
-        enable = true;
-        emergencyAccess = true;
-      };
       supportedFilesystems = [ "ntfs" ];
       availableKernelModules = [ "nvme" ];
       kernelModules = [ "phy_rockchip_naneng_combphy" ];
+      systemd = { enable = true; emergencyAccess = true; };
     };
 
     kernelModules = [ ];

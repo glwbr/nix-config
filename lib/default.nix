@@ -14,4 +14,6 @@ rec {
       wantedBy = [ "multi-user.target" ];
     };
   };
+
+  hasPackage = packages: name: lib.any (p: (p.pname or p.name or null) == name) packages;
 }
