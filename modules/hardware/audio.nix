@@ -1,38 +1,47 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 let
-  inherit (lib) types;
-  inherit (lib.aria) mkBoolOpt mkOpt;
   cfg = config.aria.hardware.audio;
 in
 {
-  options.aria.hardware.audio = with types; {
-    enable = mkBoolOpt false "Whether to enable audio support";
-    extraPackages = mkOpt (listOf package) [ ] "Additional packages to include with audio settings";
+  options.aria.hardware.audio = {
+    enable = lib.mkEnableOption "audio system configuration";
+
+    lowLatency = lib.aria.mkBoolOpt false "Enable low-latency audio configuration";
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.pulsemixer ] ++ cfg.extraPackages;
 
-    aria.users.users.glwbr.extraGroups = [ "audio" ];
-
-    services.pulseaudio.enable = false;
     security.rtkit.enable = true;
-
+    environment.systemPackages = with pkgs; [ pulsemixer pavucontrol ] ++ lib.optionals cfg.lowLatency [ qjackctl ];
     services.pipewire = {
       enable = true;
       alsa.enable = true;
+      pulse.enable = true;
       alsa.support32Bit = true;
       jack.enable = true;
-      pulse.enable = true;
 
-      wireplumber = {
-        enable = true;
+      extraConfig.pipewire = lib.mkIf cfg.lowLatency {
+        "99-lowlatency" = {
+          "context.properties" = {
+            "default.clock.rate" = 48000;
+            "default.clock.quantum" = 32;
+            "default.clock.min-quantum" = 32;
+            "default.clock.max-quantum" = 32;
+          };
+        };
       };
+
+      wireplumber.enable = true;
+      wireplumber.configPackages = lib.mkIf config.aria.hardware.bluetooth.enable [
+        (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/50-bluez.conf" ''
+          monitor.bluez.properties = {
+            bluez5.enable-sbc-xq = true
+            bluez5.enable-msbc = true
+            bluez5.enable-hw-volume = true
+            bluez5.roles = [ a2dp_sink a2dp_source bap_sink bap_source hsp_hs hsp_ag hfp_hf hfp_ag ]
+          }
+        '')
+      ];
     };
   };
 }

@@ -1,8 +1,3 @@
 _: {
-  imports = [
-    ./i3.nix
-    ./greetd
-    ./hyprland
-    ./obs
-  ];
+  imports = [ ./hyprland ./i3.nix ];
 }

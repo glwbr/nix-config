@@ -1,40 +1,39 @@
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.aria.virtualisation.podman;
+  isDockerEnabled = config.aria.virtualisation.docker.enable;
+in
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
-  inherit (cfg) docker podman;
-  inherit (lib.aria) mkBoolOpt;
-
-  cfg = config.aria.virtualisation;
-  desktop = config.aria.profiles.desktop.enable;
-in {
   options.aria.virtualisation.podman = {
-    enable = mkBoolOpt false "Whether to enable podman";
+    enable = lib.mkEnableOption "Podman containerization";
+
+    users = lib.aria.mkListOpt lib.types.str [ ] "Users to add to docker group";
+    autoPrune = {
+      enable = lib.aria.mkBoolOpt true "Enable automatic container pruning";
+      dates = lib.aria.mkOpt lib.types.str "weekly" "How often to prune (systemd timer format)";
+      flags = lib.aria.mkListOpt lib.types.str [ "--all" ] "Additional flags for podman system prune";
+    };
+    defaultNetwork = {
+      dnsEnabled = lib.aria.mkBoolOpt true "Enable DNS in default network";
+    };
   };
 
-  config = lib.mkIf (podman.enable && !docker.enable) {
-    boot.enableContainers = true;
-    environment.systemPackages = with pkgs; [podman-compose] ++ lib.optionals desktop [podman-desktop];
+  config = lib.mkIf cfg.enable {
+    virtualisation.podman = {
+      enable = true;
+      autoPrune = cfg.autoPrune;
+      dockerCompat = !isDockerEnabled;
+      dockerSocket.enable = !isDockerEnabled;
 
-    aria.users.extraGroups = ["podman"];
-
-    virtualisation = {
-      podman = {
-        enable = true;
-
-        # INFO: prune images and containers periodically
-        autoPrune = {
-          enable = true;
-          flags = ["--all"];
-          dates = "weekly";
-        };
-
-        defaultNetwork.settings.dns_enabled = true;
-        dockerCompat = true;
-        dockerSocket.enable = true;
+      defaultNetwork.settings = {
+        dns_enabled = cfg.defaultNetwork.dnsEnabled;
       };
     };
+
+    users.users = lib.genAttrs cfg.users (user: {
+      extraGroups = [ "podman" ];
+    });
+
+    environment.systemPackages = with pkgs; lib.optionals (!isDockerEnabled) [ podman-compose ];
   };
 }

@@ -1,39 +1,26 @@
-{
-  lib,
-  inputs,
-  outputs,
-  ...
-}:
-let
-  systems = inputs.systems;
-
-  nixpkgs = inputs.nixpkgs;
-
-  pkgsFor = lib.genAttrs systems (
-    system:
-    import nixpkgs {
+{ lib, inputs, outputs }:
+rec {
+  pkgsFor = lib.genAttrs (import inputs.systems) (system:
+    import inputs.nixpkgs {
       inherit system;
       config.allowUnfree = true;
-    }
-  );
+    });
 
-  mkSystem =
-    {
-      hostname,
-      system ? "x86_64-linux",
-      extraModules ? [ ],
-    }:
+  forEachSystem = f: lib.genAttrs (import inputs.systems) (system: f pkgsFor.${system});
+
+  mkSystem = { hostName, profile, system ? "x86_64-linux", extraModules ? [] }:
     lib.nixosSystem {
       inherit system;
-      modules = [
-        ../hosts/${hostname}
-        ../modules
-      ] ++ extraModules;
-      specialArgs = { inherit lib inputs outputs; };
+      modules = [ ../modules ../profiles/base.nix ../hosts/${hostName} ../profiles/${profile}.nix ] ++ extraModules;
+      specialArgs = { inherit lib inputs outputs hostName; };
     };
 
-  forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-in
-{
-  inherit mkSystem pkgsFor forEachSystem;
+  mkProfile = modules: { imports = modules; };
+
+  # Module discovery
+  importModules = path: lib.mapAttrsToList (name: type:
+    if type == "directory" then path + "/${name}"
+    else if lib.hasSuffix ".nix" name && name != "default.nix" then path + "/${name}"
+    else null) (builtins.readDir path) 
+    |> builtins.filter (x: x != null);
 }
