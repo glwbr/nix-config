@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.aria.desktop.environment.i3;
+  cfg = config.aria.desktop.i3;
   inherit (lib.aria) mkBoolOpt;
 in
 {
-  options.aria.desktop.environment.i3 = {
+  options.aria.desktop.i3 = {
     enable = mkBoolOpt false "Whether to enable i3";
   };
 

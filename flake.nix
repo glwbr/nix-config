@@ -35,10 +35,9 @@
 
         # OrangePi 3B
         sinfonia = utils.mkSystem {
-          profile = "minimal";
+          profile = "embedded";
           hostName = "sinfonia";
           system = "aarch64-linux";
-          extraModules = [ nvim.nixosModule ];
         };
       };
     };
