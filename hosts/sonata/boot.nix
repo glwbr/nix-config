@@ -1,14 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-
+{ lib, pkgs, ... }:
 {
   boot = {
     consoleLogLevel = 0;
     loader = {
+      timeout = 0;
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot";
       systemd-boot = {
@@ -16,24 +11,21 @@
         configurationLimit = 20;
         editor = false;
       };
-      timeout = 0;
-
-      # plymouth = {
-      #   enable = false;
-      #   theme = lib.mkForce "rings";
-      #   themePackages = with pkgs; [
-      #     (adi1090x-plymouth-themes.override {
-      #       selected_themes = [ "rings" ];
-      #     })
-      #   ];
-      # };
     };
+
+    plymouth = {
+      enable = true;
+      theme = lib.mkForce "deus_ex";
+      themePackages = with pkgs; [ (adi1090x-plymouth-themes.override { selected_themes = [ "deus_ex" ]; }) ];
+    };
+
     tmp = {
       useTmpfs = true;
       cleanOnBoot = true;
       tmpfsSize = "50%";
     };
 
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
     initrd.verbose = false;
     initrd.systemd.enable = true;
 
@@ -48,8 +40,5 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [
-    efibootmgr
-    efitools
-  ];
+  environment.systemPackages = with pkgs; [ efibootmgr efitools ];
 }

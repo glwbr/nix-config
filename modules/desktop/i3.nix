@@ -1,16 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-
+{ config, lib, pkgs, ... }:
 let
-  cfg = config.aria.wms.i3;
+  cfg = config.aria.desktop.environment.i3;
   inherit (lib.aria) mkBoolOpt;
 in
 {
-  options.aria.wms.i3 = {
+  options.aria.desktop.environment.i3 = {
     enable = mkBoolOpt false "Whether to enable i3";
   };
 

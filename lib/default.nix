@@ -1,19 +1,17 @@
-{ lib, ... }:
-let
-  inherit (lib) mkOption types;
-in
+{ lib }:
 rec {
-  mkOpt =
-    type: default: description:
-    mkOption { inherit type default description; };
+  mkOpt = type: default: description: lib.mkOption { inherit type default description; };
 
-  mkBoolOpt = mkOpt types.bool;
+  mkBoolOpt = mkOpt lib.types.bool;
+  mkListOpt = elemType: mkOpt (lib.types.listOf elemType);
 
-  enabled = {
-    enable = true;
-  };
+  enabled = { enable = true; };
+  disabled = { enable = false; };
 
-  disabled = {
-    enable = false;
+  mkService = { name, description, after ? [], wants ? [], ... }: {
+    systemd.services.${name} = {
+      inherit description after wants;
+      wantedBy = [ "multi-user.target" ];
+    };
   };
 }

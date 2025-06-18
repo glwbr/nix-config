@@ -13,6 +13,8 @@
     deviceTree.name = "rockchip/rk3566-orangepi-3b-v1.1.dtb";
   };
 
+  powerManagement.cpuFreqGovernor = "schedutil";
+
   boot = {
     loader = {
       grub.enable = false;
@@ -32,9 +34,8 @@
     kernelModules = [ ];
     extraModulePackages = [ ];
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [ "cma=128M" ];
   };
-
-  # fileSystems."/" = { device = "/dev/disk/by-uuid/f222513b-ded1-49fa-b591-20ce86a2fe7f"; fsType = "ext4"; };
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";

@@ -1,29 +1,19 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 let
-  inherit (lib.aria) mkBoolOpt;
   cfg = config.aria.hardware.logitech;
 in
 {
   options.aria.hardware.logitech = {
-    enable = mkBoolOpt false "Whether to enable support for logitech devices";
+    enable = lib.mkEnableOption "support for Logitech devices";
+
+    enableGraphical = lib.aria.mkBoolOpt false "Whether to enable graphical tools";
   };
-
   config = lib.mkIf cfg.enable {
-    hardware = {
-      logitech.wireless.enable = true;
-      # INFO: Solaar
-      logitech.wireless.enableGraphical = true;
+    hardware.logitech.wireless = {
+      enable = true;
+      enableGraphical = cfg.enableGraphical;
     };
-
-    environment.systemPackages = with pkgs; [ solaar ];
-    services.udev.packages = with pkgs; [
-      logitech-udev-rules
-      solaar
-    ];
+    environment.systemPackages = with pkgs; lib.optional cfg.enableGraphical solaar;
+    services.udev.packages = with pkgs; [ logitech-udev-rules libratbag ] ++ lib.optional cfg.enableGraphical solaar;
   };
 }

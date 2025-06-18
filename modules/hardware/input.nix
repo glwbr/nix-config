@@ -1,20 +1,14 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 let
-  inherit (lib) types;
-  inherit (lib.aria) mkBoolOpt mkOpt;
   cfg = config.aria.hardware.input;
 in
 {
-  options.aria.hardware.input = with types; {
-    enable = mkBoolOpt false "Whether to enable input settings";
-    layout = mkOpt str "us,us" "Keyboard layouts to use. First layout is default";
-    variant = mkOpt str ",intl" "Keyboard variants for the layouts. Comma-separated list";
-    options = mkOpt str "compose:ralt, grp:alt_space_toggle" "XKB options for keyboard behavior";
+  options.aria.hardware.input = {
+    enable = lib.mkEnableOption "input device configuration";
+
+    layout = lib.aria.mkOpt lib.types.str "us,us" "Keyboard layouts to use. First layout is default";
+    variant = lib.aria.mkOpt lib.types.str ",intl" "Keyboard variants for the layouts. Comma-separated list";
+    options = lib.aria.mkOpt lib.types.str "compose:ralt, grp:alt_space_toggle" "XKB options for keyboard behavior";
   };
 
   config = lib.mkIf cfg.enable {

@@ -1,18 +1,16 @@
-{
-  config,
-  lib,
-  ...
-}: let
-  inherit (lib) mkIf;
-  inherit (lib.aria) mkBoolOpt;
-
+{ config, lib, ... }:
+let
   cfg = config.aria.security.keyring;
-in {
+in
+{
   options.aria.security.keyring = {
-    enable = mkBoolOpt false "Whether to enable gnome keyring";
+    enable = lib.mkEnableOption "GNOME keyring";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
+    aria.security.polkit.enable = true;
     services.gnome.gnome-keyring.enable = true;
+    security.pam.services.login.enableGnomeKeyring = true;
+    security.pam.services.greetd.enableGnomeKeyring = true;
   };
 }

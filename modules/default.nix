@@ -1,13 +1,3 @@
 _: {
-  imports = [
-    ./desktop
-    ./hardware
-    ./profiles
-    ./security
-    ./services
-    ./system
-    ./terminal
-    ./users
-    ./virtualisation
-  ];
+  imports = [ ./core ./desktop ./hardware ./programs ./security ./services ./virtualisation ];
 }
