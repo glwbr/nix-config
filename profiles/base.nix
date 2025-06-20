@@ -11,7 +11,7 @@
   programs.command-not-found.enable = false;
   environment.defaultPackages = [ ];
 
-  environment.systemPackages = with pkgs; [ curl git neovim ];
+  environment.systemPackages = with pkgs; [ curl git ];
 
   networking.firewall.enable = true;
   networking.nftables.enable = true;

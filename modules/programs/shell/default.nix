@@ -17,11 +17,11 @@ in
     environment.systemPackages = corePackages ++ lib.optionals cfg.includeExtras extraPackages;
 
     aria.programs.shell = {
+      zsh.enable = lib.mkDefault true;
       bash.enable = lib.mkDefault true;
       zoxide.enable = lib.mkDefault true;
       aliases.enable = lib.mkDefault true;
 
-      zsh.enable = lib.mkDefault false;
       direnv.enable = lib.mkDefault false;
       starship.enable = lib.mkDefault false;
     };

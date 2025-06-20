@@ -1,16 +1,14 @@
 { config, inputs, pkgs, hostName, ... }:
 let
-  cfg = {
-    wg0Port = 51820;
-    wgPublicKey = "3/mf/2/SfUI0vDeZ4fEj36W2srxbLAahNv8epigtPBY=";
-    defaultUserName = "glwbr";
-    wireguardNetwork = "10.100.0.0/24";
-    staticIP = {
-      address = "192.168.31.160";
-      prefixLength = 24;
-    };
+  username = "glwbr";
+  wg = {
+    port = 51820;
+    subnet = "10.5.5.0/24";
+    endpoint = "vpn.phy0.me:${toString wg.port}";
+    serverPubKey = "/ko07sTopPxjUJijyKz4dbd5lXGX0qSpQkrvyJB9+QM=";
   };
 in
+
 {
   imports = [ ./boot.nix ./disko.nix ./hardware.nix inputs.hardware.nixosModules.dell-inspiron-7460 ];
 
@@ -21,8 +19,8 @@ in
 
   aria = {
     core.users = {
-      users.glwbr = {
-        name = "glwbr";
+      users.${username} = {
+        name = username;
         email = "hi@phy0.com";
         useSOPSPassword = true;
         fullName = "Glauber Santana";
@@ -40,7 +38,7 @@ in
 
     virtualisation = {
       enable = true;
-      users = [ "glwbr" ];
+      users = [ username ];
       runtime = "docker";
       enableHypervisor = false;
       enableDesktopIntegration = true;
@@ -52,16 +50,17 @@ in
   sops.secrets.wireguard = { neededForUsers = false; sopsFile = ./secrets.yaml; };
 
   networking.wireguard.interfaces.wg0 = {
-    ips = [ "10.100.0.3/24" ];
+    ips = [ "10.5.5.3/32" ];
     privateKeyFile = config.sops.secrets.wireguard.path;
-    listenPort = cfg.wg0Port;
+    #INFO: without this wg uses random port
+    listenPort = wg.port;
 
     peers = [{
       name = hostName;
-      publicKey = cfg.wgPublicKey;
-      endpoint = "172.233.19.9:${toString cfg.wg0Port}";
+      publicKey = wg.serverPubKey;
+      allowedIPs = [ wg.subnet ];
+      endpoint = wg.endpoint;
 
-      allowedIPs = [ "10.100.0.0/24" ];
       persistentKeepalive = 25;
       dynamicEndpointRefreshSeconds = 300;
     }];
