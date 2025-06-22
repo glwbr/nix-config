@@ -18,7 +18,10 @@ in
 
       tailscale.enable = lib.mkDefault false;
 
-      dbus.enable = lib.mkDefault cfg.enableInteractive;
+      dbus = {
+        enable = lib.mkDefault true;
+        enableDconf = lib.mkDefault cfg.enableInteractive;
+      };
     };
   };
 }
