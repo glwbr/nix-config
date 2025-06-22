@@ -15,11 +15,12 @@ in
       secretsFile = config.sops.secrets.wireless.path;
 
       networks = {
-        "UAIFAI" = { pskRaw = "ext:uaifai_24g"; };
-        "UAIFAI_4G" = { pskRaw = "ext:uaifai_mobile"; };
+        "UAIFAI" = { pskRaw = "ext:uaifai"; };
+        "UAIFAI_4G" = { pskRaw = "ext:uaifai_4g"; };
+        "Club4Work" = { pskRaw = "ext:c4w"; };
+        "Evolution@Lemos_5G" = { pskRaw = "ext:lemos_5g"; };
         "UAIFAI_5G" = { pskRaw = "ext:uaifai_5g"; priority = 99; };
         "SALA DOS FUNDOS_5G" = { pskRaw = "ext:sala_c4w"; priority = 98; };
-        "Club4Work" = { pskRaw = "ext:c4w"; };
       };
 
       allowAuxiliaryImperativeNetworks = true;
