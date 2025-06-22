@@ -11,8 +11,6 @@
     extraLocaleSettings = { LC_TIME = "pt_BR.UTF-8"; LC_CTYPE = "pt_BR.UTF-8"; };
   };
 
-  # location.provider = "geoclue2";
-
   services.journald.extraConfig = ''
     SystemMaxUse=100M
     SystemMaxFiles=10
