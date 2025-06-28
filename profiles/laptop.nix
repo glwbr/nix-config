@@ -8,6 +8,7 @@
     extraLocaleSettings = { LC_TIME = "pt_BR.UTF-8"; LC_CTYPE = "pt_BR.UTF-8"; };
   };
 
+  hardware.i2c.enable = true;
   location.provider = "geoclue2";
   time.hardwareClockInLocalTime = true;
 
