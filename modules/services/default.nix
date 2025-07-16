@@ -3,7 +3,7 @@ let
   cfg = config.aria.services;
 in
 {
-  imports = [ ./dbus.nix ./power.nix ./openssh.nix ./tailscale.nix ];
+  imports = [ ./dbus.nix ./adguard.nix ./traefik.nix ./power.nix ./openssh.nix ./tailscale.nix ];
 
   options.aria.services = {
     enable = lib.mkEnableOption "Aria services";
@@ -16,6 +16,8 @@ in
       power.enable = lib.mkDefault true;
       openssh.enable = lib.mkDefault true;
 
+      adguard.enable = lib.mkDefault false;
+      traefik.enable = lib.mkDefault false;
       tailscale.enable = lib.mkDefault false;
 
       dbus = {
