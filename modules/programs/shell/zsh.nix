@@ -10,7 +10,7 @@ in
 
     programs.zsh = {
       enable = true;
-      histFile = "$HOME/.cache/zsh_history";
+      histFile = "$HOME/.cache/.zsh_history";
       autosuggestions.enable = true;
       enableCompletion = true;
       histSize = 10000;
