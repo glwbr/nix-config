@@ -29,7 +29,7 @@ let
     };
   };
 in
-  {
+{
   options.aria.core.fonts = {
     enable = lib.mkEnableOption "System fonts";
 

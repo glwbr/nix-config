@@ -8,7 +8,7 @@ in
 
     layout = lib.aria.mkOpt lib.types.str "us,us" "Keyboard layouts to use. First layout is default";
     variant = lib.aria.mkOpt lib.types.str ",intl" "Keyboard variants for the layouts. Comma-separated list";
-    options = lib.aria.mkOpt lib.types.str "compose:ralt, grp:alt_space_toggle" "XKB options for keyboard behavior";
+    options = lib.aria.mkOpt lib.types.str "compose:ralt,grp:alt_space_toggle,altwin:swap_alt_win" "XKB options for keyboard behavior";
   };
 
   config = lib.mkIf cfg.enable {
