@@ -57,11 +57,11 @@
     "kanagawa-paper-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1749416351,
-        "narHash": "sha256-SA5Qxc+0m5KBulV0lxT5D5+te4BaKaoX7+umZWP+Di4=",
+        "lastModified": 1750662963,
+        "narHash": "sha256-HxfV1Jp3+doZL0vG9tYjYJsXe35ra21lh7sxJEpu5Ag=",
         "owner": "thesimonho",
         "repo": "kanagawa-paper.nvim",
-        "rev": "4ce216d2d569861d27cf83a458ea5617ef0bb044",
+        "rev": "b0df20cca3b7087c06f241983b488190cc8e23af",
         "type": "github"
       },
       "original": {
@@ -172,11 +172,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1749940362,
-        "narHash": "sha256-YwAyE3HKHvBzu7PO2gvgO3zEZAunXwRwHRe2Nftro+g=",
+        "lastModified": 1752704072,
+        "narHash": "sha256-rRjsZT22B/npC+WY4bR08618DlqXh9Jj6oFbybWet7g=",
         "owner": "glwbr",
         "repo": "nvim",
-        "rev": "1a77e70dc100542a73827188ceaab10a1cd57f27",
+        "rev": "2301ae4e31d673bf23d2d3bb936cc66ee9ff999d",
         "type": "github"
       },
       "original": {
