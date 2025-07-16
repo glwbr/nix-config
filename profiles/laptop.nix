@@ -10,7 +10,6 @@
 
   hardware.i2c.enable = true;
   location.provider = "geoclue2";
-  time.hardwareClockInLocalTime = true;
 
   aria = {
     core.nix.nh.enable = true;
