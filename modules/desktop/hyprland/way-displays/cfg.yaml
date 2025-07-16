@@ -1,0 +1,19 @@
+ARRANGE: ROW
+ALIGN: TOP
+ORDER:
+  - eDP-1
+  - HDMI-A-1
+SCALING: false
+AUTO_SCALE: false
+VRR_OFF:
+    - eDP-1
+    - HDMI-A-1
+MODE:
+  - NAME_DESC: HDMI-A-1
+    WIDTH: 2560
+    HEIGHT: 1440
+    HZ: 165
+  - NAME_DESC: eDP-1
+    WIDTH: 1920
+    HEIGHT: 1080
+    HZ: 60
