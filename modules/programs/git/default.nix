@@ -34,6 +34,7 @@ in
         delta = {
           dark = true;
           navigate = true;
+          side-by-side = true;
           true-color = "always";
         };
 
