@@ -15,7 +15,7 @@ in
 
     hardware.graphics = {
       enable = true;
-      extraPackages = with pkgs; [ nvidia-vaapi-driver vaapiVdpau libvdpau-va-gl intel-media-driver intel-media-sdk libva-utils libva vaapiIntel ];
+      extraPackages = with pkgs; [ nvidia-vaapi-driver vaapiVdpau vaapiIntel intel-media-sdk intel-media-driver libva libva-utils libvdpau-va-gl ];
     };
 
     hardware.nvidia = {
@@ -23,6 +23,10 @@ in
       nvidiaSettings = true;
       modesetting.enable = true;
       powerManagement.enable = true;
+    };
+
+    environment.sessionVariables = {
+      "__GL_SHADER_DISK_CACHE_PATH" = "$XDG_CACHE_HOME/.nv";
     };
   };
 }
