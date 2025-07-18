@@ -15,12 +15,12 @@ in
       secretsFile = config.sops.secrets.wireless.path;
 
       networks = {
-        "Club4Work" = { pskRaw = "ext:c4w"; };
+        "Club4Work" = { pskRaw = "ext:c4w"; authProtocols = [ "WPA-PSK" ]; };
         "Evolution@Lemos_5G" = { pskRaw = "ext:lemos_5g"; };
         "UAIFAI" = { pskRaw = "ext:uaifai"; priority = 15; };
-        "UAIFAI_5G" = { pskRaw = "ext:uaifai_5g"; priority = 20; };
+        "UAIFAI_5G" = { pskRaw = "ext:uaifai_5g"; priority = 20; authProtocols = [ "WPA-PSK" ]; };
         "UAIFAI_4G" = { pskRaw = "ext:uaifai_4g"; priority = 10; };
-        "SALA DOS FUNDOS_5G" = { pskRaw = "ext:sala_c4w"; priority = 30; };
+        "SALA DOS FUNDOS_5G" = { pskRaw = "ext:sala_c4w"; priority = 30; authProtocols = [ "WPA-PSK" ]; };
       };
 
       allowAuxiliaryImperativeNetworks = true;
