@@ -5,45 +5,42 @@ in
   options.aria.desktop.hyprland.enable = lib.mkEnableOption "hyprland";
 
   config = lib.mkIf cfg.enable {
-    # environment.variables = {
-    #   WARN: already setup, check if its needed
-    #   XDG_CURRENT_DESKTOP = "Hyprland";
-    #   XDG_SESSION_DESKTOP = "Hyprland";
-    #   XDG_SESSION_TYPE = "wayland";
-    #   XCURSOR_SIZE = "24";
+    environment.variables = {
+    XCURSOR_SIZE = "24";
 
-    #   XCURSOR_THEME = "WhiteSur-cursors";
+    XCURSOR_THEME = "WhiteSur-cursors";
     #   NIXOS_OZONE_WL = "1";
 
-    #   # Wayland-related platform hints
+    # Wayland-related platform hints
     #   EGL_PLATFORM = "wayland";
     #   OZONE_PLATFORM = "wayland";
     #   SDL_VIDEODRIVER = "wayland";
     #   ELECTRON_OZONE_PLATFORM_HINT = "wayland";
 
-    #   # Qt environment for Wayland
+    # Qt environment for Wayland
     #   QT_QPA_PLATFORM = "wayland;xcb";
     #   QT_QPA_PLATFORMTHEME = "qt6ct";
     #   QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     #   QT_AUTO_SCREEN_SCALE_FACTOR = "1";
 
-    #   # NVIDIA driver/Prime settings
+    # NVIDIA driver/Prime settings
     #   GBM_BACKEND = "nvidia-drm";
     #   LIBVA_DRIVER_NAME = "nvidia";
     #   __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     #   __NV_PRIME_RENDER_OFFLOAD = 1;
     #   __VK_LAYER_NV_optimus = "NVIDIA_only";
 
-    #   # Miscellaneous
+    # Miscellaneous
     #   WLR_DRM_NO_ATOMIC = 1;
 
-    #   # Firefox (Mozilla) settings
+    # Firefox (Mozilla) settings
     #   MOZ_DISABLE_RDD_SANDBOX = 1;
     #   MOZ_ENABLE_WAYLAND = 1;
-    # };
+    };
 
     hardware.brillo.enable = true;
     services.hypridle.enable = true;
+    programs.hyprlock.enable = true;
 
     programs.hyprland = {
       enable = true;
@@ -67,7 +64,19 @@ in
     };
 
     environment.pathsToLink = [ "/libexec" ];
-    environment.systemPackages = with pkgs; [ rofi dunst waybar socat swaylock grimblast hyprpaper libnotify wl-clipboard whitesur-cursors ];
+    environment.systemPackages = with pkgs; [
+      rofi
+      dunst
+      waybar
+      socat
+      swaylock
+      grimblast
+      hyprpaper
+      libnotify
+      way-displays
+      wl-clipboard
+      whitesur-cursors
+    ];
 
     xdg.portal = {
       enable = true;
