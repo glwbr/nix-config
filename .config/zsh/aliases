@@ -1,29 +1,71 @@
-alias cat="bat"
-alias cp="cp -vr"
-alias df="df -h"
-alias free="free -h"
-alias fm="yazi"
-alias fonts="fc-cache -f -v"
-alias g="git"
-alias grep="rg"
-alias ls="eza --icons --group-directories-first"
-alias ll="ls --long --header"
-alias lla="ll --all --sort filename"
-alias htop="btm -b"
-alias btop="btm"
+alias v='nvim'
+alias vim='nvim'
+alias src='source ~/.config/zsh/.zshrc'   # Reload ZSH config quickly
 
-#FIXME: get the alternative
-# alias jctl="journalctl -p 3 -xb"
+alias ..='cd ..'
+alias ...='cd ../..'
+alias tmp='cd /tmp/'
 
-alias md="mkdir -p"
-alias mv="mv -v"
-alias rm="rm -rv"
-alias v="nvim"
-alias poweroff="loginctl poweroff"
-alias reboot="loginctl reboot"
+alias q='exit'
+alias c='clear'
+alias md='mkdir -p'
 
-# tree
-alias tree="ls --tree --level=3"
-alias q="exit"
+alias cp='cp -vr'   # interactive, verbose, recursive
+alias mv='mv -v'
+alias rm='rm -rv'
 
-# vim:ft=zsh
+alias bat='batcat'
+alias cat='batcat -p'
+alias -- --help='--help 2>&1 | bat --language=help --style=plain'
+
+alias fd='fdfind'
+alias fzf='sk'
+alias fm='yazi'
+
+alias grep='rg'
+alias du='dust'
+alias ps='procs'
+
+alias top='btm'
+alias btop='btm'
+alias htop='btm -b'  # Runs bottom in basic mode (looks like htop)
+
+alias ls='eza --icons --group-directories-first'
+alias la='eza --icons --group-directories-first --all'
+alias ll='eza --icons --group-directories-first --long --header --classify'
+alias lla='ll --all'
+alias tree='eza --tree --level=2 --icons'
+
+alias reboot='sudo reboot'
+alias poweroff='sudo poweroff'
+alias shutdown='sudo shutdown -h now'
+
+alias jctl='journalctl -p 3 -xb'
+alias sctl='systemctl'
+alias uctl='systemctl --user'
+
+alias df='df -h'
+alias free='free -h'
+alias kernel="uname -r | sed 's/[1-9]\+[0-9]*\.[0-9]\+\.[0-9]\+-//' | sed 's/[1-9]\+[0-9]*\.[0-9]*\-rc[0-9]\+-//'"
+
+alias g='git'
+
+alias dc='docker compose'
+alias dcu='docker compose up'
+alias dcd='docker compose down'
+alias dcl='docker compose logs'
+alias k='kubectl'
+alias tf='terraform'
+
+alias update='sudo apt update && sudo apt upgrade -y'
+alias install='sudo apt install'
+alias remove='sudo apt remove'
+alias search='apt search'
+
+alias myip="hostname -I | awk '{print \$1}'"
+alias ports='sudo lsof -i -P -n | grep LISTEN'
+
+alias ytmp3="yt-dlp --ignore-errors -x --audio-format mp3 -f bestaudio --audio-quality 0 --embed-metadata --embed-thumbnail --output '%(title)s.%(ext)s'"
+
+alias pn='pnpm'
+alias gotest='go test ./...'
