@@ -1,15 +1,41 @@
+# Window Settings
+window-subtitle = working-directory
 confirm-close-surface = false
+window-padding-x = 2
+window-padding-y = 2
+window-padding-balance = true
+window-inherit-font-size = true
+window-vsync = true
+mouse-hide-while-typing = true
 
+# Font Configuration
 font-family = "JetBrainsMono Nerd Font"
-font-style = "Light"
-font-style-bold = "Medium"
-font-style-italic = "Light Italic"
-font-style-bold-italic = "Medium Italic"
-font-size = 16
 
-title = " "
-theme = rose-pine
+font-style = "Medium"
+font-style-bold = "Bold"
+font-style-italic = "Medium Italic"
+font-style-bold-italic = "Bold Italic"
+font-size = 15
+font-thicken = true
 
-window-decoration = false
-window-padding-x = 0
-window-padding-y = 0
+font-feature = +liga, +calt, +zero
+adjust-cell-height = "10%"
+adjust-cell-width = "0%"
+bold-is-bright = true
+
+# Cursor & Interaction
+cursor-invert-fg-bg = true
+cursor-opacity = 0.8
+adjust-cursor-thickness = 3
+# adjust-underline-position = 2
+link-url = true
+
+# Theme
+theme = dark:Rose Pine,light:Rose Pine Dawn
+# theme = dark:tokyo_night,light:tokyo_day
+
+# Shell Integration
+shell-integration = zsh
+shell-integration-features = sudo,cursor,title
+
+# vim: ft=ghostty
