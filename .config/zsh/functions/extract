@@ -1,43 +1,59 @@
-SAVEIFS=$IFS
-IFS=$(echo -en "\n\b")
+extract() {
+  if [[ $# -eq 0 ]]; then
+    echo "Usage: extract <file1> [file2] [...]"
+    echo "Supported formats: zip, rar, tar, tar.gz, tar.bz2, tar.xz, 7z, gz, bz2, xz, Z, dmg, iso, etc."
+    return 1
+  fi
 
-function extract {
- if [ -z "$1" ]; then
-    # display usage if no parameters given
-    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
-    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
- else
-    for n in "$@"
-    do
-      if [ -f "$n" ] ; then
-          case "${n%,}" in
-            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *.cpio)      cpio -id < ./"$n"  ;;
-            *.cba|*.ace)      unace x ./"$n"      ;;
-            *)
-                         echo "extract: '$n' - unknown archive method"
-                         return 1
-                         ;;
-          esac
-      else
-          echo "'$n' - file does not exist"
-          return 1
-      fi
-    done
-fi
+  for n in "$@"; do
+    if [[ ! -f "$n" ]]; then
+      echo "extract: '$n' - file does not exist"
+      return 1
+    fi
+
+    case "$n" in
+      *.tar.bz2|*.tbz2|*.tar.gz|*.tgz|*.tar.xz|*.txz|*.tar)
+        tar xvf "$n"
+        ;;
+      *.bz2)
+        bunzip2 "$n"
+        ;;
+      *.gz)
+        gunzip "$n"
+        ;;
+      *.xz)
+        unxz "$n"
+        ;;
+      *.lzma)
+        unlzma "$n"
+        ;;
+      *.z)
+        uncompress "$n"
+        ;;
+      *.rar|*.cbr)
+        unrar x -ad "$n"
+        ;;
+      *.zip|*.cbz|*.epub)
+        unzip "$n"
+        ;;
+      *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+        7z x "$n"
+        ;;
+      *.exe)
+        cabextract "$n"
+        ;;
+      *.cpio)
+        cpio -id < "$n"
+        ;;
+      *.ace|*.cba)
+        unace x "$n"
+        ;;
+      *)
+        echo "extract: '$n' - unknown archive format"
+        return 1
+        ;;
+    esac
+  done
 }
 
-IFS=$SAVEIFS
-
-# vim:ft=zsh
+# vim:ft=bash
