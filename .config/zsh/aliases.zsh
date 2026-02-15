@@ -56,6 +56,16 @@ alias dcl='docker compose logs'
 alias k='kubectl'
 alias tf='terraform'
 
-alias ytmp3="yt-dlp --ignore-errors -x --audio-format mp3 -f bestaudio --audio-quality 0 --embed-metadata --embed-thumbnail --output '%(title)s.%(ext)s'"
+alias ytmp3='yt-dlp \
+    -f bestaudio \
+    -x --audio-format mp3 \
+    --audio-quality 0 \
+    --embed-metadata \
+    --embed-thumbnail \
+    --convert-thumbnails jpg \
+    --add-metadata \
+    --ignore-errors \
+    -o "~/Music/%(artist|Unknown Artist)s/%(playlist_title|Singles)s/%(playlist_index)02d - %(title)s.%(ext)s"'
+
 
 alias pn="pnpm"
