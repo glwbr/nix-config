@@ -40,6 +40,11 @@
   rbi = rebase --interactive
 
 [core]
-	excludesfile = /home/glwbr/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [push]
 	autoSetupRemote = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

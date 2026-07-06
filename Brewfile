@@ -22,6 +22,7 @@ brew "procs"                # ps replacement
 brew "bottom"              # top/btop/htop -> btm
 brew "yazi"                 # file manager (fm)
 brew "git-delta"            # git diff pager
+brew "git-lfs"              # large-file storage (repo tracks images via LFS)
 brew "jq"                   # JSON processor
 brew "neovim"               # editor
 brew "yt-dlp"               # ytmp3 alias

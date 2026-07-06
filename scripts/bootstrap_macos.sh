@@ -70,8 +70,11 @@ main() {
   log "Repo: $REPO_DIR"
 
   # --- Symlinks ---------------------------------------------------------------
-  link "$REPO_DIR/.zshenv"       "$HOME/.zshenv"
-  link "$REPO_DIR/.config/zsh"   "$HOME/.config/zsh"
+  link "$REPO_DIR/.zshenv"            "$HOME/.zshenv"
+  link "$REPO_DIR/.config/zsh"        "$HOME/.config/zsh"
+  link "$REPO_DIR/.gitconfig"         "$HOME/.gitconfig"
+  link "$REPO_DIR/.gitignore_global"  "$HOME/.gitignore_global"
+  link "$REPO_DIR/.config/ghostty"    "$HOME/.config/ghostty"
 
   # Once ZDOTDIR is set (via ~/.zshenv), zsh reads $ZDOTDIR/.zshrc and
   # $ZDOTDIR/.zprofile instead of the ~/ copies, so retire any real ones.
