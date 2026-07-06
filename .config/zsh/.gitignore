@@ -1,0 +1,8 @@
+# Runtime files written into $ZDOTDIR at shell startup
+history.zsh
+*.zwc
+.zcompdump*
+
+# Plugins / prompt installed locally (managed by Homebrew or a plugin manager)
+plugins/
+pure/

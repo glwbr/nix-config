@@ -17,15 +17,18 @@ setopt HIST_IGNORE_ALL_DUPS
 
 # Prompt
 fpath+=( "$ZDOTDIR/pure" )
+[[ -n "$HOMEBREW_PREFIX" ]] && fpath+=( "$HOMEBREW_PREFIX/share/zsh/site-functions" )
 autoload -Uz async promptinit
 promptinit
-prompt pure
+# Only load pure if it's actually installed (repo dir or Homebrew site-functions)
+(( ${prompt_themes[(I)pure]} )) && prompt pure
 
 # Completion
 autoload -Uz compinit
 
 fpath+=(
   "$ZDOTDIR/plugins/zsh-completions/src"
+  "$HOMEBREW_PREFIX/share/zsh-completions"
   /usr/share/zsh/functions/Completion
   /usr/share/zsh/site-functions
 )
@@ -42,14 +45,27 @@ compinit -d "$ZSH_CACHE_DIR/zcompdump" -C
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*'
 
-# Plugins
-[[ -f "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
-  source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+# Plugins — source from the repo's plugin dir (Linux) or Homebrew share (macOS),
+# whichever is present.
+for _p in \
+  "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" \
+  "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"; do
+  [[ -f "$_p" ]] && source "$_p" && break
+done
 
-[[ -f "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh" ]] && \
-  source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+for _p in \
+  "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh" \
+  "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"; do
+  [[ -f "$_p" ]] && source "$_p" && break
+done
+unset _p
 
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+# fzf: prefer the built-in shell integration (fzf >= 0.48), fall back to ~/.fzf.zsh
+if command -v fzf >/dev/null 2>&1; then
+  source <(fzf --shell zsh 2>/dev/null)
+elif [[ -f ~/.fzf.zsh ]]; then
+  source ~/.fzf.zsh
+fi
 
 # Functions
 source "$ZDOTDIR/functions/extract.zsh"
@@ -58,7 +74,7 @@ source "$ZDOTDIR/functions/extract.zsh"
 [[ -f "$ZDOTDIR/aliases.zsh" ]] && source "$ZDOTDIR/aliases.zsh"
 
 # Toolchains / Env
-[[ -f "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
+command -v mise >/dev/null 2>&1 && eval "$(mise activate zsh)"
 
 export PNPM_HOME="$HOME/.local/share/pnpm"
 [[ ":$PATH:" != *":$PNPM_HOME:"* ]] && export PATH="$PNPM_HOME:$PATH"
