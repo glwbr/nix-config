@@ -1,17 +1,16 @@
-# Login-shell setup. zsh reads $ZDOTDIR/.zprofile (not ~/.zprofile) once ZDOTDIR
-# is set, so Homebrew is initialized here. Exported vars are inherited by any
-# non-login child shells.
+# Login shells, and — importantly — after /etc/zprofile, which on macOS runs
+# path_helper and puts the system directories back in front of everything.
+# Anything that has to win the PATH race belongs here, not in .zshenv.
 
-# Homebrew (macOS / Linuxbrew)
-for _brew in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
-  [[ -x "$_brew" ]] && eval "$("$_brew" shellenv)" && break
-done
-unset _brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# mise shims — expose managed tools (node, go, …) to non-interactive child
-# processes such as editor-spawned LSP servers. `mise activate` in .zshrc only
-# affects interactive shells, so LSPs launched by Neovim otherwise can't find
-# `node` (jsonls/tailwindcss/vtsls fail with "env: node: No such file...").
-[[ -d "$HOME/.local/share/mise/shims" ]] && export PATH="$HOME/.local/share/mise/shims:$PATH"
-
-# vim:ft=zsh
+# mise shims keep managed tools resolvable for non-interactive children, such as
+# the LSP servers Neovim spawns — without them those die with
+# "env: node: No such file or directory". `mise activate` in .zshrc covers
+# interactive shells and prepends its own path at runtime, so it still wins there.
+path=(
+  $HOME/.local/bin
+  $HOME/.local/share/mise/shims
+  $path
+)
+export PATH

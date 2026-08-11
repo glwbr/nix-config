@@ -1,59 +1,17 @@
 extract() {
-  if [[ $# -eq 0 ]]; then
-    echo "Usage: extract <file1> [file2] [...]"
-    echo "Supported formats: zip, rar, tar, tar.gz, tar.bz2, tar.xz, 7z, gz, bz2, xz, Z, dmg, iso, etc."
-    return 1
-  fi
+  (( $# )) || { echo "usage: extract <archive>..."; return 1 }
 
-  for n in "$@"; do
-    if [[ ! -f "$n" ]]; then
-      echo "extract: '$n' - file does not exist"
-      return 1
-    fi
+  for a in "$@"; do
+    [[ -f $a ]] || { echo "extract: $a: no such file"; return 1 }
 
-    case "$n" in
-      *.tar.bz2|*.tbz2|*.tar.gz|*.tgz|*.tar.xz|*.txz|*.tar)
-        tar xvf "$n"
-        ;;
-      *.bz2)
-        bunzip2 "$n"
-        ;;
-      *.gz)
-        gunzip "$n"
-        ;;
-      *.xz)
-        unxz "$n"
-        ;;
-      *.lzma)
-        unlzma "$n"
-        ;;
-      *.z)
-        uncompress "$n"
-        ;;
-      *.rar|*.cbr)
-        unrar x -ad "$n"
-        ;;
-      *.zip|*.cbz|*.epub)
-        unzip "$n"
-        ;;
-      *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-        7z x "$n"
-        ;;
-      *.exe)
-        cabextract "$n"
-        ;;
-      *.cpio)
-        cpio -id < "$n"
-        ;;
-      *.ace|*.cba)
-        unace x "$n"
-        ;;
-      *)
-        echo "extract: '$n' - unknown archive format"
-        return 1
-        ;;
+    case $a in
+      # bsdtar sniffs the compression itself, so one branch covers gz/bz2/xz/zst
+      *.tar|*.tar.*|*.tgz|*.tbz2|*.txz) tar xvf "$a" ;;
+      *.zip|*.cbz|*.epub|*.jar)         unzip "$a" ;;
+      *.gz)                             gunzip "$a" ;;
+      *.bz2)                            bunzip2 "$a" ;;
+      *.Z)                              uncompress "$a" ;;
+      *) echo "extract: $a: unsupported format"; return 1 ;;
     esac
   done
 }
-
-# vim:ft=bash

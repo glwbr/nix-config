@@ -1,13 +1,7 @@
-export PATH="$HOME/.local/bin:$PATH"
+# Symlinked to ~/.zshenv. zsh reads this before ZDOTDIR exists, so it has to
+# live in $HOME. Its only job is to point zsh at the real config dir and hand
+# off — zsh does not re-read .zshenv once ZDOTDIR changes, so the source below
+# has to be explicit.
 
-# ZSH
-export ZDOTDIR=${ZDOTDIR:-$HOME/.config/zsh}
-
-# EDITORS
-export EDITOR="nvim"
-export VISUAL="nvim"
-
-# APPLICATIONS DATA
-export NODE_REPL_HISTORY="$HOME/.local/share/node_repl_history"
-
-# vim:ft=zsh
+export ZDOTDIR="$HOME/.config/zsh"
+[[ -r $ZDOTDIR/.zshenv ]] && source $ZDOTDIR/.zshenv
