@@ -32,7 +32,8 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY            # !! lands on the line for review instead of running
 
 # ── Keys ─────────────────────────────────────────────────────────────────────
-bindkey -e                    # emacs keymap: Ctrl-A/E/W/R as expected
+bindkey -v
+KEYTIMEOUT=1                  # 10ms, or Esc lags leaving insert mode
 
 # Arrows search history filtered by what's already typed, rather than walking it
 # blindly. Defined before the plugins load, so they wrap finished widgets.
