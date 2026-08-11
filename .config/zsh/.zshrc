@@ -43,8 +43,10 @@ zle -N down-line-or-beginning-search
 bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
 
-bindkey '^[[1;5C' forward-word     # Ctrl-Right
-bindkey '^[[1;5D' backward-word    # Ctrl-Left
+# option+arrow sends esc-b/esc-f; ctrl+arrow rarely survives Mission Control
+for k in '^[b' '^[[1;3D' '^[[1;5D'; do bindkey "$k" backward-word; done
+for k in '^[f' '^[[1;3C' '^[[1;5C'; do bindkey "$k" forward-word; done
+unset k
 
 # ── Completion ───────────────────────────────────────────────────────────────
 fpath=(

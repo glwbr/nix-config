@@ -7,6 +7,8 @@ window-padding-balance = true
 # window-inherit-font-size = true # ghostty default
 # window-vsync = true             # ghostty default
 mouse-hide-while-typing = true
+# option must act as alt, or option+arrow never reaches the shell as esc-b/esc-f
+macos-option-as-alt = true
 
 # Font Configuration
 #   brew install --cask font-jetbrains-mono-nerd-font
