@@ -93,7 +93,8 @@ export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=numbers --line-ran
 
 # ── Aliases & functions ──────────────────────────────────────────────────────
 source $ZDOTDIR/aliases.zsh
-source $ZDOTDIR/functions/extract.zsh
+for _fn in $ZDOTDIR/functions/*.zsh(N); do source $_fn; done
+unset _fn
 
 # ── Plugins ──────────────────────────────────────────────────────────────────
 # Keep last: syntax highlighting can only colourise the aliases and widgets that
