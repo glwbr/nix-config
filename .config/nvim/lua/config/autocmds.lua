@@ -1,99 +1,40 @@
-local function augroup(name)
-  return vim.api.nvim_create_augroup('glwbr_' .. name, { clear = true })
-end
+local function augroup(name) return vim.api.nvim_create_augroup("glwbr_" .. name, { clear = true }) end
 
--- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
-  group = augroup('checktime'),
+-- Reload a file that changed underneath us
+vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+  group = augroup("checktime"),
   callback = function()
-    if vim.o.buftype ~= 'nofile' then
-      vim.cmd('checktime')
+    if vim.o.buftype ~= "nofile" then
+      vim.cmd("checktime")
     end
   end,
 })
 
--- Highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = augroup('highlight_yank'),
-  callback = function()
-    (vim.hl or vim.highlight).on_yank({ timeout = 50 })
-  end,
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = augroup("highlight_yank"),
+  callback = function() vim.hl.on_yank({ timeout = 50 }) end,
 })
 
--- resize splits if window got resized
-vim.api.nvim_create_autocmd({ 'VimResized' }, {
-  group = augroup('resize_splits'),
-  callback = function()
-    local current_tab = vim.fn.tabpagenr()
-    vim.cmd('tabdo wincmd =')
-    vim.cmd('tabnext ' .. current_tab)
-  end,
-})
-
--- go to last loc when opening a buffer
-vim.api.nvim_create_autocmd('BufReadPost', {
-  group = augroup('last_loc'),
-  callback = function(event)
-    local exclude = { 'gitcommit' }
-    local buf = event.buf
-    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
+-- Reopen a file where you left it
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = augroup("last_loc"),
+  callback = function(ev)
+    if vim.bo[ev.buf].filetype == "gitcommit" then
       return
     end
-    vim.b[buf].lazyvim_last_loc = true
-    local mark = vim.api.nvim_buf_get_mark(buf, '"')
-    local lcount = vim.api.nvim_buf_line_count(buf)
-    if mark[1] > 0 and mark[1] <= lcount then
+    local mark = vim.api.nvim_buf_get_mark(ev.buf, '"')
+    if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(ev.buf) then
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
   end,
 })
 
--- close some filetypes with <Esc>
-vim.api.nvim_create_autocmd('FileType', {
-  group = augroup('close_with_esc'),
-  pattern = {
-    'PlenaryTestPopup',
-    'checkhealth',
-    'dbout',
-    'gitsigns-blame',
-    'grug-far',
-    'help',
-    'lspinfo',
-    'neotest-output',
-    'neotest-output-panel',
-    'neotest-summary',
-    'notify',
-    'qf',
-    'spectre_panel',
-    'startuptime',
-    'tsplayground',
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.schedule(function()
-      vim.keymap.set('n', '<Esc>', function()
-        vim.cmd('close')
-        pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
-      end, {
-        buffer = event.buf,
-        silent = true,
-        desc = 'Quit buffer',
-      })
-    end)
+-- q closes throwaway windows
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("close_with_q"),
+  pattern = { "help", "man", "qf", "checkhealth", "lspinfo" },
+  callback = function(ev)
+    vim.bo[ev.buf].buflisted = false
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = ev.buf, silent = true })
   end,
-})
-
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = augroup('lsp_format'),
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if not client then return end
-
-    if client.supports_method('textDocument/formatting') then
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        buffer = args.buf,
-        callback = function() vim.lsp.buf.format({ bufnr = args.buf, id = client.id }) end,
-      })
-    end
-  end
 })
